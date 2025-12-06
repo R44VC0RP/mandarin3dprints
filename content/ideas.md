@@ -39,7 +39,7 @@
 - [x] **Designing for 3D Printing: Essential Rules for Success**
 - [x] **Wall Thickness Guide: Minimum and Optimal Measurements**
 - [x] **How to Design Parts That Snap-Fit Together**
-- [ ] **Adding Threads to Your 3D Printed Parts**
+- [x] **Adding Threads to Your 3D Printed Parts**
 - [ ] **Designing Living Hinges for Flexible 3D Prints**
 - [ ] **How to Design Parts That Don't Need Supports**
 - [ ] **Text and Engravings: Best Practices for Readable 3D Printed Text**
@@ -219,6 +219,10 @@
 - [ ] **Designing Snap-Fit Enclosures: Box and Lid Designs That Stay Closed Without Hardware**
 - [ ] **First Layer Secrets: How Bed Leveling, Z-Offset, and Flow Rate Work Together for Perfect Adhesion**
 - [ ] **Designing Gear Mechanisms for 3D Printing: Tooth Profiles, Backlash, and Material Choices**
+
+---
+
+- [ ] **How to Design 3D Printed Cable Management Solutions: Clips, Channels, and Organizers**
 
 ---
 
