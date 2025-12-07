@@ -40,7 +40,7 @@
 - [x] **Wall Thickness Guide: Minimum and Optimal Measurements**
 - [x] **How to Design Parts That Snap-Fit Together**
 - [x] **Adding Threads to Your 3D Printed Parts**
-- [ ] **Designing Living Hinges for Flexible 3D Prints**
+- [x] **Designing Living Hinges for Flexible 3D Prints**
 - [ ] **How to Design Parts That Don't Need Supports**
 - [ ] **Text and Engravings: Best Practices for Readable 3D Printed Text**
 - [ ] **Designing for Assembly: Multi-Part Print Strategies**
@@ -223,6 +223,7 @@
 ---
 
 - [ ] **How to Design 3D Printed Cable Management Solutions: Clips, Channels, and Organizers**
+- [ ] **Print-in-Place Mechanisms: Designing Moving Parts That Print Assembled**
 
 ---
 
