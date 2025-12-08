@@ -1,0 +1,192 @@
+---
+title: "Text and Engravings: Best Practices for Readable 3D Printed Text"
+description: "Learn the minimum sizes, best fonts, and proven techniques for adding crisp, readable text to your 3D printed parts—whether embossed or engraved."
+date: "2025-12-08"
+author: "Mandarin3D"
+tags: ["design", "tips", "text", "engravings", "best-practices"]
+category: "guides"
+---
+
+Adding text to 3D prints sounds simple until you actually try it. That serial number comes out as an unreadable blob. The company logo looks like it went through a blender. The product label is technically there, but nobody can read it without a magnifying glass.
+
+Text is one of the trickiest things to get right in FDM printing. The layer-by-layer process that works great for structural parts can struggle with the fine details of letterforms. But with the right approach, you can get crisp, readable text every time.
+
+Here's everything you need to know.
+
+## Embossed vs. Engraved: Which Should You Use?
+
+Before diving into dimensions and fonts, you need to choose whether your text will stick up from the surface (embossed) or cut into it (engraved). Each has advantages.
+
+### Embossed Text (Raised)
+
+Text that protrudes from the surface is visually prominent and easy to see at a glance. It catches light and shadow, making it readable from a distance. The downside? Those raised letters can catch on things, get knocked off, or wear down over time. They also require thicker features to print reliably.
+
+**Best for:**
+- Labels that need to be visible from across a room
+- Decorative pieces where the text is a design feature
+- Applications where the part won't see physical contact
+
+### Engraved Text (Recessed)
+
+Text cut into the surface is protected from wear and impact. It won't snag on anything or get knocked off. The trade-off is reduced visibility—engraved text relies on shadows to be readable, so it can disappear in flat lighting. Many makers solve this by painting the recessed letters a contrasting color.
+
+**Best for:**
+- Functional parts that see daily handling
+- Industrial labeling (part numbers, version codes)
+- Any surface that might rub against other objects
+- Text that will be painted for contrast
+
+**My recommendation:** When in doubt, go engraved. It's more forgiving to print, survives real-world use better, and can always be painted for visibility. Embossed text looks great on display pieces, but for anything functional, engraved is the safer choice.
+
+## Minimum Dimensions That Actually Work
+
+Here's where most text-on-prints fails: sizing. What looks perfectly readable on your screen can become an indistinct smear when printed.
+
+### Engraved Text Minimums
+
+| Feature | Minimum | Recommended |
+|---------|---------|-------------|
+| Line width | 0.5mm | 0.8mm+ |
+| Depth | 0.3mm | 0.5mm+ |
+| Character height | 3mm | 5mm+ |
+
+For engraved text, you're essentially creating tiny channels in the surface. Those channels need to be wide enough for the nozzle to actually trace them and deep enough to cast a visible shadow. At 0.5mm width and 0.3mm depth, you're at the absolute edge of what's printable—it'll work, but just barely.
+
+### Embossed Text Minimums
+
+| Feature | Minimum | Recommended |
+|---------|---------|-------------|
+| Line width | 1.0mm | 1.5mm+ |
+| Height above surface | 0.5mm | 0.8mm+ |
+| Character height | 4mm | 6mm+ |
+
+Embossed text needs thicker features because those raised letters are essentially tiny walls. A standard 0.4mm nozzle produces lines about 0.45mm wide, so a 1mm wall is only two extrusion widths. That's structurally sound but leaves zero margin for error.
+
+### The Nozzle Rule
+
+Here's a useful rule of thumb: multiply your nozzle diameter by 2.5 for minimum feature width. With a standard 0.4mm nozzle, that gives you 1.0mm—wide enough for the printer to lay down at least two solid passes.
+
+For the absolute smallest readable text, you need character widths of at least 6 times the nozzle diameter. With 0.4mm, that's 2.4mm across. Any smaller and individual letters start blending together.
+
+## Choosing Fonts That Print Well
+
+Not all fonts are created equal when it comes to 3D printing. That elegant script font that looks beautiful on your wedding invitation? It'll print as an unreadable mess.
+
+### Best Font Categories
+
+**Sans-serif fonts** work best for 3D printing. These are fonts without the little decorative strokes (serifs) at the ends of letters. Think Arial, Helvetica, or Roboto. The clean, simple shapes translate well to the limitations of FDM printing.
+
+**Bold weights** print better than regular or light weights. More material in each letter means more margin for error and better structural integrity for embossed text.
+
+### Specific Font Recommendations
+
+Based on extensive testing by the 3D printing community, these fonts consistently produce the best results:
+
+- **Overpass** — Excellent at small sizes (down to about 15pt)
+- **Osifont** — Designed specifically for technical applications, works great at 24pt
+- **Arial Bold** — Available on every computer, reliable results
+- **Roboto Bold** — Clean and modern, prints well
+- **Open Sans Bold** — Another widely available option that performs consistently
+
+### Fonts to Avoid
+
+- Serif fonts (Times New Roman, Georgia)
+- Script and handwriting fonts
+- Thin or light weight variants
+- Decorative fonts with fine details
+- Any font with very thin strokes
+
+### The All-Caps Trick
+
+When you need readable text at smaller sizes, consider using all capital letters. Uppercase letters are generally simpler in shape and more uniform in width, which translates to more consistent printing. The difference between a lowercase "a" and "e" can be subtle when printed small—uppercase "A" and "E" remain distinct.
+
+## Orientation Matters: Where You Place Text Changes Everything
+
+The same text placed in different locations on your model will print with dramatically different quality. Understanding why helps you make better design decisions.
+
+### Text on Top Surfaces
+
+This is the best-case scenario for text. When text is on a horizontal surface facing up during printing, each letter is formed by the top layer of the print. You get the full resolution of your layer height (typically 0.1-0.2mm), and the surface comes out smooth.
+
+**Recommended minimum:** 16pt bold for top/bottom surfaces
+
+### Text on Vertical Walls
+
+Text on the sides of a part prints perpendicular to the layer lines. The vertical resolution is limited by layer height, but the horizontal detail is controlled by nozzle movement—which can be very precise. Vertical text often looks crisp, but layer lines will be visible running through the letters.
+
+**Recommended minimum:** 10pt bold for vertical surfaces
+
+### Text on Angled Surfaces
+
+This is where things get tricky. Text on surfaces between 0° and 90° will show stair-stepping from the layers. The steeper the angle, the more pronounced the effect. Embossed text on angled surfaces may also need support material, which leaves marks.
+
+**Recommendation:** Avoid placing critical text on angled surfaces when possible. If unavoidable, engraved text handles angles better than embossed.
+
+### Text on Bottom Surfaces
+
+Text on the bottom (against the build plate) prints in contact with the bed surface. For engraved text, this can actually work well—the recessed letters show up against the smooth bed finish. Embossed text on the bottom is problematic since it would need supports and leave a rough surface.
+
+## Making Engraved Text Visible
+
+The biggest complaint about engraved text is visibility. Those recessed letters can practically disappear on a solid-color print. Here are proven solutions:
+
+### Paint Fill
+
+The classic approach: print the part, then fill the engraved letters with paint. Acrylic craft paint works well. Apply it liberally, let it partially dry, then wipe the surface clean—paint stays in the recesses while clearing from the raised areas.
+
+**Pro tip:** For the cleanest results, apply painter's tape around the text area first, fill with paint, remove the tape, then wipe. This prevents paint from spreading beyond the intended area.
+
+### Contrasting Filament
+
+If you have a multi-material printer (or access to one), you can print the text in a different color than the body. The letters are printed in contrasting filament, inlaid flush with the surface.
+
+### Engraver's Filler
+
+Purpose-made engraver's filler is a waxy substance designed to fill engravings. It's available in various colors, easy to apply, and gives professional-looking results. Keep in mind it can wear off over time with heavy handling and doesn't tolerate heat well (typically rated to about 60°C).
+
+### Design for Shadows
+
+Sometimes the solution is designing the text to work with lighting. Deeper engravings (1mm+) cast more visible shadows. Placing text where it will catch side lighting helps. For permanent installations, you might even add LED backlighting.
+
+## Practical Examples
+
+### Part Numbers and Version Labels
+
+For industrial-style labeling, engraved text works best. Use a bold sans-serif font at 5mm character height with 0.5mm depth. This survives handling, can be painted for visibility, and remains readable even with some wear.
+
+### Product Branding
+
+For company names or logos on consumer products, embossed text at 6mm+ height makes a statement. Go bold with the font weight and keep letter spacing generous—crowded letters blend together.
+
+### Calibration and Settings Labels
+
+For technical labels (temperatures, settings, measurements), prioritize readability over aesthetics. Engraved text with paint fill, using a monospace font, ensures each character is distinct and aligned.
+
+### Decorative Text
+
+For name plates, signs, or decorative pieces where the text is the feature, embossed text at 8mm+ height with 1mm+ depth gives you room for detail. At larger sizes, you can even use fonts with serifs or moderate decoration.
+
+## A Quick Reference Checklist
+
+Before finalizing your text design:
+
+1. **Font choice** — Sans-serif, bold weight, simple shapes
+2. **Size** — Minimum 3mm character height for engraved, 4mm for embossed
+3. **Line thickness** — At least 0.5mm (engraved) or 1.0mm (embossed)
+4. **Depth/height** — At least 0.3mm (engraved) or 0.5mm (embossed)
+5. **Orientation** — Top surface is best, vertical walls are good, angles are tricky
+6. **Visibility plan** — Paint fill for engraved, sufficient height for embossed
+
+## When to Test First
+
+For critical text—part numbers that need to be scannable, branding that represents your company, labels that will be read daily—print a test piece first. A small sample with your text at the intended size and orientation takes minutes to print and can save hours of reprinting full parts.
+
+At Mandarin3D, we print on BambuLab P1S and H2S printers that handle fine detail well, but physics still applies. If you're not sure whether your text will come out readable, include a note with your order and we'll take a look before printing.
+
+## Get Your Text Right
+
+Adding text to 3D prints is part art, part engineering. The good news is that once you understand the constraints, designing readable text becomes straightforward. Stick to bold sans-serif fonts, respect the minimum dimensions, think about orientation, and plan for visibility.
+
+Need help with a specific text design? [Upload your model](/upload) and add a note about your concerns—we'll review it and let you know if adjustments would help. Or reach out at [orders@mandarin3d.com](mailto:orders@mandarin3d.com) with questions before you finalize your design.
+
+The best time to fix text problems is before the print starts. We're here to help make sure your labels, logos, and lettering come out crisp and readable every time.
