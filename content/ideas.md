@@ -8,7 +8,7 @@
 
 - [x] **Your First 3D Print: A Complete Beginner's Guide**
 - [x] **Understanding 3D File Formats: STL vs OBJ vs 3MF**
-- [ ] **How to Prepare Your 3D Model for Printing (The Right Way)**
+- [x] **How to Prepare Your 3D Model for Printing (The Right Way)**
 - [x] **Common 3D Printing Terms Every Beginner Should Know**
 - [x] **What to Expect When You Order a Custom 3D Print**
 - [x] **How to Measure Your Model for Perfect Fit Every Time**
@@ -226,6 +226,7 @@
 - [ ] **Print-in-Place Mechanisms: Designing Moving Parts That Print Assembled**
 - [ ] **Understanding Layer Adhesion: Why Prints Fail Along Layer Lines and How to Prevent It**
 - [ ] **Designing Weatherproof 3D Prints: UV Resistance, Material Selection, and Protective Coatings for Outdoor Use**
+- [ ] **How to Design 3D Printed Mounting Brackets: Wall Mounts, Shelf Supports, and Custom Hardware Solutions**
 
 ---
 
