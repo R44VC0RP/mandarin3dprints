@@ -27,7 +27,7 @@
 - [x] **Understanding ABS: High-Temp Applications and Considerations**
 - [x] **TPU Flexible Filament: Perfect for Gaskets, Grips, and More**
 - [x] **Nylon 3D Printing: Strong Parts for Demanding Applications**
-- [ ] **Wood-Fill, Metal-Fill, and Specialty Filaments Explained**
+- [x] **Wood-Fill, Metal-Fill, and Specialty Filaments Explained**
 - [x] **How Humidity Affects 3D Printing Filaments (And How to Prevent Issues)**
 - [ ] **Material Selection Guide: Match Your Project to the Right Filament**
 - [ ] **The Science Behind Filament Colors: Does Color Affect Print Quality?**
@@ -227,6 +227,7 @@
 - [ ] **Understanding Layer Adhesion: Why Prints Fail Along Layer Lines and How to Prevent It**
 - [ ] **Designing Weatherproof 3D Prints: UV Resistance, Material Selection, and Protective Coatings for Outdoor Use**
 - [ ] **How to Design 3D Printed Mounting Brackets: Wall Mounts, Shelf Supports, and Custom Hardware Solutions**
+- [ ] **Food-Safe 3D Printing: Materials, Coatings, and Best Practices for Kitchen Items**
 
 ---
 
