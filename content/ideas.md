@@ -30,7 +30,7 @@
 - [x] **Wood-Fill, Metal-Fill, and Specialty Filaments Explained**
 - [x] **How Humidity Affects 3D Printing Filaments (And How to Prevent Issues)**
 - [x] **Material Selection Guide: Match Your Project to the Right Filament**
-- [ ] **The Science Behind Filament Colors: Does Color Affect Print Quality?**
+- [x] **The Science Behind Filament Colors: Does Color Affect Print Quality?**
 
 ---
 
@@ -229,6 +229,7 @@
 - [ ] **How to Design 3D Printed Mounting Brackets: Wall Mounts, Shelf Supports, and Custom Hardware Solutions**
 - [ ] **Food-Safe 3D Printing: Materials, Coatings, and Best Practices for Kitchen Items**
 - [ ] **How to Design 3D Printed Parts for Laser Cutting and CNC Integration: Combining Manufacturing Methods**
+- [ ] **Understanding Retraction Settings: A Deep Dive into Stringing Prevention and Layer Quality**
 
 ---
 
