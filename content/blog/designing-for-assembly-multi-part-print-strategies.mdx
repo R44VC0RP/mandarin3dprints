@@ -1,0 +1,229 @@
+---
+title: "Designing for Assembly: Multi-Part Print Strategies"
+description: "Learn how to split large 3D models into printable pieces with alignment keys, dovetail joints, and proper tolerances. Master the art of designing parts that go together perfectly."
+date: "2025-12-12"
+author: "Mandarin3D"
+tags: ["design", "assembly", "multi-part", "CAD", "best-practices", "joints", "tolerances"]
+category: "guides"
+---
+
+Sometimes your best design won't fit on the print bed. Maybe it's a cosplay helmet that exceeds your build volume, a decorative piece with geometry that can't print in one orientation, or a functional assembly that needs different materials in different sections. Whatever the reason, learning to design for multi-part assembly opens up possibilities that single prints can't touch.
+
+The difference between a multi-part print that looks cobbled together and one that looks seamless comes down to planning. Here's everything you need to know to split models strategically and join them invisibly.
+
+## Why Print in Multiple Parts?
+
+Before diving into techniques, it's worth understanding when multi-part printing makes sense:
+
+**Size constraints:** Your printer has limits. Our BambuLab P1S printers have a 256mm build volume—generous, but not infinite. A full-size helmet, large prop, or architectural model often needs to be split.
+
+**Print quality:** Some geometries simply print better at certain orientations. A part with details on multiple faces might need to be split so each section can print with optimal orientation.
+
+**Material mixing:** Maybe the handle needs to be flexible TPU while the body is rigid PETG. Printing separately and assembling lets you use the right material for each section.
+
+**Risk reduction:** A 40-hour print that fails at hour 35 wastes significant time and material. Breaking it into smaller prints means a failure only costs you one section, not the whole project.
+
+**Shipping and storage:** Flat-packed parts ship cheaper and store easier than fully assembled pieces.
+
+## Choosing Where to Split
+
+The location of your splits determines how easy the assembly will be and how visible the seams are in the finished piece.
+
+### Follow Natural Boundaries
+
+Look for existing geometry that suggests a split point:
+
+- Panel lines or surface details that can hide a seam
+- Color boundaries in painted pieces
+- Functional joints where parts would naturally separate
+- Changes in thickness or cross-section
+
+A seam along a panel line disappears. A seam across a smooth curved surface screams "3D printed in pieces."
+
+### Consider Structural Loads
+
+Splits perpendicular to the primary stress direction are weaker than those parallel to it. If your part will be under tension, don't put the seam where it will be pulled apart. If it will be under compression, a perpendicular seam is actually fine—the parts push into each other rather than pulling apart.
+
+For parts that will be handled, position seams away from grip areas. Nobody wants to feel a ridge under their fingers every time they pick something up.
+
+### Think About Print Orientation
+
+Each piece needs to print successfully on its own. As you're planning splits, consider:
+
+- Can each resulting piece print without excessive supports?
+- Will the split create any pieces that are too thin or fragile?
+- Can you orient each piece to put critical details facing up or sideways (not down)?
+
+Sometimes moving a split by just a few millimeters lets you print a section flat instead of requiring supports throughout.
+
+## Alignment Strategies
+
+Getting parts to line up perfectly during assembly is half the battle. Relying on "eyeballing it" while glue sets is a recipe for crooked seams.
+
+### Alignment Pins and Holes
+
+The simplest approach: add cylindrical pins on one part and matching holes on the other. When you push the parts together, the pins guide everything into perfect alignment.
+
+**Recommended dimensions:**
+- Pin diameter: 3-5mm (smaller for delicate parts, larger for heavy ones)
+- Pin length: 5-10mm (at least 2x the diameter)
+- Hole depth: Pin length plus 1-2mm for clearance
+- Tolerance: 0.2-0.3mm clearance for a slip fit
+
+Place pins at the corners of your split plane, or space them evenly across larger surfaces. Two pins prevent rotation; more than two helps with alignment across warped surfaces.
+
+### Keyed Joints
+
+For parts that need to align in one specific way, use asymmetric keys. A simple approach: make one pin larger than the others, or offset them so they're not symmetric. This prevents assembling the part in the wrong orientation.
+
+### Dovetail Joints
+
+Dovetails provide both alignment and mechanical interlock. The angled surfaces guide parts together and resist being pulled apart once assembled.
+
+**For 3D printing dovetails:**
+- Use 10-15 degree angles (steeper than woodworking dovetails)
+- Add 0.15-0.2mm clearance on the mating surfaces
+- Include a small lead-in chamfer to guide assembly
+- Design the dovetail so it prints without supports (usually means printing each half flat)
+
+The beauty of dovetails is that they provide alignment, mechanical strength, and increased glue surface area all in one feature. For large, flat splits—like splitting a sign horizontally—dovetails are excellent.
+
+### Stepped or Wave Joints
+
+When you need to split a thin piece, dovetails don't have enough depth to work. Instead, use a wavy or stepped cut that creates mechanical interlock across the thickness.
+
+Imagine cutting a sheet with a zigzag pattern. Each piece has tabs that nest into the gaps of the other piece. The interlocking geometry self-aligns and provides much more glue surface than a straight cut.
+
+## Tolerances for Multi-Part Assemblies
+
+Getting tolerances right is critical. Too tight and parts won't fit; too loose and you'll have visible gaps.
+
+### General Guidelines
+
+| Joint Type | Clearance | Notes |
+|------------|-----------|-------|
+| Press fit | 0.0-0.1mm | Parts should require firm pressure |
+| Slip fit | 0.2-0.3mm | Parts slide together easily |
+| Loose fit | 0.4-0.5mm | For parts that need to move or for glue-filled joints |
+| Heat-set inserts | Per manufacturer | Check datasheet for your specific insert |
+
+### Material Considerations
+
+Different materials print with different accuracy:
+
+- **PLA:** Most dimensionally accurate; use tighter tolerances
+- **PETG:** Slight stringing may require slightly looser fits
+- **ABS:** Can warp; test fits before committing to full prints
+- **TPU:** Expands slightly; increase clearances by 0.2-0.3mm when mating with rigid parts
+
+### The Test Print Strategy
+
+Never assume your tolerances are right. Before printing a 20-hour piece with alignment features, print a small test section with your intended joint geometry. A 15-minute test print can save hours of reprinting.
+
+Create a simple test piece: two small blocks that mate together using your planned joint. If the fit is too tight, adjust your clearances. If it's too loose, tighten them. Iterate until it feels right, then apply those dimensions to your full model.
+
+## Hardware Options for Stronger Joints
+
+Sometimes glue isn't enough. For functional parts, mechanical fastening provides more reliable, repeatable results.
+
+### Heat-Set Inserts
+
+Brass threaded inserts installed with a soldering iron create metal threads in plastic parts. They're ideal for:
+
+- Parts that need to be disassembled and reassembled
+- High-stress fastening points
+- Professional-looking hardware attachment
+
+**Design tips for heat-set inserts:**
+- Maintain at least 2mm wall thickness around the insert
+- Add 1-2mm extra depth below the insert for plastic to pool
+- Orient inserts so load pushes them into the material, not out
+- Print a test hole to verify sizing before committing to your full part
+
+**Installation:** Set your soldering iron 10-20°C above your printing temperature (around 225°C for PLA, 245°C for PETG). Press the insert 90% in with the iron, then finish seating it with a tool while it cools.
+
+### Bolts Through Both Parts
+
+For maximum strength, design parts with through-holes and use bolts with nuts or T-nuts. The mechanical fastening doesn't rely on plastic threads or adhesive strength.
+
+Make bolt holes 0.2-0.3mm larger than the bolt diameter to account for printer tolerance.
+
+### Captive Nuts
+
+Design a hex-shaped pocket on the back side of your part to capture a nut. The bolt threads in from the front, and the nut is trapped in place by the surrounding plastic. This gives you metal threads without needing a soldering iron.
+
+## Bonding Techniques
+
+For permanent assemblies, adhesives create invisible joints when applied correctly.
+
+### Cyanoacrylate (Super Glue)
+
+The workhorse of 3D print assembly. Gel formulas work best—they don't run and provide minor gap-filling.
+
+**Best practices:**
+- Sand mating surfaces with 150-200 grit to improve adhesion
+- Clean with isopropyl alcohol before gluing
+- Apply sparingly—excess glue creates visible residue
+- Use accelerator spray if you need instant bonding
+- Allow 24 hours for full cure strength
+
+### Epoxy
+
+For maximum bond strength, nothing beats two-part epoxy. It fills gaps, can be sanded after curing, and creates bonds stronger than the plastic itself.
+
+**When to use epoxy:**
+- Structural parts under load
+- Gap-filling when fit isn't perfect
+- Parts that will be painted (epoxy sands smooth)
+
+**Downsides:** Requires mixing, longer cure time, and some epoxies generate heat that can warp thin PLA parts.
+
+### What to Avoid
+
+**Expanding Gorilla Glue:** The foam expansion pushes parts apart during curing—terrible for precise assemblies.
+
+**Hot glue:** Weak, visible, and doesn't adhere well to PLA.
+
+**Standard wood glue:** Won't bond to plastic.
+
+## Hiding Seams
+
+Even well-designed joints need finishing work to become truly invisible.
+
+### Fill and Sand
+
+Apply spot putty, Bondo, or even more super glue to fill the seam. Once cured, sand smooth with progressively finer grits (start at 150, work to 400+). Prime before painting to reveal any remaining imperfections.
+
+### Strategic Placement
+
+Plan your splits to land in areas that will be:
+- Hidden by other components (straps, attachments, etc.)
+- Naturally shadowed
+- Covered by paint details or weathering
+- Along existing surface detail lines
+
+### Accept Visible Seams
+
+Sometimes seams are part of the design. Panel lines on armor, joint lines on robots, or modular aesthetics can make seams a feature rather than a flaw.
+
+## A Practical Example
+
+Let's say you're printing a decorative vase that's 400mm tall—too big for our 256mm build volume.
+
+1. **Choose split location:** A point about 180mm up where there's a decorative band that can hide the seam
+2. **Add alignment:** Three 4mm pins spaced around the circumference
+3. **Create mechanical interlock:** A shallow step (1mm deep) around the joint for additional registration
+4. **Set tolerances:** 0.2mm clearance on pins, 0.15mm on the step
+5. **Print test:** Small arc section with joint features to verify fit
+6. **Assemble:** Sand mating surfaces, apply gel super glue, press together, clamp until cured
+7. **Finish:** Light sanding of the seam, prime, paint
+
+The result: a vase that looks like it was printed in one piece on a much larger printer.
+
+## Ready to Tackle That Big Project?
+
+Multi-part assembly opens up designs that would otherwise be impossible. With the right split locations, alignment features, and joining techniques, you can create seamless results from pieces that fit on any printer.
+
+If you're working on a project that needs to be split for printing, [upload your model](/upload) to Mandarin3D and mention your assembly plans in the notes. We can help identify optimal split locations and print each section with settings optimized for assembly. Our PETG prints are particularly well-suited for parts that need to be glued—the material bonds well and handles the stress of mechanical fasteners better than PLA.
+
+Have questions about a specific assembly challenge? Reach out at [orders@mandarin3d.com](mailto:orders@mandarin3d.com)—we've assembled everything from cosplay armor to architectural models and can offer project-specific advice.
