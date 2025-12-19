@@ -43,7 +43,7 @@
 - [x] **Designing Living Hinges for Flexible 3D Prints**
 - [x] **How to Design Parts That Don't Need Supports**
 - [x] **Text and Engravings: Best Practices for Readable 3D Printed Text**
-- [ ] **Designing for Assembly: Multi-Part Print Strategies**
+- [x] **Designing for Assembly: Multi-Part Print Strategies**
 - [ ] **How to Add Tolerances for Moving Parts and Assemblies**
 - [ ] **Converting 2D Logos and Images to 3D Printable Models**
 
@@ -219,6 +219,7 @@
 - [ ] **Designing Snap-Fit Enclosures: Box and Lid Designs That Stay Closed Without Hardware**
 - [ ] **First Layer Secrets: How Bed Leveling, Z-Offset, and Flow Rate Work Together for Perfect Adhesion**
 - [ ] **Designing Gear Mechanisms for 3D Printing: Tooth Profiles, Backlash, and Material Choices**
+- [ ] **How to Design Self-Aligning 3D Printed Assemblies: Registration Features, Chamfers, and Draft Angles for Easy Assembly**
 
 ---
 
