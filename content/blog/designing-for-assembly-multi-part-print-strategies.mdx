@@ -1,0 +1,219 @@
+---
+title: "Designing for Assembly: Multi-Part Print Strategies"
+description: "Learn when and how to split 3D models into multiple parts for better print quality, easier assembly, and projects that exceed your printer's build volume. Practical techniques for joint design, tolerances, and bonding."
+date: "2025-12-20"
+author: "Mandarin3D"
+tags: ["design", "assembly", "multi-part", "joints", "tolerances", "CAD", "best-practices"]
+category: "guides"
+---
+
+There comes a point in every 3D printing journey when you need to print something bigger than your build plate—or when splitting a model into pieces just makes more sense than printing it as one. Multi-part printing isn't a compromise; it's a design strategy that can produce stronger, better-looking results than monolithic prints.
+
+Whether you're creating a helmet that won't fit on your printer, a functional assembly with moving parts, or simply optimizing print orientation for strength, understanding how to design for assembly opens up possibilities that single-piece printing can't match.
+
+## Why Split Your Model?
+
+Before diving into techniques, it's worth understanding when multi-part printing actually helps:
+
+**Build volume limitations:** The most obvious reason. Our BambuLab P1S printers have a 256×256×256mm build volume—generous, but not infinite. Helmets, large props, architectural models, and display pieces often exceed these dimensions.
+
+**Optimized print orientation:** A single complex part might require extensive supports or unfavorable layer orientation. Splitting allows each piece to be printed in its optimal orientation for strength and surface quality.
+
+**Material mixing:** Need a rigid body with flexible grips? Multi-part design lets you print different sections in different materials—PETG for structure, TPU for comfort.
+
+**Reduced print failures:** A 40-hour print that fails at hour 35 wastes significant time and material. Breaking that into four 10-hour prints means a single failure only costs you 10 hours, not 40.
+
+**Easier post-processing:** Sanding the inside of a deep cavity is miserable. Printing that same geometry in two halves makes finishing work accessible.
+
+## Where to Split: Strategic Cut Placement
+
+The location of your splits dramatically affects both printability and final strength. Poor split placement creates weak points; thoughtful placement can actually make the assembled part stronger than a single print would be.
+
+### Follow Natural Geometry
+
+Look for existing seams, edges, or transitions in your design. A character model might split naturally at the waistline or neck. A mechanical housing splits logically at the parting line. These natural break points hide seams and often align with low-stress areas.
+
+### Avoid High-Stress Zones
+
+Splits create potential weak points. Don't place them where the part will experience maximum stress during use. If you're printing a bracket that mounts with screws at the top and bears load at the bottom, don't split it in the middle where bending forces peak.
+
+### Consider Aesthetics
+
+Even a perfectly strong joint is disappointing if it runs across the most visible surface of your model. Place splits in shadow lines, behind features, or along decorative transitions where seams become invisible or look intentional.
+
+### Think About Flat Surfaces
+
+Each piece needs to sit stably on the print bed. Splits should ideally create flat surfaces for each resulting part. If your split creates a piece that can only print with extensive supports, reconsider the cut location.
+
+## Joint Types for Assembly
+
+How your parts connect matters as much as where they split. Different joints serve different purposes—some prioritize alignment, others strength, others ease of assembly.
+
+### Flat Joints with Alignment Pins
+
+The simplest approach: cut parts with flat mating surfaces, then add holes for alignment pins. You can print the pins separately or use hardware store dowels. This method is forgiving of tolerance variations and provides positive alignment during gluing.
+
+**Design guidelines:**
+- Pin holes: 3mm diameter works well with standard dowels
+- Hole depth: At least 5mm per side
+- Clearance: Add 0.2mm to hole diameter for easy insertion
+- Pin count: Minimum two pins to prevent rotation, three for large surfaces
+
+### Dovetail Joints
+
+Borrowed from woodworking, dovetails create mechanical interlocks that resist pulling forces. The angled geometry means parts can only separate in one direction—perfect for assemblies that will be handled.
+
+**Design guidelines:**
+- Dovetail angle: 10-15 degrees from vertical
+- Tail depth: 3-5mm minimum
+- Add 0.15-0.2mm clearance for sliding fit
+- Include a lead-in chamfer for easier assembly
+
+Dovetails are particularly useful for parts that might need disassembly later, as they provide substantial hold without adhesive.
+
+### Tongue and Groove
+
+A tongue (protruding ridge) fits into a groove (recessed channel). This joint provides alignment in two axes while leaving the third free for sliding during assembly. It's excellent for long seams where you need consistent alignment.
+
+**Design guidelines:**
+- Tongue width: 2-3mm
+- Tongue height: 1.5-2mm
+- Groove: Tongue dimensions plus 0.3mm clearance
+- Add draft angles (2-3 degrees) for easier insertion
+
+### Mortise and Tenon
+
+One part has a protruding tab (tenon); the other has a matching pocket (mortise). This traditional woodworking joint translates beautifully to 3D printing and provides excellent shear strength.
+
+**Design guidelines:**
+- Tenon size: At least 5mm in each dimension for strength
+- Mortise clearance: 0.2-0.3mm per side
+- Add small fillets to reduce stress concentration
+- Consider through-tenons for maximum strength (tenon goes completely through)
+
+## Tolerances: Getting Parts to Fit
+
+Tolerance—the intentional gap between mating parts—is where many multi-part designs fail. Too tight and parts won't assemble; too loose and joints feel sloppy with visible gaps.
+
+### General Tolerance Guidelines for FDM
+
+| Fit Type | Gap per Side | Total Clearance | Use Case |
+|----------|--------------|-----------------|----------|
+| Interference | 0mm | Line-to-line | Press-fit pins, permanent assembly |
+| Tight | 0.1mm | 0.2mm total | Joints that should stay together without adhesive |
+| Standard | 0.15mm | 0.3mm total | General assembly, will be glued |
+| Loose | 0.25mm | 0.5mm total | Moving parts, easy disassembly |
+
+**Remember:** FDM holes print undersized. If you need a 3mm pin to fit in a hole, model the hole at 3.2-3.3mm diameter.
+
+### Variables That Affect Fit
+
+Your ideal tolerance depends on several factors:
+
+**Material:** PETG tends to print more accurately than PLA. Flexible materials need more clearance.
+
+**Printer calibration:** A well-calibrated printer can achieve tighter tolerances. Our BambuLab machines hold excellent dimensional accuracy, but results vary by machine.
+
+**Part orientation:** Features printed in the XY plane (parallel to the bed) are typically more accurate than those in the Z direction.
+
+**Feature size:** Small features are proportionally more affected by tolerance variation than large ones.
+
+### Test Before You Commit
+
+Don't guess at tolerances for critical assemblies. Print a simple test piece with your joint geometry at several clearance values (0.1mm, 0.15mm, 0.2mm, 0.25mm). Five minutes of testing saves hours of reprinting full parts that don't fit.
+
+## Print Settings for Assembly Parts
+
+Multi-part assemblies benefit from specific print settings:
+
+### Walls and Infill
+
+Joint areas experience stress during assembly and use. For mating surfaces:
+- Increase wall count to 4-5 walls
+- Use 40-60% infill in joint regions (you can use modifier meshes in your slicer to increase infill only where needed)
+- Avoid lightning or gyroid infill near joints—they create weak points
+
+### Layer Height
+
+Standard 0.2mm layers work well for most assemblies. Finer layers (0.12-0.16mm) improve dimensional accuracy if your tolerances are tight, but the strength difference is minimal.
+
+### Seam Position
+
+Configure your slicer to place seams away from mating surfaces. Z-seam artifacts can create bumps that interfere with flat joint surfaces.
+
+## Bonding Methods
+
+Once printed, parts need to come together. The right bonding method depends on your strength requirements and whether disassembly is needed.
+
+### Mechanical Fasteners
+
+Screws, bolts, and threaded inserts create strong, removable connections. Design clearance holes for screws (3.5mm for M3 screws) and either tap threads directly into the plastic or use heat-set inserts.
+
+**Pros:** Strongest option, fully disassemblable, no cure time
+**Cons:** Requires hardware, more design complexity
+
+### Cyanoacrylate (Super Glue)
+
+Fast-bonding CA glue works well for small to medium assemblies. Apply sparingly—excess glue creates visible residue.
+
+**Pros:** Quick cure, decent strength, easy to apply
+**Cons:** Brittle under impact, visible if excess squeezes out, poor gap filling
+
+### Epoxy
+
+For maximum strength, especially on larger parts, two-part epoxy excels. The longer working time (5-30 minutes depending on formula) allows positioning adjustments.
+
+**Pros:** Strongest adhesive bond, fills gaps, waterproof
+**Cons:** Longer cure time, requires mixing, messy
+
+### Solvent Welding
+
+Certain solvents (acetone for ABS, specific chemicals for PETG) partially dissolve the plastic, fusing parts at the molecular level. This creates the strongest possible bond—effectively a single piece of plastic.
+
+**Pros:** Strongest possible bond, invisible when done well
+**Cons:** Material-specific, requires ventilation, can damage surfaces if misapplied
+
+## Assembly Workflow
+
+A systematic approach prevents frustration:
+
+1. **Dry fit everything first.** Before any adhesive, verify all parts fit together correctly. Mark alignment with a pencil if needed.
+
+2. **Prepare surfaces.** Light sanding (220 grit) improves adhesive grip. Clean with isopropyl alcohol to remove oils and dust.
+
+3. **Work in sections.** For complex assemblies, don't try to glue everything at once. Join parts in logical sub-assemblies, let them cure, then combine sub-assemblies.
+
+4. **Use alignment aids.** Pins, tape, rubber bands, or clamps hold parts in position while adhesive cures. Gravity is your enemy—plan your orientation so parts don't slide apart.
+
+5. **Allow full cure time.** CA glue sets in seconds but reaches full strength over hours. Epoxy needs 24 hours for maximum strength. Don't stress the joint early.
+
+## Common Mistakes and Solutions
+
+**Parts don't fit together:**
+- Tolerance too tight—increase clearance to 0.3mm
+- Elephant's foot on first layer—adjust Z offset or add chamfers to mating edges
+- Warping—check bed adhesion and enclosure use
+
+**Visible seam lines:**
+- Use filler primer before painting
+- Design joints with small intentional gaps that can be filled
+- Place seams in less visible locations
+
+**Weak joints:**
+- Increase joint surface area
+- Switch to stronger adhesive (epoxy vs CA)
+- Add mechanical reinforcement (screws, pins)
+- Ensure mating surfaces are clean before bonding
+
+**Misalignment during gluing:**
+- Add more alignment features (pins, dovetails)
+- Use slower-curing adhesive for adjustment time
+- Create assembly jigs to hold parts in position
+
+## Ready to Design Multi-Part Projects?
+
+Multi-part design is a skill that expands what's possible with 3D printing. Start simple—split a basic box into two halves, experiment with different joint types, and dial in your tolerances before tackling complex assemblies.
+
+If you have a large or complex project that needs splitting, [upload your model](/upload) to Mandarin3D. We can advise on optimal split locations, joint strategies, and print orientation for each piece. Our BambuLab printers handle multi-part assemblies regularly, and we're happy to print test joints before committing to full production runs.
+
+Have questions about a specific multi-part project? Reach out at [orders@mandarin3d.com](mailto:orders@mandarin3d.com)—we enjoy helping makers turn ambitious ideas into assembled reality.
