@@ -1,0 +1,165 @@
+---
+title: "Designing for Assembly: Multi-Part Print Strategies"
+description: "Learn when and how to split your 3D models into multiple parts. Master tolerances, joint design, alignment features, and assembly techniques for prints that fit together perfectly."
+date: "2026-01-03"
+author: "Mandarin3D"
+tags: ["design", "assembly", "multi-part", "tolerances", "joints", "CAD", "best-practices"]
+category: "guides"
+---
+
+Not everything fits on the print bed in one piece. Sometimes you're working with a model that's simply too large. Sometimes you need different materials for different sections. And sometimes, splitting a model into multiple parts actually produces better results than printing it whole—less support material, better print orientation, and stronger parts.
+
+The challenge is making sure those multiple parts actually fit together. Nothing kills a project faster than printing for twelve hours across three pieces only to discover they don't align, the joints are too loose, or the tolerances were off. Here's how to design multi-part prints that assemble cleanly every time.
+
+## When to Split Your Model
+
+Before reaching for the split tool, ask whether you actually need to. Every seam is a potential weakness and an assembly step. But there are several scenarios where splitting clearly makes sense:
+
+**Build volume constraints.** The most obvious reason. If your model exceeds 250mm in any dimension (the build volume on our BambuLab P1S printers), you'll need to split it. But consider splitting even before hitting that limit—a 240mm print that barely fits often warps more than two 130mm pieces.
+
+**Support reduction.** A complex model printed in one orientation might need extensive supports, but the same model split strategically might print with minimal or no supports. Each piece can be oriented optimally on the bed.
+
+**Material combinations.** Need a rigid frame with flexible grips? A structural body with decorative accents in a different color? Multi-part design lets you use the right material for each section.
+
+**Print quality optimization.** Vertical surfaces print cleaner than angled ones. By splitting and reorienting, you can ensure the most visible or critical surfaces get the best print quality.
+
+**Risk reduction.** A 20-hour print that fails at hour 18 wastes significant time and material. Four 5-hour prints mean a single failure costs you only that one piece.
+
+## Where to Place Your Splits
+
+The location of your seams matters more than most people realize. A poorly placed split can weaken your part, create visible lines on aesthetic surfaces, or make assembly unnecessarily difficult.
+
+### Follow Natural Geometry
+
+Look for existing edges, corners, or transitions in your design. A seam along a natural edge is far less visible than one running across a smooth surface. If your model has panel lines, decorative grooves, or functional borders, use them.
+
+### Avoid Load Paths
+
+Don't place seams perpendicular to the primary stress direction. If your part will be pulled in tension, the seam should run parallel to that force, not across it. A joint loaded in shear (sliding forces) is stronger than one loaded in tension (pulling apart).
+
+### Consider Print Orientation
+
+Each piece will be printed separately, so think about how each will sit on the bed. Place splits where they create pieces that can each be oriented for optimal strength and surface quality. A split that creates two simple shapes is better than one that creates a simple shape and a complex one requiring extensive supports.
+
+### Plan for Assembly Access
+
+You'll need to actually join these pieces together. Ensure you have access for clamps, hands, or tools. A joint buried deep inside an enclosure is much harder to assemble than one accessible from outside.
+
+## Tolerance Fundamentals
+
+Here's where most multi-part designs fail: tolerances. 3D printed parts have dimensional variation, and if you design mating surfaces at exactly the same dimensions, they won't fit.
+
+### Standard Tolerance Guidelines
+
+For FDM printing on well-calibrated machines:
+
+| Joint Type | Clearance | Use Case |
+|------------|-----------|----------|
+| Press-fit | 0.1-0.2mm | Permanent joints that hold without adhesive |
+| Snug fit | 0.2-0.3mm | Parts that fit tightly but can be separated |
+| Sliding fit | 0.3-0.5mm | Parts that need to move or slide |
+| Loose fit | 0.5mm+ | Easy assembly with visible gap |
+
+**For screw holes:** Make holes 0.2-0.3mm larger than the screw diameter. A 3mm screw needs a 3.2-3.3mm hole.
+
+**For press-fit hardware:** Heat-set inserts typically need holes 0.1-0.2mm smaller than the insert's outer diameter since the hot insert melts its way in.
+
+### Test Your Tolerances
+
+Every printer and material combination behaves slightly differently. Before committing to a full multi-part print, create a tolerance test piece—a simple block with holes or pegs at various clearances. Print it, test the fits, and adjust your design accordingly.
+
+This five-minute test can save hours of reprinting. At Mandarin3D, we've dialed in our BambuLab printers to produce consistent results, but we still recommend customers verify fit on a small test piece for critical assemblies.
+
+## Joint Design Strategies
+
+Once you know where to split and what tolerances to use, you need to design the actual joint. Several approaches work well for 3D printing.
+
+### Alignment Features
+
+The simplest improvement to any multi-part design is adding alignment features—pins, pegs, or interlocking geometry that ensures parts can only go together one way, and go together precisely.
+
+**Alignment pins:** A 3mm diameter pin, 5-10mm long, extending from one part into a matching hole in the other. Use two or more pins to prevent rotation. These don't carry load; they just ensure alignment during assembly.
+
+**Registration edges:** Step features or rabbets where one part overlaps another. These increase glue surface area and make alignment automatic.
+
+**Keyed geometry:** Asymmetric features that physically prevent incorrect assembly. If your parts can go together wrong, they eventually will—design that possibility out.
+
+### Mechanical Fasteners
+
+For parts that need to come apart, or joints that need maximum strength, mechanical fasteners are reliable.
+
+**Heat-set inserts:** Threaded brass inserts that you press into printed holes using a soldering iron. These provide durable threads for machine screws and allow repeated disassembly. Design insert holes 0.1-0.2mm smaller than the insert OD.
+
+**Self-tapping screws:** Work directly in printed holes for quick assembly. Design holes 0.3-0.5mm smaller than the screw diameter. Works best in PLA and PETG. Note that threads will strip if over-tightened or removed repeatedly.
+
+**Bolts through clearance holes:** Standard bolt and nut assembly. Requires access to both sides but provides strong, removable joints.
+
+### Adhesive Joints
+
+For permanent assemblies, adhesives create strong bonds without the added complexity of fasteners.
+
+**Cyanoacrylate (CA/super glue):** Fast-curing, strong, and works on most materials including PLA, PETG, and resins. The thin viscosity wicks into joints via capillary action. Downsides: brittle under impact, can cause white frosting around joints, very short working time.
+
+**Two-part epoxy:** Slower cure time (5 minutes to 24 hours depending on formulation) gives you time to align parts. Fills gaps well and creates strong bonds. Can also serve as a filler for seams. Choose a formulation based on your working time needs.
+
+**Solvent welding:** For compatible materials (acetone for ABS, certain solvents for PETG), solvent welding chemically melts and fuses parts together. Creates the strongest possible bond—essentially making the two parts into one. Requires good ventilation and careful application.
+
+**Surface preparation matters.** Regardless of adhesive type, clean surfaces bond better. Remove dust, fingerprints, and any release agents. Light sanding creates mechanical tooth for the adhesive to grip.
+
+## Practical Assembly Workflow
+
+Designing good joints is only half the battle. The actual assembly process matters too.
+
+### Before Assembly
+
+**Knoll your parts.** Lay out every component in an organized arrangement. This lets you verify all parts printed successfully, identify any issues before you're mid-assembly, and count fasteners.
+
+**Dry fit everything.** Assemble without adhesive first. Verify parts fit together, identify any tight spots that need adjustment, and work out the assembly sequence. Some joints need to be assembled in a specific order.
+
+**Prepare your surfaces.** Sand mating surfaces if needed, especially if there's elephant's foot on bottom layers. Clean off dust and debris.
+
+### During Assembly
+
+**Work methodically.** Glue one joint at a time. Attempting to assemble multiple joints simultaneously usually results in misalignment as you're trying to manage too many things at once.
+
+**Use alignment features.** This is why you designed them in. Let pins and registration features do their job.
+
+**Mind your working time.** CA glue gives you seconds; slow-cure epoxy gives you hours. Choose the right adhesive for your comfort level and the precision required.
+
+**Clamp or fixture.** Some joints benefit from clamping pressure while adhesive cures. Design flat surfaces or use custom-printed jigs to hold parts in alignment.
+
+### After Assembly
+
+**Allow full cure.** Even if the joint feels solid, full adhesive cure can take hours. Don't stress the assembly until the manufacturer's recommended cure time has passed.
+
+**Finish the seams.** If visible seams matter, now's the time to fill and sand. Bondo, epoxy putty, or CA glue with activator can fill gaps before painting.
+
+## Common Mistakes to Avoid
+
+**Ignoring shrinkage variations.** Different materials shrink different amounts. If you're combining materials across a joint, account for the difference. A PLA part mating with a PETG part needs adjusted tolerances.
+
+**Forgetting tool access.** You designed a beautiful recessed bolt hole, but your Allen key can't reach it. Test the assembly sequence with actual tools before printing.
+
+**Symmetrical joints that shouldn't be.** If two halves can go together backwards, someone will do it. Add asymmetric features to make incorrect assembly impossible.
+
+**Over-relying on adhesive.** Adhesive can fill gaps, but "designed to be glued" shouldn't mean "designed poorly and fixed with glue." Mechanical fit should be good before adhesive enters the picture.
+
+**Under-constraining the joint.** Two flat surfaces glued together can slide relative to each other during assembly. Add pins, edges, or features that physically constrain all six degrees of freedom.
+
+## Material Considerations
+
+Different materials behave differently in assemblies.
+
+**PLA:** Prints dimensionally accurate, making it good for mechanical fits. Glues easily with CA. Doesn't solvent-weld readily. Brittle under impact, so avoid press-fits that stress the material.
+
+**PETG:** Slightly more flexible than PLA, more forgiving with press-fits. Bonds well with CA and epoxy. Some solvents work for welding. Our standard recommendation for functional assemblies at Mandarin3D.
+
+**TPU:** Flexible, so traditional press-fits don't work—parts just deform. Use mechanical fasteners or design interlocking features that capture the flexible part within rigid components.
+
+## Ready to Print Your Assembly?
+
+Multi-part design is a skill that improves with practice. Your first few assemblies will teach you more about tolerances and joint design than any guide can. Start simple—a two-part enclosure with alignment pins is a great first project.
+
+If you're designing a complex assembly and want feedback before committing to a full print, [upload your model](/upload) to Mandarin3D. We review every file and can flag potential fit issues, suggest optimal split locations, or recommend materials based on your assembly requirements.
+
+Working on something with critical tolerances? We're happy to print a test piece first so you can verify fit before running the full job. Reach out at [orders@mandarin3d.com](mailto:orders@mandarin3d.com) to discuss your project.
