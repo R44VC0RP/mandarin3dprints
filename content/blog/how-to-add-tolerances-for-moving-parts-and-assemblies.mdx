@@ -1,0 +1,211 @@
+---
+title: "How to Add Tolerances for Moving Parts and Assemblies"
+description: "Learn the exact clearance values and design strategies to create 3D printed parts that actually fit together. From sliding joints to rotating mechanisms, get your tolerances right the first time."
+date: "2026-01-09"
+author: "Mandarin3D"
+tags: ["design", "tolerances", "assemblies", "moving-parts", "CAD", "best-practices"]
+category: "guides"
+---
+
+Nothing kills the excitement of finishing a 3D print faster than discovering your carefully designed assembly doesn't fit together. The pin won't slide into the hole. The gear teeth grind against each other. The lid jams halfway onto the box. These failures almost always trace back to one issue: tolerances.
+
+Tolerances aren't glamorous, but they're the difference between parts that work and parts that become frustrating prototypes. Here's everything you need to know about designing tolerances for 3D printed moving parts and assemblies.
+
+## What Are Tolerances and Why Do They Matter?
+
+In manufacturing, tolerance refers to the acceptable range of variation in a part's dimensions. No manufacturing process produces perfectly sized parts—there's always some deviation from the design. In FDM 3D printing, this variation typically ranges from ±0.15mm to ±0.3mm, depending on printer calibration, material, and part geometry.
+
+When you design two parts that need to fit together, you must account for these variations. If you design a 10mm pin to go into a 10mm hole, you're asking for trouble. The pin might print at 10.2mm while the hole prints at 9.8mm—and now nothing fits.
+
+Clearance is the intentional gap you add between mating parts to accommodate this variation. Get it right, and parts slide together smoothly. Get it wrong, and you're either forcing parts together or dealing with sloppy, wobbly fits.
+
+## The Three Types of Fits
+
+Before choosing tolerance values, you need to understand what kind of fit your application requires.
+
+### Clearance Fit
+
+Parts have a gap between them, allowing free movement. This is what you want for sliding mechanisms, rotating joints, and anything that needs to move during use. The gap can range from minimal (parts slide with light friction) to generous (parts move freely with visible space).
+
+**Use clearance fits for:** Hinges, sliders, pivots, drawer guides, gear teeth, removable caps and lids.
+
+### Transition Fit
+
+Parts fit snugly with minimal movement but can still be assembled and disassembled by hand. There's neither a gap nor significant interference—the parts just slide together with some resistance.
+
+**Use transition fits for:** Reusable caps, alignment pins, parts that need to stay in position but might be removed occasionally.
+
+### Interference Fit (Press Fit)
+
+Parts are slightly oversized for their opening, requiring force to assemble. Once together, friction holds them in place permanently. These are tricky with FDM printing because the tolerances are so tight that small print variations can make parts either impossible to assemble or too loose.
+
+**Use interference fits for:** Permanent assemblies, bearings pressed into housings, parts that must never come apart.
+
+## Recommended Tolerance Values for FDM
+
+Here's the practical guidance based on what actually works with FDM printers like the BambuLab P1S and H2S we use at Mandarin3D.
+
+### General FDM Tolerances by Fit Type
+
+| Fit Type | Clearance | Use Case |
+|----------|-----------|----------|
+| Press/Interference | 0.0mm to 0.1mm | Permanent assemblies |
+| Tight/Transition | 0.1mm to 0.15mm | Snug fit, removable with effort |
+| Standard/Sliding | 0.2mm to 0.3mm | Easy assembly, slight movement |
+| Loose/Running | 0.4mm to 0.6mm | Free movement, rotating parts |
+
+### Application-Specific Recommendations
+
+**Pins and holes (static):** 0.2mm clearance for a smooth slip fit. This means if your pin is 5mm diameter, make the hole 5.2mm.
+
+**Sliding mechanisms:** 0.3mm to 0.4mm clearance. Drawer slides, linear guides, and anything that needs to move freely without binding.
+
+**Rotating joints and hinges:** 0.3mm to 0.5mm clearance. Enough space for rotation without excessive wobble.
+
+**Meshing gear teeth:** 0.4mm clearance between teeth. Gears need room to mesh without grinding.
+
+**Threaded connections:** 0.3mm to 0.4mm on the thread diameter. Tighter threads will bind; looser threads will strip.
+
+**Box and lid assemblies:** 0.3mm to 0.5mm clearance. Account for slight warping on flat surfaces.
+
+## The Golden Rule: Apply Tolerance to One Part Only
+
+When designing a peg and hole, resist the urge to split the tolerance between them. If you need 0.3mm clearance, don't make the peg 0.15mm smaller AND the hole 0.15mm larger. Instead, pick one part to modify.
+
+The standard approach: keep the male part (pin, shaft, peg) at nominal size and enlarge the female part (hole, socket, opening) by the full clearance value.
+
+**Example:** For a 5mm pin with 0.3mm clearance:
+- Pin diameter: 5.0mm (unchanged)
+- Hole diameter: 5.3mm (enlarged by full clearance)
+
+This approach is simpler to track in your design and matches how traditional engineering drawings specify fits.
+
+## Why Holes Print Smaller Than Designed
+
+Here's something that catches many designers: holes in 3D printed parts are almost always undersized. This isn't a printer error—it's a mathematical consequence of how STL files work.
+
+STL files approximate curves using flat triangles. A circular hole becomes a polygon, and the triangles are inscribed inside the theoretical circle. The printer follows these straight edges, producing a hole that's smaller than the design intent.
+
+The effect is more pronounced on smaller holes. A 3mm hole might print 0.2mm undersized, while a 20mm hole might only be 0.1mm undersized.
+
+**The fix:** Most slicers have a "Horizontal Hole Expansion" or "Hole Compensation" setting. For FDM printing, try starting with 0.1mm to 0.2mm expansion. Alternatively, design your holes 0.2mm to 0.4mm larger than nominal.
+
+## Material Considerations
+
+Different materials behave differently, and your tolerance strategy should adapt.
+
+### PLA
+
+PLA is dimensionally stable and prints with good accuracy. The tolerance values in this guide work well for PLA. However, PLA is rigid and doesn't forgive tight fits—interference fits are more likely to crack parts than create a secure joint.
+
+### PETG
+
+PETG has slightly more shrinkage than PLA and produces parts with a bit more flexibility. For PETG, add an extra 0.05mm to 0.1mm clearance compared to PLA values. PETG's flexibility makes it more forgiving for interference fits.
+
+### TPU and Flexible Materials
+
+Flexible filaments are a different game. They compress during insertion, so interference fits work well. For clearance fits, you'll need significantly more gap—often 0.5mm to 1mm—because the material deforms during movement and can bind in tight spaces.
+
+### Nylon
+
+Nylon absorbs moisture and swells over time. Design with extra clearance (add 0.1mm to 0.2mm beyond standard values) and expect fits to tighten as the material equilibrates with ambient humidity.
+
+## Print Orientation Matters
+
+The same part printed in different orientations can have different dimensional accuracy. FDM printers are most accurate in the X and Y axes but less accurate in Z (the layer stacking direction).
+
+**For holes:** Print holes vertically (axis perpendicular to bed) when possible. Horizontal holes suffer from the "staircase effect" where layers create an uneven surface on the top and bottom of the hole.
+
+**For shafts and pins:** Print them vertically for best roundness. Horizontal pins will have flat spots from layer lines.
+
+**For sliding surfaces:** Orient parts so the sliding direction aligns with layer lines, not across them. Layers sliding over layers creates less friction than layers catching on the edges of perpendicular layers.
+
+## Tolerance Stacking in Complex Assemblies
+
+Here's where things get tricky. When multiple parts come together, their individual tolerances accumulate.
+
+Imagine an assembly with three parts stacked: Part A fits into Part B, which fits into Part C. If each joint has ±0.2mm variation, the total stack-up could be ±0.6mm. That seemingly small per-joint tolerance becomes a significant error at the end of the chain.
+
+**Mitigation strategies:**
+
+- **Reduce the number of joints.** Can two parts become one?
+- **Use alignment features.** Tapered entries, locating pins, and reference surfaces help parts self-center.
+- **Design from a datum.** Choose one surface as the reference and dimension everything from it, rather than chaining dimensions part-to-part.
+- **Accept looser fits at the end of chains.** The last part in a sequence will see the most accumulated error.
+
+## Print a Tolerance Test First
+
+The most reliable way to dial in tolerances for your specific printer and material is to print a test model. These are small, quick prints with a series of pins and holes at different clearances.
+
+A typical tolerance test includes:
+- Pins at nominal size: 5mm, 6mm, 8mm
+- Holes at nominal + 0.1mm, 0.15mm, 0.2mm, 0.25mm, 0.3mm, 0.4mm
+
+Print the test, try fitting the pins into the holes, and note which clearance gives you the fit you want. This 20-minute test can save hours of failed prints.
+
+**Pro tip:** Print tolerance tests whenever you:
+- Use a new filament brand or color
+- Change materials (PLA to PETG, etc.)
+- Adjust print settings significantly
+- Need precise fits for a critical project
+
+## Practical Examples
+
+### Example 1: Pivot Joint for a Phone Stand
+
+A phone stand arm needs to rotate and hold position through friction.
+
+- Pin diameter: 6mm
+- Hole diameter: 6.3mm (0.3mm clearance)
+- Add a washer or spacer: 0.3mm thick to control side-to-side play
+- Material: PETG for durability and slight flexibility
+
+### Example 2: Drawer Slides
+
+A small parts organizer with sliding drawers.
+
+- Drawer rail thickness: 3mm
+- Channel width: 3.4mm to 3.5mm (0.4-0.5mm clearance)
+- Print orientation: Rails parallel to bed, channels vertical
+- Material: PLA works fine for light-duty drawers
+
+### Example 3: Gear Train
+
+Two meshing spur gears for a mechanical toy.
+
+- Gear clearance: 0.4mm between tooth profiles
+- Shaft holes: 0.2mm larger than shaft diameter
+- Center distance: Design for theoretical mesh, add 0.2mm extra
+- Material: PETG or nylon for durability
+
+## When Things Don't Fit
+
+Even with good tolerance design, sometimes parts don't cooperate. Here's your troubleshooting checklist:
+
+**Parts too tight:**
+- Increase clearance by 0.1mm increments
+- Check for elephant's foot on first layer (sand or trim if present)
+- Enable hole compensation in slicer
+- Verify printer is calibrated (dimensional cube test)
+
+**Parts too loose:**
+- Decrease clearance by 0.05mm to 0.1mm
+- Check for under-extrusion (adjust flow rate)
+- Consider a wrap of tape on the pin as a quick fix
+- Redesign with a transition or light interference fit
+
+**Parts fit but bind during movement:**
+- Sand contact surfaces lightly
+- Check print orientation—layer lines may be catching
+- Increase clearance on sliding surfaces
+- Add chamfers to leading edges
+
+## Ready to Design Your Assembly?
+
+Tolerances are one of those skills that get better with practice. Start with the values in this guide, print tolerance tests for your specific setup, and iterate. After a few projects, you'll develop an intuition for what works.
+
+At Mandarin3D, we print assemblies regularly—from functional prototypes to mechanical toys to custom enclosures. Our BambuLab P1S printers are well-calibrated, so the tolerance values in this guide apply directly to parts we produce.
+
+If you're designing an assembly and want feedback before committing to a full print, [upload your model](/upload) and mention in the notes that it's a multi-part assembly. We're happy to review tolerances and flag potential fit issues before they become expensive reprints.
+
+Have questions about a specific assembly challenge? Contact us at [orders@mandarin3d.com](mailto:orders@mandarin3d.com)—we've seen plenty of creative mechanical designs and can help troubleshoot fit problems.
