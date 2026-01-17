@@ -1,0 +1,210 @@
+---
+title: "Designing for Assembly: Multi-Part Print Strategies"
+description: "Learn how to split large models into printable pieces, choose the right joint types, and design parts that fit together perfectly. Practical strategies for multi-part 3D printing projects."
+date: "2026-01-17"
+author: "Mandarin3D"
+tags: ["design", "assembly", "multi-part", "joints", "CAD", "best-practices"]
+category: "guides"
+---
+
+Not everything fits on a print bed. Maybe your project is bigger than 250mm. Maybe a single piece would need too much support material. Maybe different sections need different orientations for strength. Whatever the reason, splitting a model into multiple parts is a fundamental skill in 3D printing design.
+
+The trick isn't just cutting a model in half—it's designing the split so parts align perfectly, hold together reliably, and look seamless when assembled. Here's how to approach multi-part printing the right way.
+
+## When to Split Your Model
+
+Before reaching for the cutting tools, consider whether splitting actually makes sense. Good reasons to divide a model include:
+
+**Size constraints:** Your model exceeds the build volume. At Mandarin3D, our BambuLab P1S printers max out at 256 x 256 x 256mm, with the H2S reaching 340mm in height. Anything larger needs to come apart.
+
+**Print orientation optimization:** Different sections of a model might have conflicting ideal orientations. A vertical tower prints best standing up, but an attached horizontal arm might need to lay flat for strength. Splitting lets you orient each piece optimally.
+
+**Reducing support material:** A complex shape might need extensive supports when printed as one piece, but split strategically, each section can print support-free.
+
+**Material mixing:** You might want a rigid base in PLA with a flexible grip in TPU. Multi-part design lets you combine materials that can't be printed together.
+
+**Structural considerations:** Layer lines create directional weakness. Splitting a model lets you orient each piece so stress loads run across layers rather than between them.
+
+## Choosing Where to Cut
+
+The split location matters more than most people realize. A bad cut creates weak joints, visible seams, and assembly headaches. A good cut is nearly invisible and often stronger than a single-piece print.
+
+**Hide cuts in natural boundaries:** Look for edges, corners, or transitions in your design where a seam would be expected. A character model might split at the waist where a belt would cover the joint. An enclosure might split along a panel line.
+
+**Cut at low-stress points:** Avoid splitting across areas that will bear load. If your part will be pulled in tension, the joint is the weakest point—put it somewhere that won't experience that stress.
+
+**Create flat mating surfaces:** Curved or complex split surfaces are harder to align and glue. When possible, cut along a flat plane that provides maximum surface area for bonding.
+
+**Consider print bed contact:** Each piece needs a flat, stable surface to sit on the print bed. A split that creates an awkward, tippy piece defeats the purpose.
+
+**Plan for symmetry:** If you're splitting a symmetrical model, you might be able to print two identical halves rather than two unique pieces. This cuts your design work in half.
+
+## Joint Types for Multi-Part Prints
+
+Simply gluing two flat surfaces together works, but it's the weakest option. Better joints add mechanical interlocking that improves alignment, increases bonding surface area, and provides strength beyond what adhesive alone offers.
+
+### Dovetail Joints
+
+The workhorse of multi-part 3D printing. A dovetail is a trapezoidal protrusion on one part that slides into a matching slot on the other. The angled sides prevent the parts from pulling apart perpendicular to the joint.
+
+**Design parameters:**
+- Angle: 10-15 degrees from vertical works well for FDM
+- Tolerance: 0.3-0.4mm clearance on each side for FDM
+- Depth: At least 3-4mm for a solid grip
+
+Dovetails self-align during assembly—slide one part along the joint axis, and it naturally centers itself. For large models, a single long dovetail down the center of the split works better than multiple small ones.
+
+### Puzzle Joints (Tongue and Groove)
+
+Similar to dovetails but with straight sides and a more complex interlocking shape. Think jigsaw puzzle pieces. These prevent movement in all directions perpendicular to the joint surface.
+
+**Best for:**
+- Parts that need to stay aligned without clamping while glue cures
+- Assemblies where you want to disassemble and reassemble
+
+**Design parameters:**
+- Tongue width: 4-6mm minimum
+- Tolerance: 0.4mm clearance for FDM
+- Add small chamfers (0.5mm) to ease insertion
+
+### Pin and Hole Alignment
+
+The simplest mechanical joint. Add cylindrical pins on one part that insert into matching holes on the other. Pins don't provide significant structural strength, but they ensure perfect alignment every time.
+
+**Design parameters:**
+- Pin diameter: 3-6mm works well (smaller pins break easily)
+- Pin length: 5-10mm is typically sufficient
+- Hole tolerance: Add 0.3-0.4mm to hole diameter for a snug fit
+- Number: Two pins prevent rotation, three or more is often overkill
+
+Combine alignment pins with a flat bonding surface for the best of both worlds—easy alignment and maximum glue contact.
+
+### Mortise and Tenon
+
+A rectangular version of pin and hole. A protruding tab (tenon) fits into a matching rectangular pocket (mortise). These provide more surface area than pins and resist twisting better.
+
+**Design parameters:**
+- Tenon thickness: 3mm minimum, preferably 4-5mm
+- Mortise depth: 5-10mm
+- Tolerance: 0.3mm on each face
+
+### Threaded Inserts and Fasteners
+
+For assemblies that need to be disassembled repeatedly, or where significant force will be applied, metal hardware outperforms plastic joints. Heat-set threaded inserts let you screw parts together with machine screws.
+
+**When to use fasteners:**
+- Functional prototypes that will be modified
+- Parts that need periodic servicing
+- Joints that will see repeated stress
+- When glue isn't strong enough
+
+Design insert holes slightly undersized (typically 0.2mm smaller than the insert's outer diameter) so the insert seats firmly when pressed in with a soldering iron.
+
+## Tolerances for Assembly
+
+Getting the fit right is critical. Too tight and parts won't assemble. Too loose and they'll wobble, require excessive glue, or simply fall apart.
+
+| Fit Type | Clearance | Application |
+|----------|-----------|-------------|
+| Press fit | 0.1-0.2mm | Permanent joints, no glue needed |
+| Snug fit | 0.2-0.3mm | Assemblies with glue, minimal play |
+| Sliding fit | 0.3-0.4mm | Dovetails that slide together |
+| Loose fit | 0.5mm+ | Parts that must move freely |
+
+**Important:** These tolerances apply per side. If a pin is 5mm diameter and needs 0.3mm clearance, the hole should be 5.6mm diameter (0.3mm clearance on each side).
+
+FDM printing has inherent dimensional variation—typically ±0.2mm. When designing critical joints, print a test piece first. A simple dovetail or pin-and-hole test takes minutes to print and saves hours of frustration.
+
+### Crush Ribs and Grip Fins
+
+When you need a tight press fit but can't predict exact tolerances, add features designed to deform during assembly.
+
+**Crush ribs:** Small ridges inside a hole that compress when a pin is inserted. The ribs crush down to accommodate size variation while maintaining a tight grip.
+
+**Grip fins:** Thin flexible fins on a pin that flex inward when inserted. Unlike crush ribs, grip fins return to shape, allowing repeated assembly and disassembly.
+
+Design these features 0.2-0.3mm taller than nominal and 0.5-0.8mm wide so they flex rather than break.
+
+## Print Orientation for Multi-Part Assemblies
+
+Each piece in your assembly should be oriented to maximize strength where it matters. The general rule: orient pieces so stress loads run across layer lines, not between them.
+
+**For joint features specifically:**
+
+- Print dovetails so they slide parallel to the print bed (the dovetail itself runs horizontally on the bed)
+- Print alignment pins horizontally if they'll be stressed—vertical pins can snap along layer lines
+- Print mortise pockets with the opening facing up when possible (better dimensional accuracy)
+
+If a joint feature must be printed vertically, increase its dimensions by 30-50% to compensate for reduced layer-line strength.
+
+## Assembly Techniques
+
+Good design gets you most of the way there. Good assembly technique finishes the job.
+
+**Dry fit first:** Always test how parts fit together before applying any adhesive. Check for binding, misalignment, or excessive looseness. Adjust tolerances for future prints if needed.
+
+**Clean mating surfaces:** 3D printed surfaces can have oils from handling or residue from supports. Wipe joint surfaces with isopropyl alcohol before gluing.
+
+**Choose the right adhesive:**
+- CA glue (super glue): Fast setting, strong on PLA, but brittle. Good for small joints that won't flex.
+- Epoxy: Slower to set but fills gaps and creates flexible, strong bonds. Best for structural joints.
+- Plastic welding (acetone for ABS, solvent for other materials): Creates a true fusion. Limited material compatibility.
+
+**Use clamping or tape:** Even with alignment features, parts can shift while glue cures. Clamp, tape, or rubber band pieces together until the bond sets.
+
+**Consider a glue channel:** For hidden joints, design a small internal channel around the perimeter. Apply thin CA glue after assembly—capillary action wicks it into the channel, bonding the parts from the inside with no visible glue squeeze-out.
+
+## Software Tools for Splitting Models
+
+Most CAD software includes tools for splitting models, but some dedicated tools make it particularly easy:
+
+**Fusion 360:** Use the Split Body tool with a construction plane. Can add joint features parametrically.
+
+**Meshmixer:** The Plane Cut tool splits STL files quickly. Add connectors with the built-in joint tools.
+
+**Blender:** Boolean operations with a cutting plane. More manual but extremely flexible.
+
+**PrusaSlicer/Bambu Studio:** Built-in cut tools let you split models right in the slicer with automatic pin placement.
+
+For complex splits, modeling the joint features in CAD gives you more control than automated tools. But for simple flat cuts on existing STLs, slicer-based cutting is fast and effective.
+
+## Common Pitfalls to Avoid
+
+**Cutting through thin features:** A split that passes through a 1mm wall creates a fragile edge that will break during assembly or use. Route cuts around thin areas.
+
+**Ignoring print warpage:** Large flat parts can warp slightly during printing. If two warped pieces meet at a joint, there's a gap. Design joints with slight flexibility or plan to sand flat before assembly.
+
+**Over-engineering joints:** A complex interlocking puzzle joint isn't always better. Sometimes two alignment pins and a flat glue surface outperforms an elaborate mechanism that's hard to fit together.
+
+**Forgetting about finishing:** If you're going to sand, fill, and paint the assembled piece, your joints need to survive that process. A joint that works bare might crack when you start sanding across it.
+
+## Putting It Into Practice
+
+Here's a practical workflow for splitting a model that's too large for the print bed:
+
+1. **Identify the split location:** Choose a low-stress area that follows a natural visual boundary
+2. **Add joint features:** Design dovetails, pins, or other alignment mechanisms
+3. **Test tolerances:** Print a small section of the joint to verify fit
+4. **Adjust and finalize:** Tweak clearances based on test results
+5. **Export separate STLs:** One file per piece
+6. **Orient for printing:** Each piece flat and stable on the bed
+7. **Assemble:** Dry fit, then glue with proper clamping
+
+## When Multi-Part Gets Complex
+
+Some projects involve dozens of pieces—cosplay armor, architectural models, large props. At this scale, organization becomes critical:
+
+- Number each piece and its mating part
+- Create an assembly diagram
+- Print alignment marks or arrows on mating surfaces
+- Consider printing registration features that get removed after assembly
+
+For complex multi-part projects, working with a print service that reviews your files can catch issues before you're twenty pieces deep with a fatal flaw in piece number three.
+
+## Ready to Build Something Big?
+
+Multi-part printing opens up possibilities that single-piece printing can't match. That costume helmet, oversized prop, or large functional part is achievable—you just need to plan the splits thoughtfully.
+
+If you've designed a multi-part project and want a second set of eyes on the joints before committing to a full print run, [upload your files](/upload) to Mandarin3D. We review every model and can flag potential fit issues, suggest better split locations, or recommend joint improvements based on what we've seen work (and fail) across thousands of prints.
+
+Have questions about a specific multi-part design challenge? Reach out at [orders@mandarin3d.com](mailto:orders@mandarin3d.com)—we're always happy to help you figure out the best way to split that oversized model into printable pieces.
