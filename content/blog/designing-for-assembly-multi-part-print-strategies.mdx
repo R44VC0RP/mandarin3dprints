@@ -1,0 +1,258 @@
+---
+title: "Designing for Assembly: Multi-Part Print Strategies"
+description: "Learn how to split large 3D models into printable parts and design effective joints for assembly. From snap-fits to heat-set inserts, master the techniques that make multi-part prints work."
+date: "2026-01-25"
+author: "Mandarin3D"
+tags: ["design", "assembly", "joints", "multi-part", "CAD", "best-practices"]
+category: "guides"
+---
+
+Not everything fits on a single print bed. Whether your model exceeds the 250mm build volume of our BambuLab P1S printers or you're optimizing for print quality, splitting a design into multiple parts is a fundamental skill. But here's the thing—randomly chopping a model in half rarely works well. Strategic splitting and proper joint design make the difference between a frustrating pile of parts and a clean assembly that looks and functions like a single piece.
+
+## Why Split Your Model?
+
+Before diving into techniques, let's establish when multi-part printing actually makes sense:
+
+**Size constraints**: The most obvious reason. When your helmet, prop, or functional part exceeds 250mm in any dimension, splitting becomes mandatory. Our larger H2S printers extend this to 340mm x 320mm x 340mm, but even that has limits.
+
+**Print quality optimization**: A complex model printed in one orientation might have terrible overhangs on half its surfaces. Split it strategically, and each piece can print in its optimal orientation—better surface finish, fewer supports, stronger layer orientation.
+
+**Material efficiency**: Supports waste filament. A model that needs 40% support material as one piece might need zero supports as four pieces, each printed flat-side down.
+
+**Risk management**: A 30-hour print failing at hour 25 is devastating. Four 8-hour prints? If one fails, you've lost a fraction of the time and material.
+
+**Multi-material possibilities**: Want a two-tone design without a multi-material system? Print parts separately in different colors or materials, then assemble.
+
+## Where to Split: Strategic Decisions
+
+The location of your splits determines everything about the final assembly. Poor split placement leads to weak joints, visible seams, and alignment nightmares. Good placement makes assembly intuitive and hides evidence that the part was ever in pieces.
+
+### Follow Natural Seams
+
+Look for existing geometry that suggests a logical division:
+
+- **Color boundaries**: If your model has distinct colored regions, those transitions are perfect split lines
+- **Functional divisions**: A housing naturally separates from its lid
+- **Structural transitions**: Where a thin section meets a thick section often works as a split point
+- **Symmetry lines**: Many models have natural planes of symmetry
+
+### Prioritize Joint Surface Area
+
+Never split at the thinnest point of your model. The split interface needs enough surface area to:
+
+- Provide a strong glue joint (if adhesive assembly)
+- Accommodate alignment features (pins, keys, or interlocks)
+- Distribute stress across the connection
+
+A general rule: your split surface should be at least 10mm x 10mm for small parts, larger for anything structural.
+
+### Consider Print Orientation for Each Piece
+
+Visualize how each resulting piece will sit on the print bed:
+
+- Can it print flat without supports?
+- Will the layer lines run in a direction that maximizes strength?
+- Are detailed surfaces facing upward for best quality?
+
+Sometimes the ideal split location from a structural perspective creates pieces that print poorly. It's a balance—adjust until each piece prints well AND assembles reliably.
+
+## Joint Types for 3D Printed Assemblies
+
+Once you know where to split, you need to decide how the pieces will connect. Each joint type has trade-offs in strength, ease of assembly, and design complexity.
+
+### Butt Joints with Alignment Features
+
+The simplest approach: flat mating surfaces with pins or keys to ensure alignment.
+
+**How it works**: One part has small cylindrical pins (2-3mm diameter, 5-10mm long), the other has matching holes. The pins ensure perfect alignment while adhesive bonds the flat surfaces.
+
+**Design considerations**:
+- Add 0.2-0.3mm clearance to hole diameters for FDM printing
+- Use at least two pins to prevent rotation
+- Keep pins away from edges to avoid weakening the joint
+- Flat surfaces should be perpendicular to the print bed on at least one of the mating parts
+
+**Best for**: Simple assemblies, large flat surfaces, situations where you'll use adhesive anyway.
+
+### Dovetail Joints
+
+Borrowed from woodworking, dovetails create mechanical interlocks that resist pull-apart forces.
+
+**How it works**: One piece has a tapered protrusion (the "tail"), the other has a matching tapered slot. The pieces slide together and lock mechanically.
+
+**Design considerations**:
+- Taper angle typically 10-15 degrees
+- Add 0.2-0.3mm clearance for FDM fit
+- Include a slight draft angle so pieces pull tighter as they seat
+- Can be designed for permanent assembly (tight fit with adhesive) or removable (looser fit)
+
+**Best for**: Joining parts at right angles, extending build volume in one direction, situations where mechanical strength matters more than invisible seams.
+
+### Snap-Fit Joints
+
+Snap-fits use elastic deformation to create tool-free assembly and disassembly.
+
+**How it works**: A flexible cantilever with a hook deflects during insertion, then springs back to catch behind a ledge on the mating part. The joint locks through the interference of these features.
+
+**Design considerations**:
+- **Never print cantilever snap-fits vertically**—layer adhesion is the weak point, and vertical cantilevers will shear along layer lines
+- Print snap-fits horizontally (cantilever parallel to bed) for maximum strength
+- Use materials with good flexibility: PETG, ABS, or nylon work well; PLA is more brittle and prone to cracking
+- Design for 0.5mm tolerance on FDM parts
+- Add fillets at the base of cantilevers to reduce stress concentration
+- Consider whether the joint needs to be permanent or repeatedly openable
+
+**Types of snap-fits**:
+
+| Type | Description | Best Use |
+|------|-------------|----------|
+| Cantilever | Flexible hook catches behind ledge | Electronics enclosures, removable covers |
+| Annular | Ring-shaped snap (like bottle cap) | Cylindrical assemblies, caps |
+| Torsional | Twist-to-lock mechanism | Quick-connect fittings |
+
+**Best for**: Enclosures, removable access panels, assemblies that need repeated opening.
+
+### Heat-Set Threaded Inserts
+
+For the strongest, most professional mechanical connections, heat-set inserts transform 3D printed parts into robust assemblies that can handle repeated fastening.
+
+**How it works**: Brass inserts with external knurling are heated and pressed into undersized holes. The surrounding plastic melts, flows into the knurled pattern, and resolidifies to lock the insert permanently. Standard machine screws then thread into the insert.
+
+**Design considerations**:
+- Hole diameter should be slightly smaller than insert outer diameter (typically 0.1-0.2mm smaller)
+- Add 2-3mm of wall thickness around inserts for strength
+- Design the hole depth to fully seat the insert with 1-2mm extra
+- Place inserts away from thin walls or edges
+- Work with M3, M4, or M5 sizes for best results in FDM parts
+
+**Installation**:
+1. Heat soldering iron to low-medium temperature
+2. Place insert on hole (use tweezers)
+3. Press insert slowly with iron tip until flush with surface
+4. Let cool before applying stress
+
+**Best for**: Functional prototypes, parts needing repeated assembly/disassembly, load-bearing connections, professional-quality assemblies.
+
+### Printed Threads
+
+For light-duty applications, you can print threads directly into your parts.
+
+**Design considerations**:
+- Use coarse thread pitches (M8x1.25 or larger works better than fine threads)
+- Add 0.2-0.3mm clearance between male and female threads
+- Print threads with vertical axis for strength
+- Not suitable for high loads or repeated use—threads will strip
+
+**Best for**: Caps, covers, decorative elements, single-assembly applications.
+
+## Tolerances: The Critical Numbers
+
+Proper tolerances make the difference between parts that fit perfectly and parts that won't assemble at all.
+
+### General Guidelines for FDM
+
+| Joint Type | Clearance |
+|------------|-----------|
+| Sliding fit (pins in holes) | 0.2-0.3mm |
+| Press fit | 0.0-0.1mm |
+| Snap-fit connectors | 0.5mm |
+| Heat-set insert holes | -0.1 to -0.2mm (undersized) |
+| Printed threads | 0.3-0.4mm |
+
+### Calibration Prints
+
+Before committing to a complex multi-part assembly, print a tolerance test:
+
+1. Design a simple male-female joint at your intended dimensions
+2. Print both pieces
+3. Test fit and adjust clearances as needed
+4. Apply these corrections to your full model
+
+This 20-minute test can save hours of reprinting full parts.
+
+## Assembly Methods
+
+### Adhesive Bonding
+
+For permanent assemblies, adhesive bonding creates the strongest joints.
+
+**Cyanoacrylate (super glue)**: Fast-setting, good for small parts. Apply sparingly—excess squeeze-out looks bad and can fog nearby surfaces.
+
+**Epoxy**: Stronger than CA glue, gap-filling, but requires mixing and longer cure time. Best for structural joints and large surface areas.
+
+**Capillary technique**: For thin CA glue, press parts together dry, then apply glue to the seam line. The glue wicks into the joint through capillary action, creating a clean bond with no squeeze-out.
+
+**Surface preparation**: Light sanding with 220-grit paper gives adhesives more surface area to grip. Clean with isopropyl alcohol to remove dust and oils.
+
+### Mechanical Fastening
+
+Screws with heat-set inserts provide strong, repeatable connections:
+
+- Use machine screws (not self-tapping) with proper threaded inserts
+- Don't overtorque—you'll strip the insert out of the plastic
+- Consider locking compounds (blue Loctite) for vibration resistance
+
+### Friction Fit
+
+For purely mechanical joints (dovetails, tight-fitting pins):
+
+- Design for a tight but assemblable fit
+- A light tap with a rubber mallet can seat friction-fit parts
+- Combine with adhesive for permanent assemblies
+
+## Practical Example: Splitting a Large Prop
+
+Let's walk through the decision process for a 400mm cosplay helmet—too large for our 250mm P1S printers.
+
+**Step 1: Identify split locations**
+- Front/back split along the ears (follows natural geometry)
+- Top crown as separate piece (prints face-down with smooth top surface)
+- Total: 3 pieces, each under 250mm
+
+**Step 2: Choose joint type**
+- Flat surfaces along splits suggest butt joints with alignment pins
+- Inside seams won't be visible, so appearance isn't critical
+- Non-structural part, so snap-fits unnecessary
+
+**Step 3: Add alignment features**
+- 3mm diameter pins, 8mm long, spaced along each split line
+- Matching holes with 0.25mm clearance
+
+**Step 4: Print orientation**
+- Front piece: face opening down (smooth outer surface)
+- Back piece: face opening down (matches front)
+- Crown: top surface down (smoothest finish on visible area)
+
+**Step 5: Assembly**
+- Dry fit to check alignment
+- Light sanding on mating surfaces
+- CA glue with capillary technique
+- Fill remaining seams with filler primer, sand smooth
+
+Result: A seamless helmet that looks like a single piece.
+
+## Common Mistakes to Avoid
+
+**Insufficient surface area**: Don't split through thin walls or narrow sections. You need material for a strong joint.
+
+**Ignoring print orientation**: A beautiful split design means nothing if the resulting pieces print poorly.
+
+**Too-tight tolerances**: Parts that don't fit together are useless. When in doubt, add more clearance—you can always fill gaps with adhesive.
+
+**Vertical snap-fits**: They will break. Print cantilevers horizontally or use a different joint type.
+
+**Forgetting about finishing**: If you plan to fill and sand seams, include space in your design for that material buildup.
+
+## When to Order Instead of Split
+
+Some assemblies are complex enough that ordering a larger print makes more sense than managing multiple parts. Our BambuLab H2S printers handle parts up to 340mm x 320mm x 340mm—that covers most props and functional parts without any splitting required.
+
+If your design is just slightly over 250mm, ask us about printing on our larger machines before investing time in splitting and joint design.
+
+## Ready to Print Your Multi-Part Design?
+
+Designing for assembly is a skill that improves with practice. Start with simple splits and butt joints, then work up to snap-fits and heat-set inserts as you gain experience. The first time you assemble a perfectly-fitting multi-part print, you'll understand why this approach is worth the extra design effort.
+
+Have a large model you need printed? [Upload your file](/upload) and we'll review it. We can advise on whether splitting is necessary, suggest optimal split locations, or print it on our larger H2S machines if it fits. Every file gets individual review—we'll help you get the best result.
+
+Questions about designing multi-part assemblies? Reach out at [orders@mandarin3d.com](mailto:orders@mandarin3d.com)—we're always happy to discuss design strategies for your specific project.
