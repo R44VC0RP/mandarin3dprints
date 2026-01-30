@@ -1,0 +1,239 @@
+---
+title: "Designing for Assembly: Multi-Part Print Strategies"
+description: "Learn how to design 3D prints that need to be split into multiple parts. Master alignment features, joint types, tolerances, and assembly techniques for prints that exceed your build volume or need optimal orientation."
+date: "2026-01-30"
+author: "Mandarin3D"
+tags: ["design", "assembly", "multi-part", "CAD", "best-practices", "large-prints"]
+category: "guides"
+---
+
+Sometimes one piece just isn't enough. Whether your design exceeds the build volume, needs different orientations for strength, or simply prints better as separate components, knowing how to split and reassemble 3D prints is an essential skill. Done well, multi-part assemblies can be stronger and cleaner than single-piece prints. Done poorly, you end up with misaligned parts and weak joints.
+
+Here's everything you need to know about designing prints meant to be assembled.
+
+## Why Split a Model in the First Place?
+
+Before diving into techniques, it's worth understanding when multi-part printing makes sense:
+
+**Build volume constraints.** Our BambuLab P1S printers offer 256 × 256 × 256mm, and the H2S extends to 340 × 320 × 340mm. That's substantial, but plenty of projects—cosplay armor, architectural models, decorative pieces—exceed these limits. Splitting the model is the only option.
+
+**Print orientation optimization.** A single complex part might have features that need different orientations for strength or surface quality. Splitting allows each piece to print in its ideal position.
+
+**Support material reduction.** A carefully planned split can eliminate the need for supports entirely. Two simple shapes are often easier to print than one complex shape with overhangs everywhere.
+
+**Material mixing.** When different parts need different materials—a rigid body with a flexible grip, for example—you need separate components.
+
+**Post-processing access.** Sometimes you need to sand, paint, or finish interior surfaces before final assembly.
+
+## Planning Your Splits
+
+The best time to think about assembly is before you finalize your design. Random cuts create weak points and visible seams. Strategic splits become nearly invisible.
+
+### Follow Natural Break Lines
+
+Look for existing transitions in your design:
+
+- Where different features meet (a handle meeting a body)
+- Color change points in painted models
+- Structural divisions (panels on armor, sections of a building)
+- Surface texture changes
+- Where geometry shifts from one shape to another
+
+A seam along a natural edge looks intentional. A seam cutting through the middle of a smooth surface screams "this was too big to print in one piece."
+
+### Consider Load Paths
+
+If your assembly will bear loads, don't put joints in high-stress areas. A hook split at its curve will fail under weight. Split it at the base where stress is lower, or avoid the split entirely by reorienting.
+
+**Rule of thumb:** Joints should be perpendicular to the primary load direction when possible. A joint parallel to the load wants to slide apart. A perpendicular joint compresses under load.
+
+### Account for Print Orientation
+
+Each piece needs to print well on its own. When planning splits, visualize each component lying on the print bed:
+
+- Will it sit flat and stable?
+- Are overhangs under 45 degrees?
+- Do critical surfaces face up or down?
+- Is the Z-height reasonable?
+
+A beautiful split design is worthless if the resulting pieces can't print cleanly.
+
+## Alignment Features: Making Parts Fit Together
+
+This is where most multi-part designs succeed or fail. Without proper alignment features, you're guessing during assembly. With them, parts click together with obvious precision.
+
+### Dowel Pins and Holes
+
+The simplest and most reliable alignment method. One part gets cylindrical pins, the other gets matching holes.
+
+**Recommended dimensions:**
+- Pin diameter: 3-6mm (larger for bigger parts)
+- Pin length: 5-10mm
+- Hole depth: Pin length + 1mm (for glue reservoir)
+- Clearance: 0.2mm on diameter for snug fit, 0.3-0.4mm for easy assembly
+
+**Best practice:** Use at least two pins, spaced as far apart as practical. A single pin allows rotation; two pins lock the orientation.
+
+**Print tip:** Horizontal holes print rounder than vertical ones. Orient your parts so alignment holes are horizontal during printing when possible.
+
+### Dovetails and Sliding Joints
+
+Dovetails excel at alignment and resist separation in one direction. They're particularly useful when you want to assemble without glue or when parts might need to come apart later.
+
+**Angle matters:** A 10-15 degree dovetail angle works well for 3D printing. Steeper angles (more aggressive taper) lock tighter but require more precision. Shallower angles slide together more easily.
+
+**Clearance:** Add 0.2-0.3mm clearance on mating surfaces. Dovetails are self-centering, so they're more forgiving than pin-and-hole joints.
+
+**Orientation:** Print dovetails so the layer lines run along the length of the joint, not across it. This prevents the tapered faces from delaminating under assembly pressure.
+
+### Interlocking Features
+
+For parts that will be permanently glued, puzzle-piece interlocks provide excellent alignment without requiring perfect tolerances.
+
+**Designs that work:**
+- Rectangular tabs and slots
+- T-shaped connections
+- Keyed profiles (asymmetrical shapes that only fit one way)
+- Stacked ledges that create multiple registration surfaces
+
+**Keep it simple:** Complex interlocks look impressive in CAD but often cause assembly headaches. A few well-placed rectangular tabs beat an elaborate puzzle design.
+
+### Registration Marks
+
+When mechanical alignment isn't possible—maybe you're gluing two flat surfaces—add small registration marks:
+
+- Matching triangles or arrows that point to each other when aligned
+- Scribed lines that continue across the seam
+- Small raised dots that touch when positioned correctly
+
+These are especially valuable for cylindrical parts where rotational alignment isn't obvious.
+
+## Tolerances for Assembly
+
+Getting tolerances right determines whether your parts slip together smoothly, need to be hammered, or refuse to fit at all.
+
+### General Guidelines for FDM Printing
+
+| Fit Type | Clearance | Use Case |
+|----------|-----------|----------|
+| Press fit | 0.1mm | Permanent, no-glue assemblies |
+| Snug fit | 0.2mm | Parts that should stay together but can be separated |
+| Easy fit | 0.3-0.4mm | Standard assemblies, glued joints |
+| Loose fit | 0.5mm+ | Parts that must slide during assembly |
+
+**Critical note:** These are per-side clearances. For a 5mm pin going into a hole, a 0.2mm clearance means a 5.4mm hole (0.2mm on each side).
+
+### Factors That Affect Fit
+
+**Material matters:** PLA holds dimensions well. PETG tends toward slight elephant's foot at the base. TPU stretches. Adjust tolerances based on your material choice.
+
+**Size matters:** Larger parts accumulate more dimensional error. A 10mm pin needs less clearance than a 50mm pin because the absolute error scales with size.
+
+**Orientation matters:** Features printed horizontally (parallel to bed) are more accurate than features printed vertically (built up layer by layer).
+
+**Testing is essential:** Print a small test piece with your specific joint design before committing to the full parts. A 20-minute test print beats reprinting a 12-hour component.
+
+## Joint Strength: Making Assemblies That Last
+
+Aligned parts still need to stay together. Here are your options from weakest to strongest:
+
+### Friction Fit
+
+Parts that hold together purely through dimensional interference. Works for temporary assemblies or parts under no load. Unreliable long-term as materials creep and wear.
+
+### Snap-Fits
+
+Adding snap-fit features to your joint creates a mechanical lock. See our snap-fit design guide for details, but in brief: design a cantilever beam that deflects during assembly and catches on a ledge.
+
+### Adhesives
+
+For permanent assemblies, glue is often the best choice.
+
+**Recommended adhesives for 3D prints:**
+- **Cyanoacrylate (super glue):** Fast, strong, works on PLA and PETG. Brittle; not great for impact loads.
+- **Two-part epoxy:** Strongest option. Gap-filling versions forgive imperfect fits. Requires mixing and cure time.
+- **Plastic welding (acetone for ABS):** Creates chemical bond stronger than the parent material. Only works on specific plastics.
+
+**Joint preparation:** Lightly sand mating surfaces with 120-180 grit to improve adhesion. Remove dust before gluing. Apply adhesive sparingly—excess squeeze-out creates visible mess.
+
+### Mechanical Fasteners
+
+When you need assemblies that can be disassembled, hardware is your friend.
+
+**Heat-set inserts:** Brass inserts pressed into the plastic with a soldering iron. Creates durable threaded holes that survive repeated screw cycles. Design holes 0.2mm smaller than insert diameter for proper interference.
+
+**Self-tapping screws:** Convenient but limited to a few assembly cycles before threads strip. Design pilot holes at 80% of screw diameter.
+
+**Through-bolts with nuts:** The most robust option. Design clearance holes at screw diameter + 0.3mm. Include recesses for bolt heads and nuts.
+
+## Large Model Strategies
+
+When splitting models that exceed build volume, additional considerations apply.
+
+### Minimize Visible Seams
+
+**Hide seams in geometry:** Place splits along panel lines, edges, or surface features where the joint line becomes part of the design.
+
+**Plan for finishing:** If the seam will be filled and sanded, provide slightly recessed surfaces (0.2-0.5mm) to accept filler without creating bulges.
+
+**Match orientation:** Print adjacent parts in the same orientation when possible. Different orientations create different surface textures that stand out at seams.
+
+### Structural Considerations
+
+Large assemblies see significant loads just from their own weight. Reinforce joints accordingly:
+
+**Internal splines:** A rectangular bar that spans the joint, glued into matching slots on both sides. Dramatically increases joint strength.
+
+**Backing plates:** Flat panels glued behind the joint, visible from one side only. Works well for wall-mounted pieces.
+
+**Through-rods:** For tall assemblies, a metal rod (threaded rod, aluminum tube) running through the entire stack provides rigidity the plastic alone can't achieve.
+
+### Assembly Sequence
+
+Complex assemblies often have only one correct assembly order. Plan this during design:
+
+- Can all parts be accessed for gluing?
+- Do internal components need to be installed before closing the assembly?
+- Is there a logical sequence that allows verification at each step?
+
+Document the sequence. A multi-part model with a dozen components is surprisingly easy to mess up when you're actually holding the pieces.
+
+## Testing Your Assembly Design
+
+Before sending your full design for printing, validate your approach:
+
+### Print a Joint Sample
+
+Extract just the joint area from your model and print it at full scale. Test:
+- Do alignment features work?
+- Is the clearance correct?
+- Does the joint feel strong enough?
+- Can you complete assembly without special tools?
+
+### Check Fit at Multiple Scales
+
+If you're iterating on tolerances, print quick tests at 2× or 3× scale. Larger parts reveal issues that are hard to see at small scale, and they print proportionally faster.
+
+### Dry-Fit Before Committing
+
+Once you have final parts, assemble them without adhesive first. Verify alignment, check for gaps, and confirm the assembly sequence works. Disassemble and make any necessary adjustments before permanent bonding.
+
+## Common Mistakes and How to Avoid Them
+
+**Joints too tight:** The parts printed perfectly in CAD but won't fit in reality. Always add at least 0.2mm clearance for FDM parts.
+
+**Alignment features in bad orientation:** Pins that print vertically have layer lines that want to shear off. Orient alignment features horizontally when possible.
+
+**No consideration for glue:** Mating surfaces that touch perfectly in CAD leave no room for adhesive. Design a slight gap (0.1-0.2mm) or include small channels for glue squeeze-out.
+
+**Forgetting about access:** Internal joints you can't reach to clamp or align. Every joint needs physical access for assembly.
+
+**Over-engineering the split:** Elaborate interlocking geometry that's impressive but unnecessary. Simple joints executed well beat complex joints that don't quite fit.
+
+## Bringing It All Together
+
+Multi-part printing isn't just for oversized models—it's a design strategy that can improve print quality, reduce material waste, and enable designs that simply aren't possible as single pieces. The key is planning: choose split locations deliberately, design alignment features that actually work, and test your joints before committing to full production.
+
+When you're ready to print, [upload your model to Mandarin3D](/upload). We review every file before printing, so if your assembly design has issues—joints that won't fit, features that can't print cleanly, parts that won't align—we'll flag them before wasting material. Our BambuLab P1S printers handle multi-part assemblies daily, and our 256mm build volume accommodates substantial components. Need something bigger? The H2S extends to 340mm.
+
+Working on a large project with complex assembly requirements? Email us at [orders@mandarin3d.com](mailto:orders@mandarin3d.com). We're happy to consult on split strategies and recommend approaches that will actually work when the parts come off the printer.
