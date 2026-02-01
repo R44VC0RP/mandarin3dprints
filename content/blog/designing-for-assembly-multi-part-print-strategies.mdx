@@ -1,0 +1,207 @@
+---
+title: "Designing for Assembly: Multi-Part Print Strategies"
+description: "Learn how to design 3D printed parts that fit together perfectly. From tolerances and joint types to splitting large models, master the art of multi-part assemblies."
+date: "2026-02-01"
+author: "Mandarin3D"
+tags: ["design", "assembly", "tolerances", "multi-part", "CAD", "best-practices"]
+category: "guides"
+---
+
+Some of the most impressive 3D printed projects aren't single pieces—they're assemblies. Multiple parts that fit together, slide into place, rotate smoothly, or click into position. Whether you're building something larger than your print bed, creating a mechanism with moving components, or designing enclosures that need to open and close, understanding multi-part assembly design is essential.
+
+The challenge is that 3D printing introduces variables that don't exist in traditional manufacturing. Layer lines, shrinkage, and material properties all affect how parts interact. Get the details right, and you'll create assemblies that feel professionally manufactured. Get them wrong, and you'll have a box of parts that don't fit together.
+
+Here's everything you need to know about designing for assembly in FDM 3D printing.
+
+## Why Split a Model Into Multiple Parts?
+
+Before diving into the how, let's address the why. There are several good reasons to design assemblies instead of single prints:
+
+**Size constraints:** Our BambuLab P1S printers have a 256 × 256 × 256mm build volume, and our H2S extends to 340mm in height. If your project exceeds these dimensions, splitting is mandatory—not optional.
+
+**Material efficiency:** Large prints often require support material for overhangs. Splitting a model strategically can eliminate supports entirely, saving material and improving surface quality on critical faces.
+
+**Print quality optimization:** Different surfaces may require different orientations. A split design lets you orient each piece optimally, putting critical dimensions and surfaces where they'll print best.
+
+**Functional requirements:** Moving parts, mechanisms, and assemblies with mixed materials inherently require multiple components.
+
+**Risk management:** A 40-hour print that fails at hour 35 wastes a lot of time. Splitting into multiple shorter prints reduces the consequences of any single failure.
+
+## Understanding Tolerances for 3D Printing
+
+Tolerance is the clearance—the gap—between mating parts. Get this wrong, and nothing fits. The challenge is that 3D printed parts aren't dimensionally perfect, and that imperfection varies between printers, materials, and even print settings.
+
+### The Numbers You Need
+
+Here's a practical tolerance guide for FDM printing:
+
+| Fit Type | Clearance per Side | Total Gap | Use Case |
+|----------|-------------------|-----------|----------|
+| Press fit | 0.05-0.1mm | 0.1-0.2mm | Permanent connections, pins that shouldn't move |
+| Snug fit | 0.1-0.15mm | 0.2-0.3mm | Parts that stay together but can be separated |
+| Standard fit | 0.15-0.2mm | 0.3-0.4mm | Most assemblies, removable components |
+| Sliding fit | 0.2-0.25mm | 0.4-0.5mm | Parts that need to slide against each other |
+| Loose fit | 0.25-0.3mm+ | 0.5-0.6mm+ | Rotating joints, hinges, parts needing free movement |
+
+**The critical detail:** These numbers represent clearance *per side*. For a peg fitting into a hole, you need clearance all around—so a 10mm peg fitting into a hole with 0.2mm clearance per side needs a 10.4mm hole.
+
+### Why Air Gaps Should Be Double Your Layer Height
+
+A useful rule: design clearance gaps at least twice your print layer height. If you're printing at 0.2mm layer height, minimum gaps should be 0.4mm. This accounts for layer stepping on curved or angled surfaces and ensures parts don't interfere where you can't see.
+
+### Tolerance Accumulation
+
+Here's what catches many designers off guard: tolerances stack. If Part A has ±0.2mm dimensional accuracy and Part B has ±0.2mm accuracy, when they mate together, the combined variance can reach ±0.4mm. For assemblies with many interacting parts, this accumulation can cause alignment problems.
+
+**The fix:** Use reference features. Rather than relying on accumulated dimensions, design alignment features—pins, slots, or registration surfaces—that establish position directly between mating parts.
+
+## Types of Joints for Multi-Part Assemblies
+
+Different joints serve different purposes. Choosing the right one depends on whether the connection is permanent or separable, whether it needs to handle loads, and how much precision you need.
+
+### Butt Joints with Adhesive
+
+The simplest joint: flat surfaces glued together. This works when:
+- The joint doesn't need to handle significant loads
+- Alignment isn't critical, or you've added registration features
+- You want an invisible seam after finishing
+
+**Design tips:**
+- Add a slight recess (0.2-0.3mm) around the glue joint perimeter to hide squeeze-out
+- Increase surface area where possible—larger glue areas mean stronger bonds
+- Consider adding texture (small ridges) to glue surfaces for better adhesion
+
+### Interlocking Features
+
+Mechanical interlocks don't rely on adhesive and can create very strong joints.
+
+**Dovetail joints:** Excellent for parts that slide together and need resistance to pulling apart. Design with 0.3-0.4mm clearance for a snug sliding fit.
+
+**Puzzle joints:** Interlocking shapes that constrain movement in multiple directions. Great for decorative pieces or panels that need to lie flat.
+
+**Tongue and groove:** One part has a protruding ridge, the other has a matching slot. Simple to design and effective for aligning panels or plates.
+
+### Pin Registration
+
+Pins and corresponding holes are the workhorses of multi-part assembly. They establish precise alignment between parts while allowing for easy assembly.
+
+**Design guidelines:**
+- Pins should be at least 3mm diameter for durability
+- Pin length should be at least 1.5× diameter for stability
+- Add a small chamfer (0.5mm × 45°) to pin tips for easier insertion
+- Use 0.2-0.3mm clearance for pins that need to be removable
+- For permanent fit, use 0.1mm clearance and apply adhesive
+
+**Placement strategy:** Use at least two pins, spaced as far apart as practical. This prevents rotation and provides unambiguous alignment.
+
+### Threaded Connections
+
+For connections that need to be assembled and disassembled repeatedly, printed threads or heat-set inserts provide robust solutions.
+
+**Printed threads:** Work well at M6 and larger. Smaller threads lack the detail resolution for reliable engagement in FDM. Design for standard thread profiles and add 0.2mm clearance on the pitch diameter.
+
+**Heat-set inserts:** Brass inserts that melt into printed holes provide metal threads that handle unlimited assembly cycles. Design holes 0.2mm smaller than the insert's outer diameter for a secure press-fit when heated.
+
+### Snap-Fits for Assemblies
+
+Snap-fit joints (covered in depth in our snap-fits guide) create tool-free assembly with satisfying feedback. For multi-part assemblies, they're ideal for:
+- Enclosure lids and covers
+- Battery compartments
+- Access panels that need occasional opening
+
+## Splitting Large Models Strategically
+
+When a model exceeds your print volume, where you split matters as much as the fact that you're splitting at all.
+
+### Principles for Good Splits
+
+**Flat surfaces are your friend:** The best split locations are existing flat areas in the design. If there's no natural flat spot, consider adding a small step or flange at the split line—it provides both a mating surface and visual camouflage for the seam.
+
+**Hide seams in natural break lines:** Corners, color changes, panel lines, or areas that will be painted different colors all make good split locations because the eye expects a transition there.
+
+**Consider the grain:** FDM prints are weaker along layer lines. If the assembled part will experience bending loads, orient the split so layers don't become the weak point.
+
+**Maximize joint surface area:** When strength matters, design joints that increase the bonding surface. A stepped or interlocked joint provides more area than a simple flat butt joint.
+
+### Registration Features for Perfect Alignment
+
+Nothing ruins an assembly faster than visible misalignment. Design features that guarantee parts mate correctly:
+
+**Alignment pins:** As discussed above, pins in one part fitting into holes in the other establish position reliably.
+
+**Alignment walls:** Small ridges around the perimeter of a joint that capture the mating part and prevent shifting during glue-up.
+
+**Asymmetric features:** Make it impossible to assemble wrong. If a part could theoretically fit in two orientations, add a notch, tab, or asymmetric pin pattern that only allows the correct one.
+
+### The Software Approach
+
+Most CAD software includes tools for splitting bodies. In Fusion 360, use the "Split Body" command with a construction plane. In Blender, the Boolean modifier with a cutting plane achieves the same result. Just remember to add your joint features *after* splitting, not before.
+
+## Material Combinations in Assemblies
+
+Multi-part assemblies open the door to combining different materials, each optimized for its role in the design.
+
+### Common Material Pairings
+
+**PLA for rigid structure + TPU for flexible elements:** A phone case with a PLA frame and TPU corner bumpers, or a tool handle with a rigid PLA body and TPU grip surface.
+
+**PETG for durability + PLA for detail:** Use PETG for parts that experience wear or stress, PLA for parts that need crisp detail or fine features.
+
+**Mixed colors:** Different colored parts assembled together create multi-color appearances without needing multi-material printing hardware.
+
+### Accounting for Material Differences
+
+Different materials shrink differently as they cool. PLA shrinks about 0.3-0.5%, PETG around 0.5-0.8%. For precision assemblies combining materials, print test pieces to verify fit before committing to the full parts.
+
+**Temperature considerations:** PLA softens around 50-60°C. If one part of your assembly might get warm (electronics enclosures, for example), use PETG for heat-exposed components even if PLA works fine elsewhere.
+
+## Print-in-Place: The Exception That Proves the Rule
+
+Some assemblies can be printed already assembled—no post-print joining required. Print-in-place mechanisms include hinges, ball joints, chains, and interlocking links.
+
+The trick is designing adequate clearance for the parts to separate from each other once printed. Standard guidance:
+- 0.4-0.5mm minimum gap for print-in-place features
+- Avoid support material inside the mechanism
+- First few movements after printing may require gentle working back and forth
+
+Print-in-place works best for mechanisms where some looseness is acceptable. For precision assemblies, traditionally split and assembled parts will always be more accurate.
+
+## Testing Your Assembly Design
+
+Before printing all the parts, validate your design with test pieces.
+
+**Tolerance test strips:** Print a small section of your joint—just enough to verify the fit. A peg and hole that represents your registration pins takes minutes to print and confirms your clearance values work on your specific printer and material.
+
+**Incremental assembly tests:** For complex assemblies, print two mating components first and verify fit before printing everything. Catching a tolerance issue after two prints is much better than catching it after ten.
+
+**Functional testing:** If your assembly includes moving parts, test the range of motion and smooth operation with minimal parts before committing to the full build.
+
+## Common Assembly Problems and Solutions
+
+**Parts won't fit together:**
+- Insufficient clearance—increase tolerances by 0.1mm
+- Elephant's foot on first layer—adjust bed leveling or add a base chamfer
+- Over-extrusion—calibrate flow rate or design with more clearance
+
+**Parts fit but won't align:**
+- Registration features too loose—reduce clearance on alignment pins
+- No asymmetric features—add indicators for correct orientation
+- Accumulated tolerances—redesign with features that reference critical surfaces directly
+
+**Assembly feels loose or sloppy:**
+- Too much clearance—reduce by 0.1mm increments
+- Consider interference fit pins with adhesive for permanent assemblies
+- Add shims or gaskets for adjustable fit
+
+**Joints are weak:**
+- Insufficient bonding surface—redesign with more glue area
+- Consider mechanical fasteners or threaded inserts
+- Check print orientation—load-bearing joints shouldn't pull layers apart
+
+## Bringing Your Assembly to Life
+
+Multi-part assembly design is where 3D printing really demonstrates its power. You can create mechanisms, enclosures, and structures that would be impossible to manufacture any other way—and once you understand tolerances and joint design, the results look and feel professional.
+
+At Mandarin3D, we print assemblies regularly. Our BambuLab P1S and H2S printers handle PETG, PLA, and other materials that work well together in multi-part designs. If you're designing an assembly and want feedback on your approach, [upload your model](/upload) and let us know it's meant to be a multi-part build—we'll review the fit and let you know if we spot potential issues.
+
+Working on something complex? Have questions about tolerances or joint design for your specific application? Email us at [orders@mandarin3d.com](mailto:orders@mandarin3d.com). We're happy to discuss your project before you finalize the design.
