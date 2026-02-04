@@ -1,0 +1,160 @@
+---
+title: "Designing for Assembly: Multi-Part Print Strategies"
+description: "Learn when and how to split 3D models into multiple parts, choose the right joining methods, and design assemblies that fit together perfectly every time."
+date: "2026-02-04"
+author: "Mandarin3D"
+tags: ["design", "assembly", "multi-part", "tolerances", "guides"]
+category: "guides"
+---
+
+Sometimes the best 3D print is actually several 3D prints. Whether your project exceeds your printer's build volume, requires different materials in different sections, or would just print better in pieces, knowing how to design for assembly is an essential skill.
+
+Here's how to split models intelligently, choose the right joining methods, and design parts that actually fit together.
+
+## When to Split Your Model
+
+Before diving into techniques, let's establish when multi-part printing actually makes sense.
+
+### Size Constraints
+
+Our BambuLab P1S printers have a 250mm x 250mm x 250mm build volume. The larger H2S handles up to 340mm x 320mm x 340mm. Anything bigger needs to be split. But even within those dimensions, sometimes splitting helps.
+
+### Print Quality Considerations
+
+A single tall, thin part might wobble during printing and produce poor surface quality. The same design split horizontally into two shorter sections prints cleaner and assembles into a stronger final piece.
+
+### Material Optimization
+
+Maybe you need the handle of your tool in flexible TPU but the body in rigid PLA. Or you want a black base with a white top without multi-color printing. Separate parts solve both problems.
+
+### Strength Requirements
+
+FDM prints are weakest along layer lines. If your part has a critical stress point that would align with layer lines when printed whole, splitting it and printing each section in the optimal orientation creates a stronger assembly.
+
+## Choosing Your Split Points
+
+Where you divide a model matters as much as whether you divide it.
+
+### Follow Natural Boundaries
+
+Look for existing seams, color breaks, or geometric transitions in your design. A handle meeting a body, a lid meeting a container, a decorative element meeting a structural one—these natural boundaries hide assembly lines and often align with functional requirements.
+
+### Avoid Stress Points
+
+Never place a split line where the assembly will experience maximum load. If your bracket will bear weight at its center, don't split it there. Move the joint to a low-stress region.
+
+### Consider Aesthetics
+
+Assembly lines are visible. Think about which surfaces people will see and which they won't. A split on the bottom of a display piece is invisible. A split across the front face isn't.
+
+### Maximize Flat Surfaces
+
+Split points that create flat mating surfaces are easier to align and join. A clean horizontal cut through a vertical object is simpler to assemble than a diagonal slice through a complex curve.
+
+## Designing Parts That Fit Together
+
+Here's where most people struggle. You design two parts that should fit together, print them, and they're either too tight or too loose. The solution is understanding tolerances.
+
+### The Tolerance Reality
+
+FDM printing is accurate to roughly ±0.2mm. That sounds small until you realize two mating parts each have that variance, potentially compounding to 0.4mm of unexpected interference or gap.
+
+### Clearance Guidelines
+
+For parts that need to slide together and apart easily:
+- **Tight fit (requires force):** 0.1-0.15mm clearance per side
+- **Standard fit (slides with resistance):** 0.2mm clearance per side
+- **Loose fit (free movement):** 0.3-0.5mm clearance per side
+
+In practice, this means if you're designing a peg that fits into a hole, make the hole 0.4mm larger in diameter than the peg for a standard fit.
+
+### Holes Print Undersized
+
+This catches everyone. A 10mm hole in your CAD model prints as roughly 9.5mm. It's a quirk of how circular geometry gets approximated by triangular mesh files and then converted to printer toolpaths.
+
+If you need a precise hole diameter, either design it 0.5mm oversized or plan to drill/ream it after printing.
+
+### Test Before Committing
+
+When designing critical fits, create a small test piece first. A simple cylinder-in-hole test print with varying clearances (0.1mm, 0.2mm, 0.3mm) tells you exactly what works for your specific printer and material combination before you waste time and filament on a full part that doesn't fit.
+
+## Joining Methods
+
+Once your parts are designed and printed, you need to connect them. Each method has its place.
+
+### Mechanical Fasteners
+
+**Screws and bolts** are the most versatile option. For 3D printed parts, you have several approaches:
+
+- **Self-tapping into printed plastic:** Works for light-duty applications. Use coarse-thread screws and design pilot holes slightly undersized.
+- **Heat-set inserts:** Brass inserts that melt into printed plastic using a soldering iron. Creates strong, reusable threads. Highly recommended for anything that needs repeated assembly.
+- **Through-bolts with nuts:** The strongest option. Design clearance holes and use standard hardware.
+
+**Snap fits** eliminate hardware entirely. A properly designed cantilever snap locks parts together and can be designed for permanent assembly or repeated opening. The trick is getting the geometry right—the clip needs enough flexibility to deflect during assembly but enough stiffness to hold.
+
+### Adhesives
+
+**Cyanoacrylate (super glue)** works well on PLA and PETG. For best results:
+- Lightly sand mating surfaces to roughen them
+- Clean off dust and oils
+- Apply sparingly—too much glue actually weakens the bond
+- Hold parts together for 30-60 seconds
+
+**Epoxy** creates the strongest bond and fills gaps, which helps with less-than-perfect fits. It's overkill for most projects but essential for structural applications.
+
+### Print-in-Place Options
+
+Some assemblies can print already connected. Living hinges, ball joints, and interlocking mechanisms can be designed to print in a single piece with captive moving parts. This requires careful attention to clearances—typically 0.4-0.5mm between moving surfaces—but eliminates post-processing entirely.
+
+## Alignment Features
+
+Good assemblies don't just stick together—they align precisely.
+
+### Pins and Holes
+
+Simple cylindrical pins that engage matching holes force parts into correct position. Design pins slightly shorter than hole depth so parts can fully seat.
+
+### Keys and Slots
+
+For linear alignment, a rectangular key on one part fits into a matching slot on the other. This prevents rotation and positions parts in one motion.
+
+### Stepped Interfaces
+
+Instead of flat mating surfaces, design a step or rabbet joint. One part has a raised lip; the other has a matching recess. Parts can only fit together one way, and the joint is self-aligning.
+
+### Dovetails
+
+For parts that slide together, dovetail geometry locks them in position while still allowing disassembly. Common for removable panels and access covers.
+
+## Practical Example: A Two-Part Enclosure
+
+Let's walk through designing a simple electronic enclosure as a multi-part assembly.
+
+**The requirements:** A box that holds a circuit board, with a removable lid for access.
+
+**Split strategy:** Horizontal cut separating base from lid. The cut line sits above the circuit board, so components are protected in the larger base section.
+
+**Alignment:** The lid has a 2mm lip that fits inside the base walls. Clearance is 0.2mm per side, so the lip is 0.4mm smaller than the internal base dimension.
+
+**Fastening:** Four heat-set inserts in the base corners, with countersunk screw holes in the lid. Allows repeated opening without wearing out the plastic.
+
+**Print orientation:** Both parts print with their external surfaces facing up, maximizing cosmetic quality on visible faces.
+
+This approach gives you a professional-looking enclosure with precise fit and easy assembly—something that would be much harder to achieve as a single print.
+
+## When Single-Part Is Better
+
+Multi-part designs aren't always the answer. Avoid unnecessary complexity:
+
+- If the part fits your build volume, prints well in one piece, and doesn't need mixed materials, print it whole
+- Every assembly adds tolerance stack-up—more parts means more accumulated error
+- Assembly takes time and can introduce weak points
+- Simple is usually better
+
+The goal isn't to split everything—it's to recognize when splitting serves your design.
+
+## Get It Right Before Printing
+
+Designing for assembly requires more upfront planning than single-part prints. Measure twice, test with small prototypes, and think through the assembly sequence before committing to full production.
+
+Need help figuring out how to split a complex model or which joining method works best for your application? [Upload your design](/upload) or reach out with questions. We've assembled hundreds of multi-part projects and can advise on what works—before you've printed a single layer.
