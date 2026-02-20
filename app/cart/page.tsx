@@ -366,6 +366,9 @@ function CartPageContent() {
     }
   };
 
+  // Checkout is temporarily unavailable
+  const CHECKOUT_UNAVAILABLE = true;
+
   if (isLoading || sessionLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -658,29 +661,36 @@ function CartPageContent() {
 
                 {/* Actions */}
                 <div className="space-y-3 pt-2">
-                  <Button 
-                    className="w-full h-12 text-base font-semibold" 
-                    size="large"
-                    disabled={hasProcessingItems || hasErrorItems || items.length === 0 || isCheckingOut}
-                    onClick={handleCheckout}
-                  >
-                    {isCheckingOut ? (
-                      <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Creating Checkout...
-                      </>
-                    ) : hasProcessingItems ? (
-                      <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Processing...
-                      </>
-                    ) : (
-                      <>
-                    <ShoppingCart className="mr-2 h-4 w-4" />
-                        Proceed to Checkout
-                      </>
-                    )}
-                  </Button>
+                  {CHECKOUT_UNAVAILABLE ? (
+                    <div className="p-4 bg-amber-500/10 border border-amber-500/20 rounded-lg text-center">
+                      <p className="font-medium text-amber-700">Checkout Unavailable</p>
+                      <p className="text-sm text-amber-600 mt-1">Our checkout is temporarily unavailable. Please try again later.</p>
+                    </div>
+                  ) : (
+                    <Button
+                      className="w-full h-12 text-base font-semibold"
+                      size="large"
+                      disabled={hasProcessingItems || hasErrorItems || items.length === 0 || isCheckingOut}
+                      onClick={handleCheckout}
+                    >
+                      {isCheckingOut ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Creating Checkout...
+                        </>
+                      ) : hasProcessingItems ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Processing...
+                        </>
+                      ) : (
+                        <>
+                          <ShoppingCart className="mr-2 h-4 w-4" />
+                          Proceed to Checkout
+                        </>
+                      )}
+                    </Button>
+                  )}
                   <Button 
                     variant="secondary" 
                     className="w-full h-12 text-base font-medium" 

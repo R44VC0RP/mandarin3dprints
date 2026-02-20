@@ -31,6 +31,13 @@ interface CheckoutRequestBody {
 }
 
 export async function POST(request: NextRequest) {
+  // Checkout is temporarily unavailable
+  return NextResponse.json(
+    { error: 'Checkout is unavailable at this time. Please try again later.' },
+    { status: 503 }
+  );
+
+  /*
   try {
     const cookieStore = await cookies();
     const sessionId = cookieStore.get(SESSION_COOKIE_NAME)?.value;
@@ -163,5 +170,6 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     );
   }
+  */
 }
 
