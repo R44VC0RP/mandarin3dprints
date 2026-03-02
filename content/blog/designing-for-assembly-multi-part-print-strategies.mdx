@@ -1,0 +1,218 @@
+---
+title: "Designing for Assembly: Multi-Part Print Strategies"
+description: "Learn how to split large or complex 3D models into printable pieces and join them into strong, seamless assemblies. Covers splitting techniques, alignment methods, joining strategies, and material considerations."
+date: "2025-12-30"
+author: "Mandarin3D"
+tags: ["design", "assembly", "multi-part", "adhesives", "alignment", "CAD", "large-prints"]
+category: "guides"
+---
+
+Every 3D printer has limits. Build volume, overhang angles, support accessibility—eventually, you'll design something that simply won't fit on the bed in one piece. That's not a problem. It's an opportunity to think strategically about how your parts come together.
+
+Multi-part printing isn't just about working around size constraints. Done well, it produces stronger parts, better surface quality, and easier post-processing than trying to force everything into a single print. Here's how to approach multi-part design like a pro.
+
+## When to Split Your Model
+
+Before reaching for the virtual saw, consider whether splitting actually makes sense for your project.
+
+**Split when:**
+- Your model exceeds the build volume (our BambuLab P1S printers have a 256×256×256mm build area)
+- Large overhangs would require extensive, hard-to-remove supports
+- Different sections need different materials (rigid body with flexible grips, for example)
+- Printing in one piece would create trapped voids or inaccessible areas
+- You want better surface quality on all visible faces
+
+**Don't split when:**
+- The model already fits and prints cleanly in one piece
+- Structural integrity is critical and joints would create weak points
+- Assembly tolerance requirements are tighter than your printing accuracy
+
+The goal isn't to make more parts—it's to make better parts.
+
+## Choosing Where to Cut
+
+The placement of your splits matters more than you might think. A well-placed cut creates parts that print easily and join invisibly. A poorly placed cut creates weak spots, visible seams, and assembly headaches.
+
+### Follow Natural Boundaries
+
+Look for existing edges, seams, or geometric transitions in your design. If you're printing a character figure, split at the neck, wrists, and waist—places where clothing or anatomy already creates a visual break. For mechanical parts, split along flanges, shoulders, or where components would naturally separate.
+
+Cuts along existing features hide better than cuts through smooth surfaces.
+
+### Maximize Print Quality
+
+Think about how each piece will sit on the print bed. Splits that let you place the most important surfaces face-down (against the bed) or face-up (top layer finish) produce the best results. Vertical walls with layer lines are the lowest-quality surfaces—position splits so these end up hidden inside the assembly.
+
+### Strengthen, Don't Weaken
+
+Layer lines are the weak point in FDM prints. When possible, orient splits so assembled parts load across layers rather than along them. A joint that runs perpendicular to the primary stress direction adds minimal weakness. A joint parallel to the stress direction creates a failure point.
+
+For structural parts, consider diagonal or stepped cuts rather than straight ones. More surface area means more glue contact and a stronger bond.
+
+## Alignment Methods That Actually Work
+
+Once you've cut your model, the pieces need to go back together accurately. Nothing ruins a multi-part print like a visible step or offset at the seams.
+
+### Pin and Socket Joints
+
+The most reliable alignment method uses pins on one part that fit into matching holes on the other. This is the 3D printing equivalent of dowel joints in woodworking.
+
+**Dimensions that work:**
+- Pin diameter: 3-5mm for most applications
+- Pin height: 5-10mm (longer provides better alignment but requires deeper holes)
+- Socket depth: Pin height plus 1-2mm (for glue reservoir)
+- Tolerance: Make sockets 0.2-0.3mm larger than pins for a snug fit
+
+**Pro tip:** Instead of printing separate pins, use pieces of filament as alignment dowels. Design 1.75mm holes in both parts, then insert a short piece of leftover filament when you glue up. Perfect fit every time, zero extra printing.
+
+### Interlocking Geometry
+
+For parts that need to align precisely and stay together without adhesive during assembly (useful for test fitting), design interlocking features:
+
+**Tongue and groove:** One part has a protruding ridge, the other has a matching channel. Simple to model, provides alignment in two axes.
+
+**Dovetail joints:** Angled tongue-and-groove joints that can only slide together from one direction, then lock in place. More work to model but provide excellent alignment and mechanical strength.
+
+**Puzzle cuts:** Wavy or irregular cut lines that mesh together. Useful for splitting flat surfaces like panels or bases where a straight line would be visible.
+
+### Flat Surface with Keys
+
+The simplest approach: flat mating surfaces with small geometric keys (squares, triangles, or circles) that ensure correct orientation. Easy to add in any CAD software—just extrude a small shape from one surface and create a matching pocket in the other.
+
+This method works fine for decorative items where structural strength comes from adhesive rather than the joint geometry.
+
+## Joining Methods by Application
+
+How you connect your parts depends on what you're building.
+
+### Super Glue (Cyanoacrylate) – Quick and Easy
+
+Best for: Small parts, PLA, quick assemblies
+Strength: Good for light-duty applications
+Working time: Seconds
+
+CA glue is the go-to for most 3D printing assembly work. It bonds PLA well and sets almost instantly. Use gel formulations for better control—liquid CA runs everywhere.
+
+**Tips for stronger CA bonds:**
+- Lightly sand mating surfaces with 220-grit sandpaper
+- Clean with isopropyl alcohol to remove oils and dust
+- Apply sparingly—excess glue weakens the joint
+- Hold parts firmly for 30 seconds; full cure takes 24 hours
+
+For gap-filling on imperfect joints, sprinkle baking soda into liquid CA. It creates an instant hard filler that sands well.
+
+### Epoxy – Maximum Strength
+
+Best for: Structural parts, PETG, load-bearing assemblies
+Strength: Often stronger than the printed material itself
+Working time: 5-60 minutes depending on formulation
+
+Two-part epoxy creates the strongest bonds available for 3D prints. The chemical cure produces a rigid joint that can handle significant stress.
+
+**When to use epoxy:**
+- Parts will bear weight or experience repeated forces
+- PETG parts (which don't bond as well with CA)
+- Gap-filling is needed for imperfect fits
+- Waterproofing is required
+
+J-B Weld's plastic-specific formula works well on both PLA and PETG. Mix thoroughly and give it the full cure time—rushing epoxy joints drastically reduces strength.
+
+### Solvent Welding – Invisible Seams
+
+Best for: ABS and ASA parts, cosmetic applications
+Strength: Excellent—creates a true chemical bond
+Working time: Variable
+
+Solvent welding uses chemicals to partially dissolve the plastic surfaces, which then fuse as the solvent evaporates. The result is a molecular bond rather than adhesion—essentially welding the parts together.
+
+For ABS: Acetone or ABS slurry (ABS dissolved in acetone)
+For PETG: 3D Gloop or Weld-On 16
+
+**Warning:** Solvent welding requires good ventilation. These chemicals are nasty to breathe. Work in a well-ventilated area or outside.
+
+### Mechanical Fasteners – Serviceable Connections
+
+Best for: Parts that need disassembly, high-stress applications, mixed material assemblies
+Strength: Depends on fastener selection
+Working time: N/A
+
+Sometimes glue isn't the answer. Mechanical fasteners—screws, bolts, heat-set inserts—create serviceable connections you can take apart later.
+
+**Heat-set inserts** are brass threaded fittings that you press into undersized holes using a soldering iron. They provide strong, reusable threads in plastic parts. Design holes 0.1-0.2mm smaller than the insert's outer diameter.
+
+**Self-tapping screws** work directly in plastic but can strip with repeated use. Best for parts assembled once or twice.
+
+**Through-bolts** with nuts are the strongest mechanical connection but require access to both sides of the assembly.
+
+## Material Considerations
+
+Different filaments behave differently in multi-part assemblies.
+
+### PLA
+- Bonds well with CA glue
+- Somewhat brittle—joints can crack under impact
+- Best for decorative items and light-duty applications
+- Avoid epoxy unless necessary (CA works fine and is easier)
+
+### PETG
+- Lower surface energy makes bonding trickier
+- CA works but epoxy is more reliable for structural applications
+- 3D Gloop creates excellent chemical bonds
+- Good choice for parts that need some flex at joints
+
+### TPU (Flexible)
+- Doesn't bond well with anything
+- Use mechanical interlocks—design parts that physically capture the TPU
+- Extra tolerance needed (0.3-0.5mm) since flexible parts are harder to position accurately
+
+## Surface Preparation
+
+The secret to strong joints isn't fancy adhesives—it's proper surface prep.
+
+1. **Sand the mating surfaces** with 150-220 grit sandpaper. This removes the glossy layer and creates texture for adhesive to grip.
+
+2. **Clean thoroughly** with isopropyl alcohol (90% or higher). Oils from your hands, dust from sanding, and residue from printing all weaken bonds.
+
+3. **Dry completely** before applying adhesive. Moisture defeats most glues.
+
+4. **Test fit first.** Dry-assemble everything to make sure parts align correctly. You don't want to discover a problem while glue is setting.
+
+5. **Clamp or fixture** during cure. Even "instant" adhesives benefit from holding parts in position for proper alignment.
+
+## Hiding the Seams
+
+Once assembled, you might want to make joints invisible.
+
+**For painted parts:** Fill gaps with CA glue and baking soda, or use automotive body filler. Sand smooth, then prime and paint. The seam will completely disappear.
+
+**For bare plastic:** Careful placement of joints along natural edges is your best bet. On flat surfaces, use puzzle cuts rather than straight lines—irregular seams are less visible than geometric ones.
+
+**For functional parts:** Don't worry about it. Visible seams on mechanical components are expected.
+
+## Putting It Into Practice
+
+Here's a practical workflow for a project that exceeds your build volume:
+
+1. **Analyze the model** in your CAD software. Identify the largest dimension and natural split points.
+
+2. **Plan your cuts** to create pieces that each fit within your build volume with room to spare (leave 10-15mm margin for any warping).
+
+3. **Add alignment features**—pins, keys, or interlocking geometry at each joint.
+
+4. **Export each piece** as a separate file, clearly named (PartA-Bottom, PartA-Top, etc.).
+
+5. **Print with consistent settings** across all parts. Variations in temperature or flow will create dimensional differences that show up at joints.
+
+6. **Dry fit everything** before any glue touches the parts.
+
+7. **Assemble in stages** if you have many parts. Let each joint cure fully before adding more pieces—this prevents stress from accumulated tolerance errors.
+
+8. **Finish as needed** with sanding, filling, and painting.
+
+## Ready to Tackle That Large Project?
+
+Multi-part printing opens up possibilities far beyond your printer's build volume. That helmet, that architectural model, that oversized bracket—they're all achievable once you know how to split and join effectively.
+
+If you're planning a complex multi-part project and want help optimizing the splits or selecting the right joining method, [upload your model](/upload) to Mandarin3D. We've assembled countless large-format prints on our BambuLab P1S printers and can advise on the best approach for your specific project.
+
+Have questions about multi-part strategies for your design? Reach out at [orders@mandarin3d.com](mailto:orders@mandarin3d.com)—we're happy to help you plan an assembly approach that works.
