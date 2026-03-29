@@ -43,7 +43,7 @@
 - [x] **Designing Living Hinges for Flexible 3D Prints**
 - [x] **How to Design Parts That Don't Need Supports**
 - [x] **Text and Engravings: Best Practices for Readable 3D Printed Text**
-- [ ] **Designing for Assembly: Multi-Part Print Strategies**
+- [x] **Designing for Assembly: Multi-Part Print Strategies**
 - [ ] **How to Add Tolerances for Moving Parts and Assemblies**
 - [ ] **Converting 2D Logos and Images to 3D Printable Models**
 
@@ -230,8 +230,9 @@
 - [ ] **Food-Safe 3D Printing: Materials, Coatings, and Best Practices for Kitchen Items**
 - [ ] **How to Design 3D Printed Parts for Laser Cutting and CNC Integration: Combining Manufacturing Methods**
 - [ ] **Understanding Retraction Settings: A Deep Dive into Stringing Prevention and Layer Quality**
+- [ ] **Designing Ball Joints and Articulated Figures: Print and Pose Your Own Creations**
 
 ---
 
-*Last updated: December 2025*
+*Last updated: January 2026*
 
