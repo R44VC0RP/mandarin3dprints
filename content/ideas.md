@@ -43,7 +43,7 @@
 - [x] **Designing Living Hinges for Flexible 3D Prints**
 - [x] **How to Design Parts That Don't Need Supports**
 - [x] **Text and Engravings: Best Practices for Readable 3D Printed Text**
-- [ ] **Designing for Assembly: Multi-Part Print Strategies**
+- [x] **Designing for Assembly: Multi-Part Print Strategies**
 - [ ] **How to Add Tolerances for Moving Parts and Assemblies**
 - [ ] **Converting 2D Logos and Images to 3D Printable Models**
 
@@ -233,5 +233,9 @@
 
 ---
 
-*Last updated: December 2025*
+- [ ] **Understanding Build Plate Adhesion Methods: Brims, Rafts, and Skirts Explained**
+
+---
+
+*Last updated: January 2026*
 
