@@ -1,0 +1,227 @@
+---
+title: "Designing for Assembly: Multi-Part Print Strategies"
+description: "Learn how to split large models into printable sections, choose the right joint types, and assemble parts that fit together perfectly. Practical strategies for projects that exceed your build volume."
+date: "2026-01-20"
+author: "Mandarin3D"
+tags: ["design", "assembly", "splitting", "joints", "CAD", "best-practices"]
+category: "guides"
+---
+
+Not every project fits in a single print. Whether you're building a cosplay helmet, a large decorative piece, or a functional assembly with multiple materials, knowing how to split models and join them back together is an essential skill. Done well, a multi-part print can be stronger, more detailed, and easier to produce than a single-piece version ever could be.
+
+Here's everything you need to know about designing for assembly—from choosing where to cut to selecting the right joining method.
+
+## Why Split a Model in the First Place?
+
+Before diving into techniques, it helps to understand when multi-part printing makes sense:
+
+**Size limitations:** Our BambuLab P1S printers have a 250mm × 250mm × 250mm build volume. The H2S extends to 340mm × 320mm × 340mm. Anything larger than these dimensions needs splitting.
+
+**Better print quality:** A tall, narrow model printed vertically risks wobbling or failing mid-print. The same model split horizontally and printed in sections can produce a much cleaner result.
+
+**Reduced supports:** Splitting a complex model into simpler pieces often eliminates the need for support material entirely. Each section can print flat with optimal orientation.
+
+**Multiple materials:** Want a flexible grip on a rigid handle? Different colors in different sections? Multi-part designs let you mix materials in ways a single print can't.
+
+**Easier post-processing:** It's much easier to sand, paint, or finish a part when you can access all surfaces without the geometry getting in the way.
+
+## Choosing Where to Cut
+
+The split location determines everything—strength, appearance, ease of assembly, and print quality. Here's how to choose wisely.
+
+### Follow Natural Break Lines
+
+Look for places where a seam would make visual sense. Geometric transitions, panel lines, decorative borders, and changes in surface texture all make natural split points. A seam along a panel line disappears; a seam across a smooth, curved surface screams "this was glued together."
+
+### Hide Seams Strategically
+
+Position splits in areas that won't be visible in normal use:
+- The underside of a shelf bracket
+- The back of a display piece
+- Inside a joint or hinge
+- Along an edge where two surfaces meet at an angle
+
+### Maximize Flat Surfaces
+
+Each piece needs a stable surface to print from. When you cut a model, you're creating two new surfaces—make sure at least one side of each cut creates a good printing base. Flat surfaces also make for stronger glue joints.
+
+### Consider Structural Loads
+
+Never put a seam where maximum stress occurs. A cosplay sword split at the handle-blade junction will break at that seam under any significant force. Instead, split through the handle where stress is lower, or design an internal reinforcement that bridges the joint.
+
+### Avoid Thin Sections at the Split
+
+If your cut passes through a thin wall or delicate feature, that's a weak point waiting to fail. Adjust the split location so both resulting pieces have solid material around the joint.
+
+## Types of Joints for Multi-Part Prints
+
+Once you've chosen where to split, you need to decide how the pieces will align and connect. Here are your main options:
+
+### Simple Flat Joints
+
+The most basic approach: cut the model with a flat plane, print both halves with the cut surface on the build plate, and glue them together. This works well when:
+- Appearance isn't critical (seam will be hidden or painted)
+- The joint isn't under structural stress
+- You want to minimize design complexity
+
+**Tip:** Even flat joints benefit from adding 2-3 small alignment pins. A 3mm diameter pin extending 4mm into each piece ensures the halves line up perfectly during gluing.
+
+### Keyed Joints with Pins
+
+Add holes on one side and matching pins on the other. This provides:
+- Precise alignment during assembly
+- Some mechanical strength beyond just adhesive
+- Easy repositioning while the glue sets
+
+**Recommended dimensions:**
+- Pin diameter: 3-5mm depending on part size
+- Pin depth: 4-6mm into each piece
+- Pin clearance: 0.2-0.3mm larger hole than pin diameter
+
+You can print the pins integrated into one half or use separate dowels—wooden or metal dowels from the hardware store work perfectly for larger assemblies.
+
+### Dovetail Joints
+
+Borrowed from woodworking, dovetails create mechanical interlocking that resists pull-apart forces. A tapered "tail" on one piece slides into a matching slot on the other. The geometry locks the pieces together in all directions except along the insertion axis.
+
+**When to use dovetails:**
+- Parts that will experience tension across the joint
+- Assemblies where you want to minimize adhesive dependence
+- Designs where the joint might be visible (dovetails look intentional)
+
+**Design parameters:**
+- Taper angle: 10-15 degrees on each side
+- Tail depth: At least 10mm for structural joints
+- Clearance: 0.2-0.3mm on mating surfaces
+
+For extra strength, combine dovetails with adhesive—the mechanical interlock holds the pieces in place while the glue cures, and the final joint has both mechanical and chemical bonding.
+
+### Stepped "Z" Joints
+
+A Z-shaped or stepped joint dramatically increases the glue surface area compared to a flat cut. The stepped profile also makes alignment obvious and provides some mechanical strength.
+
+**Advantages:**
+- Much larger bonding area than a flat joint
+- Self-aligning during assembly
+- Resists shear forces better than flat joints
+
+**Design approach:**
+- Step height: 3-5mm
+- Step depth: 10-20mm
+- Keep angles at 90 degrees for clean printing
+
+### Puzzle Joints
+
+Interlocking shapes like jigsaw puzzle pieces work well for flat panels or surfaces that need to tile together. They self-align and provide some mechanical connection.
+
+**Best applications:**
+- Large flat surfaces like tabletops or panels
+- Decorative walls or backdrops
+- Models that need to be disassembled for transport
+
+## Adhesive Options
+
+Once your parts are printed, you need to stick them together. Different adhesives suit different situations.
+
+### Cyanoacrylate (Super Glue)
+
+Fast-curing and strong in tension, super glue is the go-to for most assemblies. It bonds almost instantly and works well on both PLA and PETG.
+
+**Best for:** Quick assemblies, small parts, joints that won't see much stress
+
+**Limitations:** Brittle under impact, weak against shear forces, bonds can fail if surfaces aren't perfectly clean
+
+**Pro tip:** Use medium-viscosity CA glue rather than thin. It fills small gaps and gives you a few seconds to adjust position. Accelerator spray can speed up the cure but makes the joint more brittle.
+
+### Epoxy
+
+Two-part epoxy provides the strongest possible bond. It fills gaps, works on slightly uneven surfaces, and creates joints that can be stronger than the printed material itself.
+
+**Best for:** Structural assemblies, large parts, joints under significant stress
+
+**Cure times:** Available from 5-minute to 24-hour formulas. Longer cure times generally mean stronger final bonds.
+
+**Surface prep:** Lightly sand mating surfaces with 120-grit sandpaper and clean with isopropyl alcohol before applying epoxy. This dramatically improves bond strength.
+
+### Plastic Welding with Solvent
+
+For PLA and ABS, solvent welding chemically melts the surfaces together, creating a true fusion rather than just surface adhesion. Acetone works for ABS; for PLA, specialized solvents like dichloromethane are needed (and require proper safety precautions).
+
+**Best for:** Permanent assemblies where appearance matters, since a good solvent weld becomes nearly invisible
+
+### Hot Glue
+
+Quick and gap-filling, but relatively weak. Use for temporary assemblies, internal structures that won't be stressed, or situations where you might need to disassemble later.
+
+## Mechanical Fasteners
+
+Sometimes adhesive isn't enough—or you need the assembly to come apart.
+
+### Heat-Set Threaded Inserts
+
+Brass inserts that melt into the plastic when heated with a soldering iron. They provide strong, reusable threads for machine screws.
+
+**Design considerations:**
+- Hole diameter should match the insert's specified installation diameter
+- Wall thickness around the insert: at least 2× the insert outer diameter
+- Leave space above the insert for the screw head
+
+Heat-set inserts are ideal for enclosures that need to be opened for maintenance, parts that mount to other structures, or anywhere you need repeatable assembly.
+
+### Nuts and Bolts
+
+A simple bolt passing through both pieces with a nut on the back provides strong, adjustable, removable connections. Design hex-shaped pockets to capture nuts and keep them from spinning during assembly.
+
+**Recommended clearances:**
+- Bolt hole: 0.4mm larger than bolt diameter
+- Nut pocket: 0.5mm larger than nut width
+
+### Embedded Magnets
+
+For assemblies that need to separate and reconnect frequently, embedding small neodymium magnets creates a clean, invisible connection. Pause the print at the right layer, drop in the magnets, and resume.
+
+**Watch the polarity!** Mark all your magnets before insertion so you don't end up with pieces that repel each other.
+
+## Surface Preparation for Strong Joints
+
+No matter what joining method you choose, surface prep matters.
+
+**Clean surfaces:** Wipe mating surfaces with isopropyl alcohol to remove fingerprints, dust, and any release agents.
+
+**Light sanding:** 120-180 grit sandpaper roughens the surface, giving adhesives more area to grip. This is especially important for smooth, glossy prints.
+
+**Test fit first:** Dry-fit everything before applying adhesive. Make sure parts align correctly and you understand the assembly sequence.
+
+**Clamping:** Apply consistent pressure while adhesive cures. Rubber bands, spring clamps, or even just tape work for small parts. Large assemblies might need bar clamps or weights.
+
+## Dealing with Build Volume Limits
+
+At Mandarin3D, we work with the constraints daily. Here's how we approach oversized projects:
+
+**Diagonal orientation:** A 300mm part doesn't fit on a 250mm bed—but at 45 degrees, a 250mm × 250mm bed can accommodate parts up to 350mm along the diagonal.
+
+**Minimal splits:** We aim for the fewest cuts that still allow quality printing. Each seam is a potential weakness and adds finishing work.
+
+**Strategic material choices:** For parts that need to look seamless after assembly, PETG often sands and finishes better than PLA, making seams easier to hide.
+
+**Assembly documentation:** For complex multi-part projects, we note which piece connects where. This saves confusion during assembly and helps if a single piece ever needs reprinting.
+
+## Putting It into Practice
+
+Here's how a typical multi-part project comes together:
+
+1. **Analyze the model:** Identify areas that exceed build volume and features that would benefit from splitting
+2. **Plan cuts:** Choose split locations following natural lines, structural considerations, and printability
+3. **Add joint features:** Design in alignment pins, dovetails, or whatever joint type suits the application
+4. **Test fit digitally:** In CAD, verify all pieces align correctly and tolerances make sense
+5. **Print a test joint:** Before printing all pieces, make a small sample of your joint design to verify fit and strength
+6. **Print final pieces:** Orient each piece for optimal quality on the joining surfaces
+7. **Prepare and assemble:** Clean surfaces, apply adhesive, clamp, and cure
+
+## Ready to Tackle a Multi-Part Project?
+
+Splitting models opens up possibilities that single-piece printing simply can't match. With the right planning, your assembled parts can be indistinguishable from—or stronger than—what any printer could produce in one piece.
+
+Working on something that exceeds your printer's build volume? [Upload your model](/upload) to Mandarin3D and let us help figure out the best splitting strategy. We print projects of all sizes on our BambuLab P1S and H2S printers, and we're happy to recommend where to cut, what joints to use, and which materials will give you the best final result.
+
+Have questions about a specific multi-part design challenge? Reach out at [orders@mandarin3d.com](mailto:orders@mandarin3d.com)—we've assembled plenty of complex projects and are always happy to share what we've learned.
