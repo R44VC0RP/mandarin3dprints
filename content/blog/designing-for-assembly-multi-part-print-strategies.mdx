@@ -1,0 +1,281 @@
+---
+title: "Designing for Assembly: Multi-Part Print Strategies"
+description: "Learn when and how to split 3D models into multiple parts for better print quality, easier assembly, and designs that exceed your printer's build volume. Practical strategies for joints, alignment, and assembly."
+date: "2026-01-16"
+author: "Mandarin3D"
+tags: ["design", "assembly", "multi-part", "joints", "CAD", "best-practices"]
+category: "guides"
+---
+
+Some of the best 3D printed projects aren't printed as a single piece. Whether your design is too large for the build plate, has features that can't print well in any orientation, or simply works better as an assembly—knowing how to split a model into multiple parts is an essential skill.
+
+The trick isn't just cutting a model in half. It's understanding where to split, how to design the joints, and what tolerances ensure your parts actually fit together. Here's everything you need to know about designing 3D prints for assembly.
+
+## When to Split Your Model
+
+Before reaching for the cutting tools in your CAD software, ask yourself whether splitting actually improves the outcome. Not every large model benefits from being broken into pieces.
+
+**Good reasons to split:**
+
+- **Exceeds build volume:** Your model is larger than 250×250×250mm (our P1S printers) or needs more than 340mm in any dimension (our H2S printers)
+- **Impossible print orientation:** No single orientation avoids both overhangs and support-dependent critical surfaces
+- **Multi-material requirements:** Different sections need different materials (rigid body with flexible gaskets, for example)
+- **Assembly with hardware:** You need to embed nuts, magnets, or electronics that can't survive printing temperatures
+- **Ease of finishing:** Smaller parts are easier to sand, paint, or post-process individually
+- **Shipping or storage:** Large hollow objects may ship more safely as flat-packed components
+
+**When to keep it as one piece:**
+
+- The model fits comfortably in the build volume
+- Splitting would create weak points in a structural part
+- The assembly complexity outweighs any printing benefits
+- You're adding joints just because you can, not because you need them
+
+## Choosing Where to Split
+
+The location of your split matters more than most people realize. A poorly placed joint can ruin the aesthetics, create weak points, or make assembly a nightmare.
+
+### Follow Natural Break Lines
+
+Look for existing features in your design that can hide the seam:
+
+- **Color or material changes:** If a design transitions between two colors or textures, that's a natural split point
+- **Geometric transitions:** Where a curved section meets a flat one, or where a cylinder meets a box
+- **Functional boundaries:** Lids, caps, doors, and removable panels are obvious candidates
+- **Panel lines:** For cosplay props and models, existing panel lines hide assembly seams perfectly
+
+### Consider Structural Loads
+
+Think about how forces will travel through your assembled part:
+
+- **Avoid splits perpendicular to tension:** If a part will be pulled apart, don't place the joint in the middle of that tension path
+- **Prefer shear and compression joints:** Joints handle pushing and sliding forces better than pulling forces
+- **Add mechanical reinforcement:** Use screws, pins, or interlocking geometry where glue alone won't handle the stress
+
+### Optimize for Print Orientation
+
+Each piece should print well on its own:
+
+- **Flat surfaces on the bed:** The split should create at least one large, flat face per piece for stable printing
+- **Overhangs under 45 degrees:** Neither piece should require extensive supports after splitting
+- **Critical surfaces facing up or down:** The split shouldn't put a visible surface in contact with supports
+
+## Joint Design Strategies
+
+Once you know where to split, the next question is how the pieces will connect. Here are the most reliable approaches for FDM 3D printing.
+
+### Butt Joints (Flat Surfaces)
+
+The simplest option: two flat surfaces glued together.
+
+**When to use:** Low-stress connections, hidden joints, or when you'll reinforce with pins or screws anyway.
+
+**Design tips:**
+- Add alignment features (more on this below) because flat surfaces provide no automatic registration
+- Maximize surface area for the glue—wider mating surfaces are stronger
+- Consider adding a slight recess (0.5mm) around the perimeter so glue squeeze-out has somewhere to go
+
+**Strength:** Low to moderate without reinforcement
+
+### Tongue and Groove
+
+One part has a protruding ridge; the other has a matching channel.
+
+**When to use:** Linear assemblies that need alignment in one direction, like wall panels or segmented sculptures.
+
+**Design tips:**
+- Tongue: 2-3mm wide, depth equal to width
+- Groove: 0.3-0.4mm wider and deeper than the tongue for FDM tolerances
+- Add draft angles (1-2 degrees) to both sides for easier insertion
+
+**Strength:** Good against shear, poor against pull-out without glue
+
+### Mortise and Tenon
+
+A rectangular peg (tenon) fits into a rectangular hole (mortise). This is the woodworking classic, and it works beautifully for 3D printing.
+
+**When to use:** Structural connections, especially where pieces meet at right angles.
+
+**Design tips:**
+- Tenon size: At least 10mm in each dimension for strength
+- Tenon should be 0.3-0.5mm smaller than the mortise in each direction
+- Rounded corners on the tenon, sharp corners on the mortise (FDM prints rounded corners anyway)
+- For removable connections, make tolerances looser (0.5mm clearance)
+
+**Strength:** Excellent, especially with glue
+
+### Puzzle Joints / Dovetails
+
+Interlocking shapes that resist pulling apart through geometry alone.
+
+**When to use:** Connections that need to resist tension without relying entirely on adhesive.
+
+**Design tips:**
+- Dovetail angles: 10-15 degrees work well for 3D printing
+- Puzzle tabs: 5-10mm protrusions with 0.3-0.4mm clearance all around
+- Add a slight chamfer (0.5mm at 45 degrees) to leading edges for easier assembly
+- Test your tolerances—too tight and you'll crack parts during assembly
+
+**Strength:** Very good mechanical interlock; add glue for permanent assembly
+
+### Pin and Socket
+
+Cylindrical pins in one part mate with holes in the other.
+
+**When to use:** Alignment features, rotating joints, or removable connections.
+
+**Design tips:**
+- Pin diameter: 3-6mm is practical for most assemblies
+- Socket should be 0.4mm larger in diameter than the pin for FDM
+- Pin length: At least 1.5× the diameter for stability
+- Consider flat-sided pins (D-shaped) if you need rotational alignment
+- For press-fit pins: reduce clearance to 0.1-0.2mm
+
+**Strength:** Depends on fit—good for alignment, variable for structural loads
+
+### Threaded Connections
+
+For parts that need to come apart repeatedly without wear.
+
+**When to use:** Removable panels, serviceable assemblies, or when you need strong clamping force.
+
+**Design tips:**
+- For printed threads: M8 or larger, with at least 0.3mm extra clearance on the thread profile
+- Better approach: Design hexagonal pockets for heat-set threaded inserts (M3-M5 most common)
+- Machine screws into printed holes work if you design for it: holes should be 90% of screw diameter
+- Add counterbores or countersinks to hide screw heads
+
+**Strength:** Excellent, and allows disassembly
+
+## Tolerances for Multi-Part Assemblies
+
+Getting tolerances right is the difference between parts that snap together perfectly and parts that either don't fit or rattle around.
+
+### General Clearance Guidelines
+
+| Fit Type | Clearance Per Side | Total Gap | Use Case |
+|----------|-------------------|-----------|----------|
+| Press fit | 0.1mm | 0.2mm | Permanent assembly, pins |
+| Snug fit | 0.15-0.2mm | 0.3-0.4mm | Removable but tight |
+| Standard fit | 0.2-0.25mm | 0.4-0.5mm | Easy assembly, slight play acceptable |
+| Loose fit | 0.3mm+ | 0.6mm+ | Moving parts, easy insertion |
+
+### Important Considerations
+
+**Tolerances accumulate:** If two parts each vary by ±0.2mm, the combined variance at their interface can be 0.4mm. For multi-piece assemblies, this adds up fast. Design each joint with enough clearance to absorb variation.
+
+**Holes print undersized:** Circular holes in 3D prints typically come out 0.2-0.4mm smaller than designed. Add this compensation on top of your clearance values.
+
+**Material matters:** PETG has slightly more shrinkage than PLA. If you're designing an assembly where parts will be printed in different materials, test the fit carefully.
+
+**Test before committing:** Print a small test joint before printing your full assembly. A simple interlocking shape takes minutes to print and can save hours of reprinting full parts.
+
+## Alignment Features
+
+Flat surfaces mating together need some way to ensure proper registration. Without alignment features, you'll be eyeballing the position while glue sets—a recipe for crooked assemblies.
+
+### Alignment Pins
+
+The simplest solution: add 2-3 small cylindrical pins on one surface and matching holes on the other.
+
+- Pin diameter: 3mm works well for most assemblies
+- Pin height: 5mm minimum, 8-10mm for larger parts
+- Hole tolerance: 0.4mm larger diameter than pins
+- Placement: Near corners, asymmetrically arranged so parts can only go together one way
+
+### Keyed Features
+
+Add a unique shape that only allows correct orientation:
+
+- One square peg among round pegs
+- An asymmetric pattern of pins
+- A notch in one corner that matches a tab
+
+### Registration Marks
+
+For aesthetic surfaces where you don't want visible pegs:
+
+- Small triangular notches on mating edges (filled with paint or glue after assembly)
+- Engraved arrows or numbers showing alignment
+- A recessed line on one piece that aligns with a seam on the other
+
+## Adhesives for Multi-Part Assemblies
+
+Not all glues are equal for 3D printed parts. Here's what actually works:
+
+**Cyanoacrylate (Super Glue):**
+- Fast setting, strong bond on PLA
+- Works well with accelerator for instant bonds
+- Brittle—not ideal for parts under stress
+- Doesn't gap-fill; surfaces must mate closely
+
+**Two-Part Epoxy:**
+- Strongest bond for structural assemblies
+- Gap-filling; handles imperfect surfaces
+- Longer working time allows repositioning
+- Bonds PLA, PETG, ABS, and most materials
+
+**Plastic Welding (Solvent):**
+- Acetone for ABS, ethyl acetate for PETG
+- Chemically fuses parts—no separate glue layer
+- Requires very close-fitting joints
+- Not suitable for PLA (no effective solvent)
+
+**For most PLA assemblies:** Start with medium-viscosity CA (super glue) with activator spray. For structural loads, use 5-minute epoxy.
+
+## Real-World Example: Splitting a Large Prop
+
+Let's walk through splitting a 400mm tall cosplay helmet—too large for a single print.
+
+**Step 1: Identify split locations**
+- Horizontal cut at eye level (follows the visor line—natural break)
+- Vertical cut at the centerline (seam hidden by paint scheme)
+- This creates four pieces, each under 200mm in the largest dimension
+
+**Step 2: Design the joints**
+- Horizontal seam: Tongue and groove with 2mm tongue, 2.5mm groove
+- Vertical seam: Puzzle joint tabs every 40mm with 0.4mm clearance
+- Add alignment pins at each corner (4mm diameter, 8mm long)
+
+**Step 3: Add assembly aids**
+- Number each piece on an interior surface (1-4)
+- Include orientation arrows showing which way is "up"
+- Add small vent holes in enclosed sections for trapped air during gluing
+
+**Step 4: Test print a sample joint**
+- Print a 30mm section of the horizontal seam
+- Verify the tongue and groove fit with light hand pressure
+- Adjust tolerances if needed before printing full pieces
+
+**Step 5: Assemble**
+- Dry-fit all pieces first
+- Apply epoxy to one joint at a time
+- Use masking tape to clamp while curing
+- Fill and sand seams before painting
+
+## Avoiding Common Assembly Mistakes
+
+**Mistake: Forgetting print orientation affects joint strength**
+Layer lines parallel to a joint make it weaker. Orient pieces so layers run perpendicular to the primary stress direction at joints.
+
+**Mistake: Too-tight tolerances**
+Better to have slight play than parts that won't fit. You can always add material (glue, filler), but removing it means reprinting.
+
+**Mistake: No way to hold parts during gluing**
+Add temporary tabs, handling features, or design for clamping. Trying to hold complex shapes together while glue sets leads to misalignment.
+
+**Mistake: Splitting through thin-walled sections**
+Joints need material around them to be strong. Don't place a split where wall thickness is less than 3mm.
+
+**Mistake: Ignoring visual seams**
+Even well-fitted joints show a line. Plan to fill, sand, and paint seams—or deliberately place them where they'll be hidden or look intentional.
+
+## Ready to Design Your Multi-Part Assembly?
+
+Splitting a model into multiple parts opens up possibilities that single-piece printing can't achieve. Larger projects, better print quality, multi-material designs, and parts that would otherwise be impossible all become feasible once you master assembly techniques.
+
+The key is thoughtful design: choosing split locations that make sense, joints that provide the strength you need, and tolerances that account for FDM's inherent variability.
+
+Working on a large project that needs to be split? [Upload your model](/upload) to Mandarin3D—we can help figure out the best way to section it for our printers. Our BambuLab P1S offers a 250×250×250mm build volume, and the H2S extends that to 340mm in height, so we can print surprisingly large pieces in one go before splitting becomes necessary.
+
+Not sure whether your design needs splitting, or how to approach the joints? Send us a message at [orders@mandarin3d.com](mailto:orders@mandarin3d.com). We've assembled hundreds of multi-part projects and are happy to share what works.
