@@ -214,7 +214,7 @@
 - [ ] **Understanding Print Bed Surfaces: PEI, Glass, and BuildTak Compared**
 - [ ] **Annealing 3D Prints: How Heat Treatment Can Strengthen Your Parts**
 - [ ] **Embedding Electronics in 3D Prints: Pause-and-Insert Techniques for Functional Parts**
-- [ ] **How to Design Watertight 3D Prints: Sealing Techniques and Material Choices**
+- [x] **How to Design Watertight 3D Prints: Sealing Techniques and Material Choices**
 - [ ] **Temperature Tower Calibration: Fine-Tuning Your Filament Settings for Perfect Prints**
 - [ ] **Designing Snap-Fit Enclosures: Box and Lid Designs That Stay Closed Without Hardware**
 - [ ] **First Layer Secrets: How Bed Leveling, Z-Offset, and Flow Rate Work Together for Perfect Adhesion**
@@ -230,6 +230,7 @@
 - [ ] **Food-Safe 3D Printing: Materials, Coatings, and Best Practices for Kitchen Items**
 - [ ] **How to Design 3D Printed Parts for Laser Cutting and CNC Integration: Combining Manufacturing Methods**
 - [ ] **Understanding Retraction Settings: A Deep Dive into Stringing Prevention and Layer Quality**
+- [ ] **How to Choose the Right Infill Pattern: Strength, Weight, and Print Time Tradeoffs**
 
 ---
 
