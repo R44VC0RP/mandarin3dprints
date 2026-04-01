@@ -1,0 +1,192 @@
+---
+title: "Designing for Assembly: Multi-Part Print Strategies"
+description: "Learn how to split large models, design interlocking joints, and choose the right fastening methods for multi-part 3D printed assemblies that fit together perfectly."
+date: "2025-12-27"
+author: "Mandarin3D"
+tags: ["design", "assembly", "multi-part", "tolerances", "CAD", "best-practices"]
+category: "guides"
+---
+
+Breaking your 3D models into multiple parts isn't just about making big prints possible—it's a deliberate design strategy that can improve print quality, reduce failures, and enable functional assemblies that wouldn't be possible as single pieces. Whether you're working around build volume limits or optimizing for strength and aesthetics, understanding multi-part design principles will level up your 3D printing projects.
+
+## Why Split a Model in the First Place?
+
+The most obvious reason to split a model is size. Our BambuLab P1S and H2S printers have a 256mm build volume—generous, but still finite. That cosplay helmet, architectural model, or decorative piece might simply not fit as one piece.
+
+But size isn't the only consideration. Strategic splitting offers several advantages:
+
+**Better print quality:** By separating complex geometry, you can orient each part optimally. Detailed faces can point upward for maximum resolution while flat bottoms sit on the bed for adhesion.
+
+**Reduced support waste:** Overhangs that would require extensive support material as a single print might need none when split and oriented properly.
+
+**Faster iteration:** If one feature needs refinement, you only reprint that section—not the entire model.
+
+**Multi-material possibilities:** Want a rigid frame with flexible grips? Split the model so each section prints in the appropriate material.
+
+**Structural strength:** Parts printed as separate pieces and assembled can be stronger than monolithic prints, especially when you control layer orientation relative to stress directions.
+
+## Planning Your Split: Begin with the End in Mind
+
+Before reaching for the split tool, think through several factors:
+
+### Build Volume Constraints
+
+Each piece needs to fit comfortably on the print bed. Leave margin—a part that exactly fills the build volume leaves no room for brims or slight dimensional variations. At Mandarin3D, we recommend keeping parts at least 10mm smaller than maximum build dimensions when possible.
+
+### Functional Requirements
+
+Identify areas requiring mechanical joints, hinges, or moving parts. These natural articulation points often make ideal split locations. A box with a hinged lid is easier to design and print as two pieces than as a print-in-place assembly.
+
+### Aesthetic Considerations
+
+Where you split matters visually. Position seams along natural transitions—panel lines, geometric edges, or areas that will be hidden in normal use. A seam running across a smooth, visible surface will always look like a seam, no matter how well you finish it.
+
+### Print Orientation Opportunities
+
+Consider how splitting enables better orientation. A tall, thin tower might print poorly standing upright (prone to wobble and layer adhesion issues) but beautifully when split into sections printed on their sides and stacked during assembly.
+
+## Joint Types: Connecting Your Pieces
+
+The way parts connect determines assembly ease, strength, and whether the connection is permanent or reversible.
+
+### Flat Butt Joints
+
+The simplest approach: two flat surfaces meeting and bonded with adhesive. These work but offer minimal mechanical strength before glue cures and no self-alignment during assembly. Use flat joints only when other options aren't practical, and always rough up mating surfaces before gluing.
+
+### Stepped or Rabbeted Joints
+
+Adding a step or ledge to the joint creates positive alignment and increases bonding surface area. The step prevents lateral shifting during assembly and while adhesive cures. A 2-3mm step depth works well for most applications.
+
+### Dovetail Joints
+
+Dovetails are the workhorses of multi-part assembly. The wedge-shaped projections offer mechanical hold independent of adhesive, and the geometry ensures parts can only assemble one way—eliminating incorrect orientations.
+
+Design your dovetails with a 10-15 degree angle on the wedge faces. This provides enough grip without making insertion difficult. Add 0.2-0.3mm clearance on each side for a snug fit that doesn't require excessive force.
+
+Many slicers, including PrusaSlicer, have built-in dovetail joint tools that automatically add these features when you split a model. If your CAD software doesn't offer this, plenty of parametric dovetail generators exist online.
+
+### Tongue and Groove
+
+For edge-to-edge connections (like tiled panels or segmented covers), tongue and groove joints provide alignment and increase bond strength. Size the tongue at roughly one-third the material thickness, with the groove slightly larger (0.3mm additional width and depth) for clearance.
+
+### Puzzle Joints (Interlocking Keys)
+
+For maximum mechanical engagement without fasteners, puzzle or key joints lock in all directions except the assembly axis. These are particularly useful for structural components where the joint experiences shear forces.
+
+Design keys with 0.15-0.25mm clearance per wall. The fit should be snug enough to align parts but not so tight that you need a mallet.
+
+## Tolerances: The Numbers That Matter
+
+Tolerances can make or break your assembly. Too tight and parts won't fit; too loose and connections feel sloppy.
+
+### Recommended Clearances by Fit Type
+
+| Fit Type | Clearance | Application |
+|----------|-----------|-------------|
+| Press/interference | 0.0-0.1mm | Permanent assemblies, pins meant to stay put |
+| Tight/snug | 0.1-0.2mm | Parts that should fit with light pressure |
+| Normal/sliding | 0.2-0.4mm | Standard clearance for assembled parts |
+| Loose/moving | 0.4-0.5mm | Rotating joints, parts needing free movement |
+| Very loose | 0.5mm+ | Parts that must work despite environmental changes |
+
+### Test Before Committing
+
+Before printing a complex multi-part model, print a small test piece. A simple interlocking sample takes minutes to print and reveals whether your tolerances work with your specific printer and material. We recommend printing tolerance test pieces at 0.15mm, 0.25mm, and 0.35mm clearances, then using whichever feels right.
+
+Environmental factors matter too. PLA and PETG can absorb moisture and expand slightly over time. If your assembly needs to work reliably in varying conditions, err toward looser tolerances.
+
+## Fastening Methods: Beyond Friction and Glue
+
+Sometimes you need assemblies that can be disassembled, require more strength than adhesive provides, or need adjustment during use.
+
+### Heat-Set Threaded Inserts
+
+For robust, reusable threaded connections, heat-set inserts are the gold standard. These brass inserts feature a knurled exterior and internal threading. A soldering iron melts them into undersized holes, where the plastic reforms around the knurling for excellent pull-out resistance.
+
+**Design considerations:**
+- Hole diameter should be 0.1-0.2mm smaller than the insert's outer diameter
+- Allow at least 2mm of material around the insert
+- Keep 6mm clearance from other features to avoid unintentional melting during installation
+- PETG and ABS hold inserts better than PLA
+
+**Installation temperature:** About 10-20°C above your printing temperature—roughly 225°C for PLA, 245°C for PETG. Let the insert cool for three minutes before threading in a fastener.
+
+{/* Image: Diagram showing heat-set insert installation process */}
+
+### Self-Tapping Screw Holes
+
+For less frequent assembly/disassembly, self-tapping screws work directly in printed holes. Design holes about 10% smaller than the screw's major diameter. The screw cuts its own threads on first insertion.
+
+Self-tapping holes work best for 2-3 assembly cycles. Beyond that, the threads degrade. If you need repeated access, step up to heat-set inserts.
+
+### Captured Nut Pockets
+
+Design hex-shaped pockets into your parts to capture standard nuts. This provides metal threads without the heat-set installation process. Make pockets 0.3-0.4mm larger than the nut dimensions and include a channel for the bolt to pass through.
+
+For captive nuts that might twist during assembly, add a small amount of superglue or design retention features that lock the nut's rotation.
+
+### Snap-Fits for Tool-Free Assembly
+
+When you need repeated assembly without tools, snap-fits shine. These deserve their own consideration—see our [guide to designing snap-fits](/blog/how-to-design-parts-that-snap-fit-together) for the full details on beam dimensions, deflection ratios, and material selection.
+
+## Adhesives: When Bonding Makes Sense
+
+For permanent assemblies, adhesives create strong, invisible connections.
+
+### Cyanoacrylate (Super Glue)
+
+Fast-setting and strong, CA glue works well on PLA and PETG. Apply sparingly—excess glue creates visible residue. Accelerator spray speeds curing but can cause brittleness.
+
+### Epoxy
+
+Two-part epoxy creates the strongest bonds and fills gaps in imperfect joints. The longer cure time (5 minutes to 24 hours depending on formula) allows positioning adjustments. Excellent for structural joints.
+
+### Solvent Welding
+
+For ABS parts, acetone literally welds pieces together by melting and fusing the plastic. Apply with a brush to mating surfaces, press together, and hold for 30 seconds. The result is nearly as strong as solid plastic.
+
+## Print Settings for Multi-Part Assemblies
+
+### Matching Shrinkage
+
+If parts of an assembly print separately, ensure consistent settings across all pieces. Different layer heights, infill patterns, or temperatures can cause different shrinkage rates, leading to poor fit.
+
+### Perimeter Count
+
+Increase perimeter count for parts with joints. The additional walls provide more material for interlocking features and heat-set inserts to grip.
+
+### Infill at Interfaces
+
+Consider increased infill—or solid infill—around joint areas. A snap-fit clip attached to 15% infill may tear out under stress; the same clip attached to 50% infill or solid walls will hold.
+
+## A Practical Example: Segmented Prop Sword
+
+Consider a decorative sword too long for a single print. Here's how you'd approach the split:
+
+1. **Split locations:** Divide the blade into two or three sections with dovetail joints hidden along decorative elements. Split the handle from the blade and guard.
+
+2. **Joint design:** Use 12mm dovetails with 0.25mm clearance. Add small alignment pins (2mm diameter) for rotational indexing.
+
+3. **Assembly features:** Design the handle to accept a length of aluminum rod as a spine, running through printed channels in each piece. This provides structural rigidity the plastic alone couldn't achieve.
+
+4. **Tolerances:** Print test joints, find the right clearance for your material, and apply those numbers throughout.
+
+5. **Finishing:** Assemble with epoxy, let cure 24 hours, then sand and finish seams before painting.
+
+## Common Mistakes and How to Avoid Them
+
+**Splitting across details:** Don't bisect intricate features. Place splits on flat areas or along natural lines.
+
+**Insufficient joint depth:** A 1mm interlocking feature provides almost no strength. Make joints at least 3-5mm deep.
+
+**Forgetting orientation:** Design joints that can only assemble correctly. Symmetric parts that could go together two ways will eventually go together wrong.
+
+**Ignoring layer direction:** If a joint will experience stress, ensure the stress direction doesn't pull layers apart. Orient parts so loads run across layers, not between them.
+
+## Ready to Design Your Multi-Part Project?
+
+Multi-part assemblies open up possibilities beyond single-print limitations. With thoughtful split placement, appropriate joinery, and proper tolerances, you can create projects as large and complex as you can imagine.
+
+Working on a multi-part design and want to make sure everything will fit? [Upload your files](/upload) to Mandarin3D. We can review each piece, check tolerances, and ensure your assembly will come together as planned. Our BambuLab printers produce consistent, accurate parts—critical when pieces need to fit together precisely.
+
+Have questions about joint design or fastener selection for your specific project? Email us at [orders@mandarin3d.com](mailto:orders@mandarin3d.com) and we'll help you figure out the best approach.
