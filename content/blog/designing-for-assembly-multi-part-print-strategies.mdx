@@ -1,0 +1,223 @@
+---
+title: "Designing for Assembly: Multi-Part Print Strategies"
+description: "Learn when and how to split 3D models into multiple parts, choose the right joinery methods, and assemble finished prints that look seamless and hold together."
+date: "2026-02-02"
+author: "Mandarin3D"
+tags: ["design", "assembly", "multi-part", "joinery", "best-practices", "CAD"]
+category: "guides"
+---
+
+Sometimes a model works better as multiple parts. Maybe it's too large for your printer's build volume. Maybe certain surfaces need to be support-free. Maybe you want different colors or materials in a single finished piece. Whatever the reason, splitting models into parts and joining them afterward is a core skill in 3D printing design.
+
+Done well, assembled multi-part prints can look completely seamless. Done poorly, you end up with visible seams, weak joints, and parts that don't quite fit. Here's how to do it right.
+
+## When to Split a Model
+
+Not every large or complex model needs to be split. Before reaching for the cutting tools in your CAD software, consider whether splitting actually solves a problem.
+
+### Good Reasons to Split
+
+**The model exceeds your print volume.** This is the most common reason. Our BambuLab P1S printers have a 250mm × 250mm × 250mm build volume—generous for most projects, but some designs simply need more space. A helmet, large prop, or architectural model might need to be split into sections.
+
+**Multiple orientations would improve quality.** Some models have features that would print beautifully in one orientation but terribly in another. A figurine's face might need to be upright for detail, while the base needs to lie flat for strength. Splitting lets you print each section in its optimal orientation.
+
+**You need support-free surfaces.** Supports leave marks. If your model has multiple surfaces that need to be flawless—and they can't all face upward at once—splitting the model lets you print each section with its critical surface on top.
+
+**Different materials or colors are needed.** A mechanical part might need a rigid body with a flexible seal, or a display piece might combine opaque sections with translucent ones. Splitting along material boundaries lets you use the right material for each section.
+
+**Strength requirements vary by section.** Printing a long, thin arm horizontally makes it strong. But if that arm is attached to a body that needs to print vertically, you have a problem. Separating them lets you optimize each piece.
+
+### Bad Reasons to Split
+
+**The model barely fits.** If it fits, print it. Every split introduces a potential weakness and a visible seam. Splitting a model that could have printed in one piece just makes more work.
+
+**You assume it's too complex.** Modern FDM printers handle more than you might expect. Overhangs up to 45° print fine without supports. Before splitting to avoid overhangs, test whether they're actually a problem.
+
+**You're avoiding supports entirely.** Supports exist for a reason. A well-placed split that creates a clean seam is valuable; splitting into eight pieces to avoid any support removal is over-engineering.
+
+## Where to Split: Strategic Cut Placement
+
+The placement of your splits matters enormously. A thoughtful cut is invisible; a careless one creates a permanent eyesore.
+
+### Follow Natural Boundaries
+
+The best splits follow lines that already exist in the design. Joint lines, color boundaries, material transitions, decorative edges—any existing feature that creates a visual break can hide a seam.
+
+For character models, natural splits might be at the neck, waist, or where clothing meets skin. For mechanical parts, split at the boundary between different functional areas. For architectural models, split along floor lines or structural joints.
+
+### Prefer Flat Surfaces
+
+Curved seams are harder to align and harder to hide. When possible, split along flat planes. A straight horizontal cut through a cylindrical vase is easier to join than a wavy line that follows surface contours.
+
+That said, sometimes a non-planar split makes sense. A split that follows an existing decorative band—even if curved—is less visible than a flat cut through a smooth surface.
+
+### Avoid Thin Sections
+
+Never place a split through the thinnest part of your model. The joint will be weak, and there's not enough material to create effective alignment features. Find a location with enough bulk to support proper joinery.
+
+### Consider Assembly Sequence
+
+If your model has more than two pieces, think through the order of assembly. Can you actually reach the joints to apply glue or insert fasteners? Will piece C trap piece B before you can attach piece A? A theoretical perfect split is useless if you can't physically assemble it.
+
+## Joinery Methods: How Parts Connect
+
+Once you've decided where to split, you need to decide how the parts will connect. Different joinery methods suit different situations.
+
+### Keys and Slots
+
+The simplest alignment method is a rectangular key (a protrusion) on one part that fits into a matching slot on the other. This provides automatic alignment and prevents lateral movement.
+
+**Design specifications:**
+- Key height: 3-5mm for small parts, 5-10mm for larger ones
+- Clearance: 0.3-0.5mm on each side for FDM
+- Draft angle: 2-3° taper makes insertion easier
+- Multiple keys: Use at least two, positioned to prevent rotation
+
+Keys and slots don't hold parts together on their own—they just align them. You'll still need glue or another method to create the permanent bond.
+
+### Mortise and Tenon
+
+A step up from simple keys, mortise and tenon joints have a protruding peg (tenon) on one part that inserts into a pocket (mortise) on the other. The extra depth provides more glue surface area and better resistance to shear forces.
+
+This is excellent for parts that will experience stress at the joint—like where a character's arm connects to the body, or where a tool handle meets the head.
+
+### Tongue and Groove
+
+For edge-to-edge joints (like connecting two halves of a cylinder), tongue and groove provides alignment along the entire seam. One edge has a continuous protruding ridge; the mating edge has a matching channel.
+
+**Design specifications:**
+- Tongue height: 2-3mm
+- Groove depth: tongue height + 0.5mm clearance
+- Tongue width: approximately 1/3 of wall thickness
+- Position: centered on the wall for balanced strength
+
+### Dovetail Joints
+
+If you need the joint itself to hold without adhesive—or to be disassemblable—dovetails provide mechanical interlocking. The angled shape prevents the parts from pulling straight apart.
+
+Dovetails work best as slide-together joints along one axis. They require more design effort and tighter tolerances but create very strong connections.
+
+### Pin Alignment
+
+For round parts or situations where internal keys won't fit, external alignment pins work well. Add holes that accept short lengths of filament or metal rod across the seam. The pins align the parts while adhesive cures.
+
+This is especially useful for splitting cylindrical models like staffs, pipes, or columns. Two or three pins around the circumference prevent both lateral movement and rotation.
+
+## Tolerances for Multi-Part Assemblies
+
+Getting tolerances right is critical. Too tight, and parts won't fit together. Too loose, and alignment suffers.
+
+### For FDM Printing
+
+FDM parts typically have dimensional accuracy of ±0.2-0.3mm. Design your joints accordingly:
+
+| Joint Type | Recommended Clearance |
+|------------|----------------------|
+| Press fit (friction hold) | 0.1-0.2mm interference |
+| Slip fit (easy insertion) | 0.3-0.5mm clearance |
+| Glue joint | 0.2-0.3mm clearance |
+| Moving/sliding fit | 0.5mm clearance |
+
+### Layer Height Matching
+
+For parts that will be glued together, print matching sections at the same layer height. This ensures the layer lines align at the seam, making the joint less visible after finishing.
+
+If using different layer heights for different parts (finer layers for detailed sections, coarser for structural), place your splits where the layer height transition won't be visible in the assembled model.
+
+### Print Position Matching
+
+FDM prints have different accuracy in X/Y versus Z. Parts printed at the same height on the build plate and in similar positions will match better than parts printed in different locations or orientations.
+
+For critical assemblies, consider printing mating halves together in the same print job with the joint features at the same Z height.
+
+## Joining Methods: Making It Permanent
+
+### Adhesives
+
+For most multi-part assemblies, glue is the answer. But not all glues work equally well with 3D printed plastics.
+
+**For PLA:**
+- CA glue (super glue) works but can be brittle
+- Epoxy provides stronger, more flexible bonds
+- Specialty PLA cement creates a solvent weld
+
+**For PETG:**
+- CA glue bonds well
+- Epoxy is excellent for structural joints
+- Some acrylic cements work, but test first
+
+**For best results with any adhesive:**
+- Lightly sand mating surfaces with 220-grit sandpaper
+- Clean surfaces with isopropyl alcohol
+- Apply thin, even layers—excess glue creates mess and doesn't improve strength
+- Clamp or tape parts while curing
+
+### Friction Welding
+
+A technique specific to FDM printing: use a rotary tool (Dremel) with a short piece of matching filament chucked in. Spinning the filament against the joint melts both the filler and the surrounding material, creating a welded bond.
+
+This creates the strongest possible joint—stronger than the adhesive bonds—but requires practice to do cleanly. The excess melted material needs to be trimmed and sanded afterward.
+
+### Fasteners
+
+For assemblies that need to be taken apart, or that will experience significant stress, mechanical fasteners beat adhesives.
+
+**Heat-set inserts** provide threaded holes in printed parts. Press them in with a soldering iron; they melt into the plastic and provide durable metal threads for machine screws.
+
+**Self-tapping screws** work directly in printed holes sized for the screw's core diameter, though repeated assembly/disassembly will eventually strip the plastic.
+
+**Nuts and bolts** can thread through clearance holes or fit into designed-in nut traps—hexagonal pockets sized to hold standard nuts.
+
+## Finishing Assembled Parts
+
+Even with careful design, seams are often visible on assembled parts. Here's how to hide them.
+
+### Filling and Sanding
+
+Apply filler (automotive body filler, spot putty, or specialty 3D print fillers) along the seam. Sand smooth once cured. Multiple fill-and-sand cycles may be needed for invisible results.
+
+This works best on parts that will be painted. The filler accepts primer and paint well.
+
+### Chemical Smoothing
+
+For ABS parts, acetone vapor smoothing melts the surface slightly, blending seams together. This doesn't work well for PLA or PETG—their chemical resistance is actually a feature in this context.
+
+### Strategic Painting
+
+Sometimes the seam won't disappear entirely. In that case, plan the seam location to coincide with a color change, panel line, or other painted feature. A seam that looks like an intentional design element isn't a flaw.
+
+## Real-World Example: Splitting a Helmet
+
+Let's walk through splitting a helmet that's 280mm tall—too large for a 250mm build volume.
+
+**Analysis:** The helmet has smooth surfaces on the sides, a detailed visor area in front, and ventilation details on top.
+
+**Split placement:** A horizontal cut at approximately eye level (where a visor line might naturally exist) divides the helmet into top and bottom sections that each fit the build volume.
+
+**Joinery:** Tongue and groove around the entire circumference, with the tongue on the bottom section pointing up into a groove in the top section. This prevents any visible seam from the outside.
+
+**Printing:** Bottom section printed right-side up so the neck opening's interior doesn't need supports. Top section printed upside-down so exterior details face up and the tongue features print without supports.
+
+**Assembly:** Light sanding on both groove and tongue, thin layer of epoxy applied to the groove, sections pressed together, masking tape around the exterior to hold alignment while curing.
+
+**Finishing:** Fine sanding along the seam line, spot filling any gaps, primer and paint with special attention to feathering the seam area.
+
+## Design Software Tips
+
+Most CAD and mesh editing software can split models. Here are the essential operations:
+
+**Fusion 360:** Use the Split Body command with a construction plane at your desired cut location. Then design your joinery features on each body before exporting as separate STL files.
+
+**Blender:** Use the Bisect tool (Mesh > Bisect) to cut through your model with a plane. You'll need to fill the resulting holes and manually create joinery features.
+
+**Meshmixer:** The Plane Cut tool splits models quickly. The separate function then makes them independent objects. Limited options for adding joinery, so this works best for simple splits.
+
+**PrusaSlicer/Bambu Studio:** Both slicers have cut tools for splitting models without going back to CAD. Useful for quick splits of downloaded models, though without proper joinery features.
+
+## When Mandarin3D Can Help
+
+Multi-part assemblies involve more variables than single-piece prints: joint tolerances, consistent print settings across parts, proper material selection for the joint requirements. Getting it right the first time saves material and frustration.
+
+When you [upload your files](/upload) to Mandarin3D, we review multi-part assemblies with an eye toward successful assembly. If your joint tolerances look too tight, if a split location will create a weak point, or if the print orientation of mating parts will cause alignment issues—we'll let you know before printing.
+
+For complex multi-part projects, drop us a note at [orders@mandarin3d.com](mailto:orders@mandarin3d.com) explaining how the parts will assemble. That context helps us optimize print settings for the best possible fit between components.
