@@ -34,6 +34,7 @@ export const mdxComponents: MDXComponents = {
 
   // Links
   a: ({ href, children }) => {
+    if (href?.startsWith("mailto:")) return <a href={href} className="text-link">{children}</a>;
     const isExternal = href?.startsWith("http");
     if (isExternal) {
       return (

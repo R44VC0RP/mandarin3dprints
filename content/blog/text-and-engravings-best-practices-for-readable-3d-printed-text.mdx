@@ -106,7 +106,7 @@ The same text placed in different locations on your model will print with dramat
 
 ### Text on Top Surfaces
 
-This is the best-case scenario for text. When text is on a horizontal surface facing up during printing, each letter is formed by the top layer of the print. You get the full resolution of your layer height (typically 0.1-0.2mm), and the surface comes out smooth.
+Upward-facing text can print cleanly, but its strokes are resolved in the XY plane by extrusion width and toolpaths, not layer height alone. Layer height controls the steps in relief or engraving depth. Compare both in the [layer-height guide](/blog/3d-print-resolution-guide-what-layer-height-should-you-choose).
 
 **Recommended minimum:** 16pt bold for top/bottom surfaces
 
@@ -118,7 +118,7 @@ Text on the sides of a part prints perpendicular to the layer lines. The vertica
 
 ### Text on Angled Surfaces
 
-This is where things get tricky. Text on surfaces between 0° and 90° will show stair-stepping from the layers. The steeper the angle, the more pronounced the effect. Embossed text on angled surfaces may also need support material, which leaves marks.
+Text on sloped surfaces can show stair-stepping, with the result depending on angle and layer height. Do not assume steeper surfaces always show more stepping. Embossed text may also create overhangs; check the sliced preview and print a sample.
 
 **Recommendation:** Avoid placing critical text on angled surfaces when possible. If unavoidable, engraved text handles angles better than embossed.
 

@@ -41,7 +41,7 @@ Look for files in STL, OBJ, or 3MF format. These are the standard formats for 3D
 If you have something specific in mind, you'll need to create it. Don't worry—there are beginner-friendly options:
 
 - **TinkerCAD** runs in your browser and requires zero experience. Perfect for simple shapes.
-- **Fusion 360** is free for hobbyists and handles more complex designs.
+- **Autodesk Fusion** has a limited personal-use tier for qualifying non-commercial projects; check its license before using it for paid work.
 - **Blender** is free and excellent for artistic, organic shapes.
 
 We've written a full guide on [free CAD software for 3D printing](/blog/best-free-cad-software-for-3d-printing-in-2025) if you want to explore this route.
@@ -93,7 +93,7 @@ This trips up more beginners than almost anything else. 3D models don't always c
 
 2. **Check the model dimensions** — Verify the size in a slicer or confirm the dimensions with your chosen provider.
 
-3. **Account for tolerances** — Printed parts are accurate to within about 0.2-0.3mm. If something needs to fit tightly inside something else, you may need slight adjustments.
+3. **Account for tolerances** — Accuracy depends on the printer, material, geometry, and settings. Do not treat a general 0.2-0.3mm estimate as a guarantee; test a mating feature before committing to a full part.
 
 Build volume varies by printer. Check all three dimensions and leave space for supports or a brim; larger projects may need to be split into smaller pieces.
 
@@ -132,7 +132,7 @@ If a model has no makes (photos of successful prints) and no comments, proceed w
 
 ### Ignoring Wall Thickness
 
-Very thin walls (under 1mm) can fail to print or come out fragile. If you're designing your own model, keep walls at least 1.5mm thick for reliable results.
+Very thin walls can disappear in slicing or be too fragile for handling. Around 1.5mm can be a useful prototype wall for a small enclosure with a common 0.4mm nozzle, not a universal rule. Check the toolpaths and intended load.
 
 ### Choosing the Wrong Orientation
 

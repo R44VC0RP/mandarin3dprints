@@ -1,0 +1,89 @@
+---
+title: "How to Price 3D Printing Jobs Without Forgetting Your Time"
+description: "A worked 3D printing quote covering filament, machine hours, labor, failures, payment fees, and profit margin, with a reusable pricing formula."
+date: "2026-09-01"
+author: "Ryan Vogel"
+tags: ["business", "pricing", "calculator", "consulting"]
+category: "business"
+---
+
+Price the job, not just the plastic. I founded Mandarin3D in Jacksonville, Florida, and the business did over $100,000 in sales over two years. That is revenue, not profit. The useful question for a quote is what remains after paying for the work it creates.
+
+This is a planning method, not a claim about Mandarin3D's historical costs or a recommended market rate. Use the [3D printing cost calculator](/calculator) with your own inputs, then compare the result with actual completed jobs.
+
+## Build the Cost Before Adding Profit
+
+| Input | What to include |
+| --- | --- |
+| Material grams and price per kilogram | Part, supports, brim, purge, and other consumed filament |
+| Machine hours and hourly cost | Equipment recovery, maintenance, electricity, and allocated machine overhead |
+| Labor minutes and hourly rate | File review, setup, removal, finishing, inspection, messages, and packing |
+| Other job costs | Packaging, outsourced work, shipping you cover, and overhead not already counted |
+| Failure probability | The chance an attempt must be repeated under the model below |
+
+Material cost is `grams / 1000 * pricePerKg`. Machine cost is `hours * machineRate`. Labor cost is `minutes / 60 * laborRate`.
+
+Define what is inside your machine rate. If it already includes electricity and depreciation, do not add them again under other costs. Allocate equipment cost across realistic productive hours, not every hour in a calendar year. Paying yourself for hands-on work is a cost; profit should not depend on pretending your time is free.
+
+## Allow for Failed Attempts Correctly
+
+For a simple full-failure allowance, assume each attempt has the same failure probability `f`, a failure consumes the full planned material and machine time, and attempts continue until one succeeds. The expected number of attempts is `1 / (1 - f)`.
+
+```text
+productionCost = (materialCost + machineCost) / (1 - failureRate)
+jobCost = productionCost + laborCost + otherJobCosts
+```
+
+Apply that multiplier to **material and machine time only** in this model. Do not automatically multiply packaging, shipping, or all labor. If failures create extra diagnosis, cleanup, or setup work, budget that expected labor separately. If failures usually happen early, this full-attempt model is conservative for those consumed resources.
+
+A 10% failure probability is not just a 10% addition. Dividing by 0.90 increases the affected costs by approximately 11.11%, accounting for the possibility that a retry also fails. Correlated failures such as a bad model require fixing the cause; blindly retrying is not a pricing strategy.
+
+## Include Fees and Margin in the Selling Price
+
+Let `r` be the percentage selling fee as a fraction of the selling price, `k` the fixed fee per transaction, and `m` the desired margin after those fees and the modeled job costs:
+
+```text
+price = (jobCost + fixedFee) / (1 - feeRate - marginRate)
+profit = price - jobCost - fixedFee - price * feeRate
+margin = profit / price
+```
+
+The denominator must be positive. A 30% margin and a 3% fee mean dividing by `0.67`, not adding 33% to cost. Apply a fixed transaction fee once per transaction, not once per item in the same checkout.
+
+This assumes the percentage fee applies to the modeled selling price. Some platforms also charge on shipping or tax, use multiple fee tiers, or retain fees after refunds. Model those terms explicitly. Tax collected for remittance is not profit, and this example does not include income tax.
+
+## Worked Example: A Hypothetical One-Part Order
+
+Assume one order, no tax in the calculation, one payment, a 10% full-attempt failure probability, and the following costs. These are illustrative inputs, not market benchmarks or personal operating records.
+
+| Cost | Calculation | Amount |
+| --- | --- | ---: |
+| Filament | 120 g / 1,000 x $25/kg | $3.00 |
+| Machine time | 6 hours x $2/hour | $12.00 |
+| Production with failure allowance | ($3 + $12) / 0.90 | $16.6667 |
+| Hands-on labor | 30 minutes / 60 x $24/hour | $12.00 |
+| Other job costs | Packaging and allocated admin costs | $4.00 |
+| Total job cost | $16.6667 + $12 + $4 | $32.6667 |
+
+Now assume a **3% selling fee**, a **$0.30 fixed fee**, and a **30% desired margin**. These fee values are examples, not a statement of any provider's current pricing.
+
+```text
+price = (32.6666667 + 0.30) / (1 - 0.03 - 0.30)
+price = 49.2039801...
+```
+
+Round up to **$49.21** if the goal is to meet at least the modeled margin. Keeping full precision until the final price, the percentage fee is about $1.4763 and modeled profit is about $14.7670, or 30.01%. Real processors may round their fees to cents.
+
+If the customer will not pay that price, inspect the assumptions and process. Can the part use less support, can several pieces share setup time, or is the job simply not worthwhile? Dropping the labor line only hides the problem.
+
+## Margin Is Not Markup
+
+If all included costs total $20 and the selling price is $30, profit is $10. **Markup is 50% of cost; margin is 33.33% of revenue.** That example assumes no additional selling fees. Adding 30% to cost produces a 23.08% margin before fees, not a 30% margin.
+
+For batches, separate one-time setup from per-piece work. For unfamiliar geometry, quote a paid sample or a clearly scoped estimate rather than promising an untested production price. Track actual material, hours, and labor after delivery so future quotes improve.
+
+## When Pricing Reveals a Capacity Problem
+
+A profitable quote still needs room in the schedule. Before buying equipment to accommodate it, use the [printer-capacity checklist](/blog/when-to-buy-another-3d-printer) to distinguish machine constraints from finishing or customer-service work.
+
+I offer [3D printing business consulting](/consulting) at **$300 per session**. To work through your pricing assumptions, [email 3d@ryan.ceo](mailto:3d@ryan.ceo?subject=3D%20printing%20consulting) with a representative job and the question you want to resolve.

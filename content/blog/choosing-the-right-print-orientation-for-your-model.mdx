@@ -13,7 +13,7 @@ Here's something that surprises many first-time customers: the exact same 3D mod
 
 FDM (Fused Deposition Modeling) printing builds objects layer by layer, depositing melted plastic in horizontal passes that stack vertically. This process creates what engineers call anisotropic properties—the part behaves differently depending on which direction you stress it.
 
-Think of it like wood grain. A wooden board is strong along the grain but splits easily across it. 3D prints work similarly: they're strong within each layer but weaker between layers. The bonds that form as one layer of plastic fuses to the next are never quite as strong as the material within each layer itself.
+FDM parts often resist tension better within a layer than across layer bonds, though the difference depends on material and process. The [shells and infill guide](/blog/the-anatomy-of-a-3d-print-layers-infill-and-shells-explained) explains the structures that carry those loads.
 
 This isn't a defect—it's the nature of the process. But it means that how you position your model on the build plate dramatically affects the final part's characteristics.
 
@@ -51,7 +51,7 @@ A handy memory device for understanding overhangs:
 
 **H** - The crossbar of an H is horizontal but spans between two vertical posts. If that span is short (under about 5mm), the printer can "bridge" across it without supports. Longer spans need help.
 
-**T** - The top of a T extends at 90 degrees with nothing underneath. This always needs support.
+**T** - A horizontal cantilever usually needs support or a design change. A span supported at both ends is a bridge and behaves differently; test the actual geometry.
 
 ### How Orientation Reduces Supports
 

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, Mail } from "lucide-react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { socialImage } from "@/lib/seo";
 
 const description = "3D printing business consulting with Ryan Vogel, founder of Mandarin3D. Work through pricing, printer choices, customer acquisition, and operations. $300 per session.";
 
@@ -14,20 +15,24 @@ export const metadata: Metadata = {
     title: "3D printing business consulting | Mandarin3D",
     description,
     url: "https://mandarin3d.com/consulting",
+    images: [socialImage("consulting", "3D printing business consulting")],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
+    images: [socialImage("consulting", "3D printing business consulting").url],
     title: "3D printing business consulting | Mandarin3D",
     description,
   },
 };
 
 export default function ConsultingPage() {
+  const schema = { "@context": "https://schema.org", "@type": "Service", name: "3D printing business consulting", serviceType: "Business consulting", url: "https://mandarin3d.com/consulting", description, provider: { "@type": "Person", name: "Ryan Vogel", url: "https://mandarin3d.com/authors/ryan-vogel" }, offers: { "@type": "Offer", price: "300", priceCurrency: "USD", description: "One consulting session with Ryan Vogel", url: "https://mandarin3d.com/consulting" } };
   return (
     <>
       <div className="site-width">
         <Header />
         <main id="main-content" className="py-10 sm:py-12">
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }} />
           <div className="grid items-start gap-8 md:grid-cols-[1.2fr_1fr] md:gap-12">
             <div>
               <h1 className="text-3xl sm:text-4xl font-semibold leading-tight tracking-tight text-balance">3D printing business consulting</h1>
@@ -48,7 +53,7 @@ export default function ConsultingPage() {
             <div className="grid gap-x-12 gap-y-8 sm:grid-cols-2">
               <div>
                 <h3 className="text-lg font-semibold">Pricing and margins</h3>
-                <p className="mt-2 leading-relaxed text-muted-foreground">Look beyond filament cost. Account for machine time, hands-on work, failed prints, and the difference between a busy shop and a profitable one.</p>
+                <p className="mt-2 leading-relaxed text-muted-foreground">Look beyond filament cost. Account for machine time, hands-on work, failed prints, and the difference between a busy shop and a profitable one. Try the <Link href="/calculator" className="text-link">free pricing calculator</Link>.</p>
               </div>
               <div>
                 <h3 className="text-lg font-semibold">Printers and capacity</h3>

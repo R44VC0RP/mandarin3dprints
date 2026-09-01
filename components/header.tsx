@@ -11,6 +11,7 @@ export function Header() {
         <Link href="/#story" className="nav-link">Our story</Link>
         <Link href="/#resources" className="nav-link">Resources</Link>
         <Link href="/blog" className="nav-link">Guides</Link>
+        <Link href="/calculator" className="nav-link">Calculator</Link>
         <Link href="/consulting" className="nav-link">Consulting</Link>
       </nav>
     </header>

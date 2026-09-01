@@ -1,0 +1,56 @@
+---
+title: "How Mandarin3D's Instant Quotes Worked"
+description: "Ryan Vogel's code-grounded retrospective: the PHP and HTML origin, the later Next.js upload and slicing workflow, and why a quote was not a completed order."
+date: "2026-09-01"
+author: "Ryan Vogel"
+tags: ["business", "instant quotes", "software", "Mandarin3D", "consulting"]
+category: "business"
+---
+
+Mandarin3D began with an Ender 3 at a tech repair shop and a challenge to make it a revenue stream. I built a simple PHP and HTML tool that let people upload models and get instant 3D printing quotes. That origin is described on [my personal site](https://ryan.ceo).
+
+The later storefront was a different application, built with Next.js. This article traces that version using the public repository at [commit 6003aff](https://github.com/R44VC0RP/mandarin3dprints/tree/6003aff). It does not imply that the first PHP application used the same architecture, or that every feature in the final code was live throughout the business's history.
+
+The printing business is closed. This is a retrospective, not an invitation to upload a model or place an order.
+
+## An Upload Became a Trackable Job
+
+The [upload route](https://github.com/R44VC0RP/mandarin3dprints/blob/6003aff/app/api/upload/route.ts) required a session cookie, accepted a file, checked its extension against a list of model formats, and uploaded it through UploadThing. It then created a database record marked `processing` and a cart item connected to that record.
+
+The initial cart settings were quantity one, PLA, black, and 20% infill. These were application defaults, not a claim that every model or material could be manufactured successfully. An accepted extension also did not establish that the file contents were valid or printable.
+
+Creating the record before analysis gave the rest of the application a stable file ID. Uploading and analyzing were separate states, so a successful transfer did not have to pretend the quote was already ready.
+
+## Slicing Happened Outside the Web Request
+
+The [processing workflow](https://github.com/R44VC0RP/mandarin3dprints/blob/6003aff/workflows/process-file.ts) submitted the uploaded file URL, filename, file ID, callback URL, and maximum dimensions to a separate slicing service's `/api/slice` endpoint. The upload path supplied a 250 x 250 x 250 mm limit. That was an application setting, not a universal printer specification.
+
+The workflow used a 30-second timeout interval. After submission, it slept for that interval and checked whether the database had reached success or error. If no completed status was present, it marked the file as timed out and emitted an update.
+
+That is not evidence that quotes always completed in 30 seconds, and it was not a loop polling the service continuously. "Instant quote" described the automated customer workflow; processing still took time and could fail.
+
+## The Callback Carried Results Back to the Cart
+
+The [API types](https://github.com/R44VC0RP/mandarin3dprints/blob/6003aff/lib/mandarin3d-api.ts) described a successful callback containing mass in grams, x/y/z dimensions, and processing and slicer timing fields. An error callback carried an error message and could include dimensions.
+
+The [webhook route](https://github.com/R44VC0RP/mandarin3dprints/blob/6003aff/app/api/webhooks/mandarin3d/route.ts) found the uploaded file, stored success or error results, and emitted a realtime event for its session. A browser could receive a status change instead of making the original upload request wait for all the analysis.
+
+The public storefront code shows this contract. It does not, by itself, establish every implementation detail of the external slicer, the meaning of every timing measurement, or the accuracy of its estimates across all possible files.
+
+## A Quote Was Not a Completed Checkout
+
+One detail matters when reading this history: in this final snapshot, the [checkout route](https://github.com/R44VC0RP/mandarin3dprints/blob/6003aff/app/api/checkout/route.ts) immediately returned **HTTP 503**, with a message that checkout was unavailable.
+
+The same file retained a commented-out checkout implementation. That inactive code checked processing states, built line items, and called Shopify draft-order helpers to obtain an invoice URL. It is useful evidence of the intended integration, but not proof that customers could pay through that route in the final snapshot.
+
+The file also contained a mass-based fallback calculation, `massGrams * 0.05 + 1`, rounded to two decimal places. For 100 grams that expression yields $6.00. It was a fallback in retained code, not a reconstruction of every historical customer charge or a sound universal pricing formula. Material mass alone does not pay for all machine time, labor, failure risk, or selling fees. The [current pricing guide](/blog/how-to-price-3d-printing-jobs) treats those separately.
+
+## What I Would Carry Into a New Quoting Workflow
+
+The transferable idea is to separate the stages: uploaded, analyzing, quoted, approved, paid, and ready for production. A UI that blurs those states can turn an estimate into an accidental promise.
+
+For a new implementation, I would make the quoted revision and settings explicit, preserve the assumptions behind the price, and route unusual geometry to review. Callback authentication, payload validation, duplicate handling, and safe retry behavior also need deliberate implementation. The archived code is a historical reference, not a production-ready template with those guarantees.
+
+Start with the operational problem before deciding whether to build software. A clear form and manual review may be enough when volume is low. The [business lessons from Mandarin3D](/blog/starting-a-3d-printing-business-lessons-from-mandarin3d) explain the wider context: customers, pricing, capacity, and what happens after an order is accepted.
+
+If you want to work through your own quoting process, I offer [3D printing business consulting at $300 per session](/consulting). [Email 3d@ryan.ceo](mailto:3d@ryan.ceo?subject=3D%20printing%20consulting) with the step that currently takes the most work.

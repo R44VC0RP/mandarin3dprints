@@ -13,7 +13,7 @@ Here's everything you need to know to design parts that print well on the first 
 
 ## The 45-Degree Rule: Understanding Overhangs
 
-This is the single most important concept in 3D printing design. Since FDM printers build layer by layer from the bottom up, each new layer needs something underneath to support it. When a feature angles outward more than about 45 degrees from vertical, there's not enough material below to properly support it.
+FDM prints build on previous layers, so outward-sloping features need enough support from the layer below. Around 45 degrees from vertical is a starting guideline, not a fixed machine limit. Use the [support-free design guide](/blog/how-to-design-parts-that-dont-need-supports) and test the actual material and profile.
 
 **What happens when you ignore this rule:**
 - Drooping or sagging on unsupported surfaces
@@ -30,7 +30,7 @@ For example, if you're designing a hook that curves outward, orient it so the cu
 
 ## Wall Thickness: The Foundation of Printable Parts
 
-Thin walls are the #1 cause of print failures. When walls get too thin, the printer can't create them reliably—or if it does, they'll be fragile enough to break from the slightest stress.
+Thin walls can disappear during slicing or be too fragile for handling. The [wall-thickness guide](/blog/wall-thickness-guide-minimum-and-optimal-measurements) explains extrusion width, variable-width slicing, and why the following values are prototype starting points rather than absolute limits.
 
 **Minimum wall thickness rules:**
 

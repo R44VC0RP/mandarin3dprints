@@ -12,6 +12,7 @@ export function Footer() {
         </div>
         <nav aria-label="Footer navigation" className="flex flex-wrap items-center gap-x-6 gap-y-1 text-sm">
           <Link href="/#local-printing" className="inline-link min-h-11">Local printing</Link>
+          <Link href="/business" className="inline-link min-h-11">Business guides</Link>
           <a href="/blog/feed.xml" className="inline-link min-h-11">RSS feed</a>
           <a href="https://ryan.ceo" className="inline-link min-h-11">Find Ryan <ArrowUpRight size={15} aria-hidden="true" /></a>
         </nav>

@@ -3,6 +3,8 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { BlogLibrary } from "@/components/blog-library";
 import { getAllPosts } from "@/lib/blog";
+import Link from "next/link";
+import { socialImage } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "3D printing guides",
@@ -12,9 +14,11 @@ export const metadata: Metadata = {
     title: "3D printing guides | Mandarin3D",
     description: "Practical guides to materials, 3D design, print preparation, and getting started.",
     url: "https://mandarin3d.com/blog",
+    images: [socialImage("guides", "3D printing guides")],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
+    images: [socialImage("guides", "3D printing guides").url],
     title: "3D printing guides | Mandarin3D",
     description: "Practical guides to materials, 3D design, print preparation, and getting started.",
   },
@@ -29,6 +33,7 @@ export default function BlogPage() {
           <h1 className="text-3xl font-semibold tracking-tight mb-4">The 3D printing library</h1>
           <p className="max-w-2xl text-muted-foreground leading-relaxed mb-8">Materials, modeling, and the details that make a better print. The guides from Mandarin3D are still here to help with your next project.</p>
           <BlogLibrary posts={getAllPosts()} />
+          <p className="mt-10 border-t border-border pt-6 text-muted-foreground">Running a print shop? Explore the <Link href="/business" className="text-link">business guides</Link> and <Link href="/calculator" className="text-link">print-cost calculator</Link>.</p>
         </main>
       </div>
       <Footer />

@@ -27,9 +27,9 @@ Even easy-to-remove supports add work. Eliminating unnecessary supports can redu
 
 The single most important concept for support-free design is the 45-degree rule. Here's why it works:
 
-FDM printers build parts layer by layer. Each layer is offset slightly from the one below it. When a feature angles outward at 45 degrees or less from vertical, roughly 50% of each new layer overlaps with the layer below. That's enough contact for good adhesion and structural stability.
+FDM printers build parts layer by layer. For a straight wall at 45 degrees from vertical, the horizontal offset per layer equals the layer height. The overlap therefore depends on both layer height and extrusion width: 0.2mm layers with 0.4mm-wide lines give roughly 50% geometric overlap, but other settings do not. This is a starting guideline, not a printability guarantee.
 
-Go beyond 45 degrees, and each layer has progressively less to grab onto. At 60 degrees, you might get away with it. At 75 or 80 degrees, you're printing into thin air—and that means drooping, sagging, or outright failure.
+Steeper outward overhangs reduce overlap. Test the actual geometry, material, and cooling rather than assuming a universal cutoff. The [orientation guide](/blog/choosing-the-right-print-orientation-for-your-model) helps compare a rotation with a design change.
 
 **Practical application:**
 - Visualize your part being printed from bottom to top

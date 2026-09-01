@@ -14,6 +14,13 @@ export const metadata: Metadata = {
 
 const resources = [
   {
+    title: "Run a printing business",
+    links: [
+      { name: "Print-cost calculator", href: "/calculator", description: "Work out job costs, selling fees, and a price for your target margin." },
+      { name: "Business guides", href: "/business", description: "Pricing, equipment decisions, and the quoting software behind Mandarin3D." },
+    ],
+  },
+  {
     title: "Find your next model",
     links: [
       { name: "MakerWorld", href: "https://makerworld.com/en", description: "Community models and ready-to-use Bambu print profiles." },
@@ -135,6 +142,7 @@ export default function Home() {
               <div>
                 <p className="leading-relaxed text-muted-foreground">Ryan offers consulting for people starting or running their own print businesses. Work through pricing, printer choices, customers, and operations. <strong className="font-semibold text-foreground">$300 per consulting session.</strong></p>
                 <Link href="/consulting" className="inline-link min-h-11 mt-3">Explore consulting with Ryan <ArrowRight size={16} aria-hidden="true" /></Link>
+                <p className="mt-3"><Link href="/calculator" className="text-link">Try the free print-cost calculator</Link></p>
               </div>
             </div>
           </section>

@@ -10,6 +10,7 @@ export interface BlogPostMeta {
   title: string;
   description: string;
   date: string;
+  updated?: string;
   author: string;
   featuredImage?: string;
   tags: string[];
@@ -75,6 +76,7 @@ export function getPostBySlug(slug: string): { meta: BlogPostMeta; content: stri
     title: data.title || "Untitled",
     description: data.description || "",
     date: data.date || new Date().toISOString().split("T")[0],
+    updated: data.updated,
     author: data.author || "Mandarin3D",
     featuredImage: data.featuredImage,
     tags: data.tags || [],

@@ -2,6 +2,7 @@
 title: "The Anatomy of a 3D Print: Layers, Infill, and Shells Explained"
 description: "Understand the hidden structure inside your 3D prints. Learn how layers, infill patterns, and shells work together to create strong, lightweight parts—and why these settings matter for your project."
 date: "2025-11-29"
+updated: "2026-09-01"
 author: "Mandarin3D"
 tags: ["beginners", "guide", "infill", "layers", "3d-printing-basics"]
 category: "guides"
@@ -52,7 +53,7 @@ With a 0.4mm nozzle, 0.2mm layers are a useful starting point for functional par
 
 Those horizontal lines you see on 3D prints aren't defects—they're the nature of the process. Each line represents where one layer ends and the next begins. Lighter colors show them more prominently; darker colors hide them better.
 
-Layer orientation also affects strength. A part is strongest along its layers (horizontal stress) and weakest perpendicular to them (vertical stress). This is why print orientation matters so much for functional parts.
+FDM parts often resist tension better within the layer plane than across layer bonds, but the difference depends on material and processing. The [orientation guide](/blog/choosing-the-right-print-orientation-for-your-model) explains how to relate layers to the actual load path.
 
 ## Shells: The Outer Walls
 
@@ -106,8 +107,8 @@ Infill density is expressed as a percentage:
 - Good for mechanical components
 
 **100% (Solid)**
-- Completely filled with no internal gaps
-- Maximum strength and weight
+- Nominally solid toolpaths; small voids can remain
+- More material and weight, not a universal maximum-strength guarantee
 - Very long print times
 - Only needed for small parts or extreme durability requirements
 
@@ -127,7 +128,7 @@ Forms triangles throughout the interior. Considered one of the strongest pattern
 The classic honeycomb structure offers excellent strength-to-weight ratio. Takes slightly longer to print than grid but uses material efficiently.
 
 **Gyroid**
-Curved, wavy patterns that provide nearly equal strength in all directions (isotropic). Excellent for parts that experience multi-directional stress or flexible materials. Takes longer to print but performs exceptionally well.
+Curved, connected paths that can distribute support in several directions. Gyroid does not make the finished FDM part isotropic: layer bonds and the outer geometry still matter. Compare time, material use, and representative tests.
 
 **Cubic**
 Three-dimensional cubes tilted at an angle. Very strong pattern that resists compression well.
@@ -147,17 +148,17 @@ The top and bottom of your print use solid layers instead of infill patterns. Th
 
 ### How Many Solid Layers?
 
-The standard recommendation is enough solid layers to equal at least 1.2mm thickness:
+A 1.2mm top or bottom thickness is one example, not a universal minimum. At fixed layer height it requires:
 
 - At 0.2mm layer height: 6 top/bottom layers
 - At 0.12mm layer height: 10 top/bottom layers
-- At 0.28mm layer height: 4-5 top/bottom layers
+- At 0.28mm layer height: 5 top/bottom layers (1.4mm)
 
 Too few top layers cause "pillowing"—where the infill pattern shows through the top surface. Too few bottom layers can result in weak adhesion or visible infill from below.
 
 ### Bottom Layer Considerations
 
-The bottom layer sits against the print bed and comes out smooth and flat (or textured, depending on the bed surface). If the first layer has any issues, having multiple bottom layers provides insurance that the structure remains sound.
+The bottom takes on the build-surface texture. More bottom layers do not fix a failed first layer or poor bed adhesion; correct those before continuing. Use the [wall-thickness guide](/blog/wall-thickness-guide-minimum-and-optimal-measurements) to inspect thin regions and fastener supports.
 
 ## Putting It All Together: Real-World Examples
 

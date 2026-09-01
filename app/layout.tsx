@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
+import { ConsultingIntent } from "@/components/consulting-intent";
+import { socialImage } from "@/lib/seo";
 import { overusedGrotesk } from "./fonts";
 import "./globals.css";
 
@@ -25,13 +27,13 @@ export const metadata: Metadata = {
     url: "https://mandarin3d.com",
     title: "Mandarin3D | Our story & 3D printing resources",
     description,
-    images: [{ url: "/web-app-manifest-512x512.png", width: 512, height: 512, alt: "Mandarin3D" }],
+    images: [socialImage("home", "Mandarin3D printing resources")],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Mandarin3D | Our story & 3D printing resources",
     description,
-    images: ["/web-app-manifest-512x512.png"],
+    images: [socialImage("home", "Mandarin3D printing resources").url],
   },
 };
 
@@ -45,6 +47,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <a href="#main-content" className="skip-link">Skip to content</a>
         {children}
         <Analytics />
+        <ConsultingIntent />
       </body>
     </html>
   );

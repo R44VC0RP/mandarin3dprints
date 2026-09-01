@@ -2,6 +2,7 @@
 title: "How to Design Parts That Snap-Fit Together"
 description: "Master snap-fit joint design for 3D printing. Learn the dimensions, tolerances, and material choices that create reliable clips, latches, and enclosures that actually work."
 date: "2025-12-06"
+updated: "2026-09-01"
 author: "Mandarin3D"
 tags: ["design", "snap-fits", "enclosures", "assembly", "CAD", "best-practices"]
 category: "guides"
@@ -104,7 +105,7 @@ For parts that need to flex significantly or survive abuse, TPU is unmatched. Th
 
 ### For Best Results: Nylon
 
-If your application demands the most robust snap-fits, nylon (PA) is the gold standard. It combines excellent flexibility with high fatigue resistance and can handle thousands of assembly cycles. The tradeoff is that nylon is more challenging to print and more expensive.
+Specific nylon grades can provide useful toughness for snap-fits, but there is no guaranteed cycle life. The [nylon guide](/blog/nylon-3d-printing-strong-parts-for-demanding-applications) covers moisture conditioning and grade differences that can change fit and bending behavior.
 
 ## Print Orientation: The Make-or-Break Decision
 
@@ -112,7 +113,7 @@ Here's something that surprises many designers: the same snap-fit design can wor
 
 **The rule:** Print snap-fit beams so they flex parallel to the print layers, not perpendicular to them.
 
-When a cantilever beam is printed upright (standing on its base), the stress during flexing tries to pull layer apart from layer. This is the weakest direction in FDM prints—elongation at break drops by 50%, and tensile strength drops by 20-30%.
+When a cantilever beam stands upright on its base, bending can pull layers apart. The strength difference is not a fixed percentage. Compare the actual load path with the [orientation guide](/blog/choosing-the-right-print-orientation-for-your-model), then test the intended deflection and assembly cycles.
 
 When the same beam is printed lying flat, the flexing action bends across the layers rather than between them. The full strength of the material is available.
 

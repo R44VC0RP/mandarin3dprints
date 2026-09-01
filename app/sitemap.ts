@@ -8,8 +8,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: baseUrl },
     { url: `${baseUrl}/blog` },
     { url: `${baseUrl}/consulting` },
+    { url: `${baseUrl}/calculator` },
+    { url: `${baseUrl}/business` },
+    { url: `${baseUrl}/authors/ryan-vogel` },
     ...getAllPosts().map((post) => ({
       url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: new Date(post.updated || post.date),
     })),
   ];
 }

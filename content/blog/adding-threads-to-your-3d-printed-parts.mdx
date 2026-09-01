@@ -2,6 +2,7 @@
 title: "Adding Threads to Your 3D Printed Parts"
 description: "Learn the best methods for adding functional screw threads to 3D printed parts—from directly printing threads to using heat-set inserts and tapping. Includes design tips, tolerances, and material recommendations."
 date: "2025-12-06"
+updated: "2026-09-01"
 author: "Mandarin3D"
 tags: ["design", "threads", "fasteners", "inserts", "assembly", "CAD", "best-practices"]
 category: "guides"
@@ -44,7 +45,7 @@ That said, V-threads are fine for most applications, and they have the advantage
 
 ### Print Orientation is Critical
 
-Here's the non-negotiable rule: **print threads along the Z-axis whenever possible.**
+Printing the thread axis vertically can improve thread shape, but it is not a non-negotiable rule. Axial loads can then pull across layer bonds. Compare thread quality with the load path using the [orientation guide](/blog/choosing-the-right-print-orientation-for-your-model).
 
 When threads are printed vertically (with the thread axis perpendicular to the build plate), each layer contributes to the thread profile. The result is relatively smooth threads with consistent geometry.
 
@@ -52,7 +53,7 @@ When threads are printed horizontally (thread axis parallel to the build plate),
 
 ### Layer Height for Threads
 
-Layer height directly impacts thread quality. The rule of thumb: **use a layer height between 1/4 and 1/2 of the thread pitch.**
+Layer height affects how finely the thread profile is resolved. Use several layers per pitch and stay within the nozzle profile's supported range. The following examples are starting points, not a guarantee of fit; 0.4mm layers may require a larger nozzle than the common 0.4mm diameter.
 
 | Thread Size | Pitch | Recommended Layer Height |
 |-------------|-------|--------------------------|
@@ -65,7 +66,7 @@ For threads smaller than M6, the pitch gets too fine for FDM to handle reliably.
 
 ### Tolerances for Printed Threads
 
-This is where most designs fail. You cannot print a theoretical M10 hole and expect a standard M10 bolt to thread in. The "squish" from FDM extrusion closes small gaps, and threads that should have clearance end up binding.
+Nominal thread geometry may bind because of dimensional variation and surface texture. Use the [measurement and fit guide](/blog/how-to-measure-your-model-for-perfect-fit-every-time), print a short sample, and adjust the mating feature rather than scaling every dimension of the part.
 
 **The fix:** Offset your thread geometry.
 
