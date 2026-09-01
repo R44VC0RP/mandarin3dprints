@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { overusedGrotesk } from "./fonts";
 import "./globals.css";
 
@@ -43,6 +44,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className={`${overusedGrotesk.variable} antialiased`}>
         <a href="#main-content" className="skip-link">Skip to content</a>
         {children}
+        <Analytics />
       </body>
     </html>
   );
