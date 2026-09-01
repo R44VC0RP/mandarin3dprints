@@ -53,7 +53,7 @@ export default async function BlogPostPage({ params }: Props) {
     headline: meta.title,
     description: meta.description,
     datePublished: meta.date,
-    author: { "@type": "Organization", name: meta.author },
+    author: { "@type": meta.author === "Mandarin3D" ? "Organization" : "Person", name: meta.author },
     publisher: { "@type": "Organization", name: "Mandarin3D", url: "https://mandarin3d.com" },
     mainEntityOfPage: `https://mandarin3d.com/blog/${slug}`,
   };
@@ -71,7 +71,7 @@ export default async function BlogPostPage({ params }: Props) {
             <span>{meta.readingTime}</span>
             <span>By {meta.author}</span>
           </div>
-          <p className="my-8 border-y border-border py-4 text-sm leading-relaxed text-muted-foreground">From the Mandarin3D library. The business is now closed; these guides remain available. <Link href="/#local-printing" className="text-link">Find a local printing service.</Link></p>
+          <p className="my-8 border-y border-border py-4 text-sm leading-relaxed text-muted-foreground">Mandarin3D&apos;s printing service is closed; these guides remain available. <Link href="/#local-printing" className="text-link">Find a local printing service.</Link></p>
           <div className="prose-custom"><MDXRemote source={content} components={mdxComponents} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} /></div>
         </article>
         {related.length > 0 && (

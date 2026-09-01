@@ -7,6 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: baseUrl },
     { url: `${baseUrl}/blog` },
+    { url: `${baseUrl}/consulting` },
     ...getAllPosts().map((post) => ({
       url: `${baseUrl}/blog/${post.slug}`,
     })),

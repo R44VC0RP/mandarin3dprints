@@ -44,10 +44,10 @@ const resources = [
 ];
 
 const guideSlugs = [
+  "starting-a-3d-printing-business-lessons-from-mandarin3d",
   "your-first-3d-print-a-complete-beginners-guide",
   "pla-vs-petg-which-material-should-you-choose",
   "how-to-prepare-your-3d-model-for-printing",
-  "designing-for-3d-printing-essential-rules-for-success",
 ];
 
 export default function Home() {
@@ -126,6 +126,16 @@ export default function Home() {
                   </ul>
                 </div>
               ))}
+            </div>
+          </section>
+
+          <section className="section-space border-t border-border">
+            <div className="grid gap-5 md:grid-cols-[1fr_2fr] md:gap-12">
+              <h2 className="section-heading">Building a 3D printing business?</h2>
+              <div>
+                <p className="leading-relaxed text-muted-foreground">Ryan offers consulting for people starting or running their own print businesses. Work through pricing, printer choices, customers, and operations. <strong className="font-semibold text-foreground">$300 per consulting session.</strong></p>
+                <Link href="/consulting" className="inline-link min-h-11 mt-3">Explore consulting with Ryan <ArrowRight size={16} aria-hidden="true" /></Link>
+              </div>
             </div>
           </section>
 
