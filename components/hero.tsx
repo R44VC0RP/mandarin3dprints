@@ -1,57 +1,28 @@
-import { Button } from "@/components/ui/button"
-import { Logo } from "./logo"
-import Image from "next/image"
-import Link from "next/link"
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden py-12 sm:py-16 lg:py-24 px-4 sm:px-6">
-      <div className="container relative">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          {/* Left side - Text content */}
-          <div className="flex flex-col space-y-5 sm:space-y-8 order-1">
-
-            {/* Heading */}
-            <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-[-0.04em]">
-              Ready to bring
-              <br />
-              your ideas to life?
-            </h1>
-
-            {/* Description */}
-            <p className="text-base sm:text-lg leading-relaxed text-muted-foreground max-w-lg">
-              Ready to bring your ideas to life? We&apos;re here to help you create the perfect 3D printed product.
-            </p>
-
-            {/* CTA Button */}
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-2">
-              <Link href="/upload" className="w-full sm:w-auto">
-                <Button variant="primary" size="medium" className="w-full sm:w-auto">
-                  Get an Instant Quote
-                </Button>
-              </Link>
-              <Link href="/contact" className="w-full sm:w-auto">
-                <Button variant="secondary" size="medium" className="w-full sm:w-auto">
-                  Contact Sales
-                </Button>
-              </Link>
-            </div>
-          </div>
-
-          {/* Right side - Image */}
-          <div className="relative order-2 mt-4 lg:mt-0">
-            <div className="relative aspect-square max-w-[280px] sm:max-w-sm lg:max-w-md mx-auto lg:mx-0">
-              <Image
-                src="/h2s-image.png"
-                alt="3D Printer - H2S Model"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
-          </div>
+    <section className="grid items-center gap-6 py-10 sm:py-14 md:grid-cols-[1.25fr_1fr] md:gap-10">
+      <div>
+        <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.035em] leading-[1.12] text-balance">
+          Mandarin3D had<br className="hidden sm:block" /> a pretty great run.
+        </h1>
+        <p className="mt-5 max-w-lg text-lg leading-relaxed text-muted-foreground">
+          A small 3D printing business, built and developed by <a className="text-link whitespace-nowrap" href="https://ryan.ceo">Ryan Vogel</a> in Jacksonville, Florida. Over <strong className="font-semibold text-foreground">$100,000 in sales over two years</strong>, and a whole lot of ideas made real.
+        </p>
+        <p className="mt-4 max-w-lg text-base leading-relaxed">
+          <strong className="font-semibold">Mandarin3D is no longer open for business.</strong> Thank you to everyone who was part of it. The prints, the story, and a few useful things we learned live on here.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <Link href="#resources" className="action-link">Explore the resources <ArrowDown size={16} aria-hidden="true" /></Link>
+          <Link href="#local-printing" className="action-link action-link-secondary">Find local printing <ArrowUpRight size={16} aria-hidden="true" /></Link>
         </div>
       </div>
+      <div className="relative mx-auto aspect-square w-full max-w-[230px] sm:max-w-[290px] md:max-w-[370px]">
+        <Image src="/h2s-image.png" alt="Bambu Lab H2S 3D printer" fill sizes="(max-width: 640px) 230px, (max-width: 768px) 290px, 370px" className="object-contain" priority />
+      </div>
     </section>
-  )
-} 
+  );
+}

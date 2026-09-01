@@ -9,7 +9,7 @@ category: "guides"
 
 Thin walls are the number one cause of failed 3D prints. Design them too thin, and your part either won't print at all or will break the moment you look at it wrong. Design them too thick, and you're wasting material, time, and money.
 
-Getting wall thickness right is one of those foundational skills that separates prints that work from prints that frustrate. Here's everything you need to know to nail it every time.
+Wall thickness is a foundational design consideration. These guidelines provide starting points to check in the slicer and validate with a test print.
 
 ## The Fundamentals: Why Wall Thickness Matters
 
@@ -102,7 +102,7 @@ Different filaments have different characteristics that affect optimal wall thic
 - **Optimal:** 2.0mm to 3.0mm
 - **Notes:** Flexible filaments need thicker walls to maintain their shape during and after printing. Go too thin and the part won't hold its form. But also don't go too thick—at some point, thick TPU walls reduce the flexibility you're presumably after.
 
-At Mandarin3D, we primarily work with PLA and PETG on our BambuLab P1S and H2S printers. Both materials perform excellently within the recommended ranges above.
+Treat these ranges as starting points, not load ratings. Validate the actual part with its intended material, orientation, and print settings.
 
 ## Special Features: Pins, Bosses, and Screw Holes
 
@@ -168,8 +168,4 @@ Before finalizing your design, run through this:
 
 Wall thickness might seem like a small detail, but getting it wrong means failed prints, wasted material, and frustration. Getting it right means parts that print successfully and perform as expected.
 
-If you're unsure about your design, that's exactly why working with a local print service makes sense. When you [upload your model](/upload) to Mandarin3D, we review it before printing. If we spot walls that are too thin, features that might fail, or optimizations that could improve your part, we'll let you know before anything gets printed.
-
-Our 250mm build volume on the BambuLab P1S (and 340mm height on the H2S) handles most projects, and we're happy to advise on wall thickness and design optimization for any model you're working on.
-
-Questions about a specific design? Email us at [orders@mandarin3d.com](mailto:orders@mandarin3d.com)—we'd rather help you get it right the first time than watch a print fail because of a fixable design issue.
+Inspect the sliced toolpaths through the thinnest areas and around screw holes. Confirm that walls are continuous and that finishing will not remove too much material. For a functional part, print and test the most demanding section before committing to the whole design.

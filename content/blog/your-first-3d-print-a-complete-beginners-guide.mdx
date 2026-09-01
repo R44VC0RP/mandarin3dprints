@@ -11,7 +11,7 @@ You've heard about 3D printing for years. Maybe you've seen the incredible thing
 
 ## What Actually Happens During a 3D Print
 
-Before we dive into the practical stuff, let's quickly cover how FDM (Fused Deposition Modeling) printing works—it's the most common type, and it's what we use at Mandarin3D.
+Start with FDM (Fused Deposition Modeling), a common type of desktop 3D printing.
 
 A 3D printer melts plastic filament and deposits it layer by layer, like a very precise hot glue gun controlled by a computer. Each layer is typically 0.1mm to 0.3mm thick. Stack enough layers together and you've got a solid object.
 
@@ -91,11 +91,11 @@ This trips up more beginners than almost anything else. 3D models don't always c
 
 1. **Measure what you need** — If it's a replacement part, measure the original. If it's filling a specific space, measure that space.
 
-2. **Check the model dimensions** — Most 3D printing services (including us) show you the model size before you order.
+2. **Check the model dimensions** — Verify the size in a slicer or confirm the dimensions with your chosen provider.
 
 3. **Account for tolerances** — Printed parts are accurate to within about 0.2-0.3mm. If something needs to fit tightly inside something else, you may need slight adjustments.
 
-Our build volume is 250mm in each dimension. That's roughly 10 inches cubed—plenty for most projects, from phone stands to replacement brackets to decorative pieces.
+Build volume varies by printer. Check all three dimensions and leave space for supports or a brim; larger projects may need to be split into smaller pieces.
 
 ## What to Expect From the Finished Print
 
@@ -103,11 +103,11 @@ Let's set realistic expectations:
 
 ### You'll See Layer Lines
 
-Layer lines are inherent to FDM printing. Finer layers (0.12mm) make them less visible; thicker layers (0.28mm) are more pronounced but print faster. For functional parts, this rarely matters. For display pieces, we default to finer layers.
+Layer lines are inherent to FDM printing. Finer layers (0.12mm) make them less visible; thicker layers (0.28mm) are more pronounced but print faster. Functional parts may not need fine layers, while display pieces can benefit from them.
 
 ### Overhangs and Supports
 
-If your model has parts that jut out horizontally—like arms on a figurine or a shelf on a bracket—those sections need support material during printing. We add and remove supports as part of our process, but you may see slight marks where supports attached.
+If your model has parts that jut out horizontally, like arms on a figurine or a shelf on a bracket, those sections may need support material during printing. Supports must be removed afterward and can leave marks where they attached.
 
 ### Surface Finish Varies by Orientation
 
@@ -136,7 +136,7 @@ Very thin walls (under 1mm) can fail to print or come out fragile. If you're des
 
 ### Choosing the Wrong Orientation
 
-How a model sits on the print bed affects strength, surface quality, and whether it even prints successfully. A part printed flat is stronger across its layers than one printed standing up. When you upload to a print service, the orientation matters—we'll advise if we think a different orientation would work better.
+How a model sits on the print bed affects strength, surface quality, and whether it prints successfully. Layers generally resist loads better within the layer than across layer bonds. Choose an orientation based on how the part will be loaded, not just how it looks on screen.
 
 ### Expecting Injection-Molded Perfection
 
@@ -144,21 +144,17 @@ How a model sits on the print bed affects strength, surface quality, and whether
 
 ## How the Ordering Process Works
 
-Here's what happens when you order a print from Mandarin3D:
+If you use a print provider rather than your own printer, confirm these steps before paying:
 
-1. **Upload your file** — STL, OBJ, or 3MF format. You'll see a preview and dimensions immediately.
+1. **File requirements** — Check accepted formats and confirm the physical dimensions.
 
-2. **Choose your options** — Material (PLA or PETG), color, and any notes about your project.
+2. **Material and use** — Specify material, color, and what the part needs to do.
 
-3. **We review it** — Before printing, we check that your model is printable. If there are issues—thin walls, impossible overhangs, manifold errors—we'll let you know and suggest fixes.
+3. **Design review** — Ask whether printability checks are included and who is responsible for correcting the file.
 
-4. **Printing happens** — Using our BambuLab P1S and H2S printers, we print your part. Print time depends on size and complexity.
+4. **Finishing and inspection** — Agree on support removal, surface finish, and any dimensions that need checking.
 
-5. **Quality check and cleanup** — We remove supports, check for defects, and make sure it meets standards.
-
-6. **Shipping or pickup** — Local Jacksonville customers can pick up; everyone else gets shipping.
-
-The whole process typically takes 2-5 business days depending on queue and complexity.
+5. **Delivery and timing** — Confirm pickup or shipping, total cost, and an estimated completion date. Print time alone does not include the queue or delivery.
 
 ## Your First Print: What Should It Be?
 
@@ -185,6 +181,6 @@ The best first print is something you'll actually use or enjoy. Don't overthink 
 
 You've got the basics. You understand how it works, what materials to choose, and what to expect. Now it's time to actually do it.
 
-[Upload your file](/upload) and let's make something. Whether it's a downloaded design you've been eyeing or something you sketched out yourself, I'll review it and make sure it prints well.
+Choose a small, simple model for the first attempt. Verify its dimensions, preview the sliced layers, and leave fit-critical or heavily loaded projects until you've tested the process.
 
-Got questions about a specific project? Just ask. That's the advantage of working with a local print service—actual humans who will tell you if your idea will work and help you fix it if it won't.
+No printer at home? The [local printing guide](/#local-printing) explains how to find a place to make your first part.

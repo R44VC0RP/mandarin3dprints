@@ -1,6 +1,6 @@
 ---
-title: "How to Measure Your Model for Perfect Fit Every Time"
-description: "Learn the measuring techniques that guarantee your 3D printed parts fit perfectly. From digital calipers to tolerance compensation, get it right the first time."
+title: "How to Measure Your Model for a Better Fit"
+description: "Learn practical measuring techniques for 3D printed parts, from digital calipers and clearance allowances to testing fit before a full print."
 date: "2025-11-29"
 author: "Mandarin3D"
 tags: ["measuring", "tolerances", "design-tips", "getting-started", "calipers"]
@@ -13,7 +13,7 @@ The most common reason 3D prints don't fit? Bad measurements. I've seen perfectl
 
 When you're designing a replacement part, a bracket that mounts to existing hardware, or anything that needs to mate with another object, being off by even half a millimeter can mean the difference between a perfect fit and a useless print.
 
-3D printing isn't injection molding. Every printed part has some dimensional variation—typically ±0.2mm for well-calibrated FDM printers like our BambuLab P1S. That's incredibly precise for desktop manufacturing, but it means you need to design with tolerances in mind.
+3D printing isn't injection molding. Every printed part has dimensional variation. Around +/-0.2mm can be a useful starting estimate for a well-tuned FDM printer, but actual accuracy depends on the machine, material, geometry, and settings. Measure test prints rather than treating that figure as a guaranteed tolerance.
 
 ## The Essential Tool: Digital Calipers
 
@@ -165,7 +165,7 @@ Even with careful measuring, fits sometimes don't work out. Here's how to recove
 
 **Part too loose?** Sometimes you can add tape or a shim as a quick fix. For a better solution, measure what you actually printed (not what you designed) and adjust your clearances accordingly.
 
-**Inconsistent results?** If the same file prints differently each time, there may be a printer calibration issue. At Mandarin3D, our machines are regularly calibrated, but if you're printing at home, check your belt tension, e-steps, and flow rate.
+**Inconsistent results?** If the same file prints differently each time, check for material moisture, mechanical play, or calibration issues. Follow the printer manufacturer's maintenance and calibration guidance before adjusting settings.
 
 ## The Measurement Checklist
 
@@ -177,8 +177,8 @@ Before finalizing any design that needs to fit something:
 4. **Units double-checked?** Make sure you're in millimeters throughout.
 5. **Test print considered?** For critical fits, test before committing to the full print.
 
-## Need Help Getting the Fit Right?
+## Document the Fit
 
-If you're not sure whether your measurements and clearances are correct, that's exactly what the Print Assistance option is for. Upload your file, mention what it needs to fit with, and I'll review the dimensions before printing.
+Record measured dimensions, intended clearances, and the model revision together. Mark which measurements are critical and whether a clearance applies per side or across the full diameter.
 
-Got a project with tricky fit requirements? [Upload your file](/upload) and let me know what it needs to mate with. Better to sort out the dimensions before printing than to discover the problem afterward.
+If someone else will print the part, provide those notes and ask for a fit sample before the full piece. Clear dimensions are more useful than a request for a "perfect fit."

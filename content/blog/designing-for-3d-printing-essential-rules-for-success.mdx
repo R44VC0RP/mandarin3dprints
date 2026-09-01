@@ -1,6 +1,6 @@
 ---
 title: "Designing for 3D Printing: Essential Rules for Success"
-description: "Master the fundamental design principles that separate successful 3D prints from failed ones. Learn about wall thickness, overhangs, tolerances, and more—practical rules that work every time."
+description: "Learn practical design principles for 3D printing, including wall thickness, overhangs, tolerances, and build-volume planning."
 date: "2025-12-03"
 author: "Mandarin3D"
 tags: ["design", "tips", "beginners", "CAD", "best-practices"]
@@ -93,7 +93,7 @@ Bridging is what happens when the printer needs to cross an open span—printing
 - Break long bridges into shorter spans with intermediate supports designed into the model
 - Consider printing the part in a different orientation
 
-Our BambuLab P1S printers handle bridging quite well, but even the best printer can't overcome physics. If your design requires a 50mm unsupported span, expect compromises in surface quality on the underside.
+Even a well-tuned printer has bridging limits. A long unsupported span can sag on the underside; test it or revise the geometry when that surface matters.
 
 ## Text and Fine Details
 
@@ -130,7 +130,7 @@ Some designs simply need supports, and that's fine. Just plan for it:
 
 ## Designing for the Build Volume
 
-At Mandarin3D, our BambuLab P1S printers have a 256 x 256 x 256mm build volume, and our H2S can go up to 340mm in height. That's a lot of space, but it's not infinite.
+Check the target printer's usable build volume before finalizing the model. Allow room for supports, brims, and any exclusion zones specified by the printer profile.
 
 **When your part is bigger than the printer:**
 - Split the model along natural break lines
@@ -171,15 +171,11 @@ Before you finalize your model, run through this list:
 3. **Holes compensated?** Added 0.2-0.4mm for shrinkage
 4. **Tolerances specified?** At least 0.3mm clearance for moving parts
 5. **Text readable?** Minimum 2mm height, bold fonts preferred
-6. **Fits the build volume?** 256mm max per side (or 340mm height on H2S)
+6. **Fits the build volume?** Check all three dimensions against the target printer profile
 7. **File format correct?** STL or 3MF preferred
 
 ## Getting Your Design Right
 
 These rules might seem like a lot to remember, but they quickly become intuitive. After a few projects, you'll naturally add chamfers instead of fillets, automatically compensate hole sizes, and think about print orientation from the start.
 
-And if you're unsure? That's exactly why working with a local print service helps. When you [upload your model](/upload) to Mandarin3D, we review it before printing. If something in your design might cause problems—walls too thin, tolerances too tight, orientation that needs adjustment—we'll reach out and work through it with you.
-
-Have a design you're not sure about? Send it over. We'd rather catch issues before printing than waste your time and money on a failed print. That's the advantage of working with people who look at every file, not an automated system that just prints whatever you upload.
-
-Questions about a specific design challenge? Email us at [orders@mandarin3d.com](mailto:orders@mandarin3d.com)—we're always happy to help troubleshoot before you commit to a print.
+Preview the exported model in a slicer and inspect the layers around difficult features. If you're relying on an unfamiliar material or a tight fit, print a small sample first. The [3D printing resources](/#resources) can help you find tools and further guidance for the next iteration.

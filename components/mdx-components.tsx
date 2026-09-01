@@ -9,12 +9,12 @@ import Link from "next/link";
 export const mdxComponents: MDXComponents = {
   // Headings
   h1: ({ children }) => (
-    <h1 className="text-3xl md:text-4xl font-bold tracking-tight mt-12 mb-6 first:mt-0">
+    <h2 className="text-2xl font-semibold tracking-tight mt-10 mb-4 first:mt-0">
       {children}
-    </h1>
+    </h2>
   ),
   h2: ({ children }) => (
-    <h2 className="text-2xl md:text-3xl font-bold tracking-tight mt-10 mb-4">
+    <h2 className="text-2xl font-semibold tracking-tight mt-10 mb-4">
       {children}
     </h2>
   ),
@@ -41,7 +41,7 @@ export const mdxComponents: MDXComponents = {
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-primary hover:underline underline-offset-4"
+          className="text-link"
         >
           {children}
         </a>
@@ -50,7 +50,7 @@ export const mdxComponents: MDXComponents = {
     return (
       <Link
         href={href || "#"}
-        className="text-primary hover:underline underline-offset-4"
+        className="text-link"
       >
         {children}
       </Link>
@@ -72,7 +72,7 @@ export const mdxComponents: MDXComponents = {
 
   // Blockquote
   blockquote: ({ children }) => (
-    <blockquote className="border-l-4 border-primary/30 pl-6 py-2 my-6 italic text-lg text-muted-foreground">
+    <blockquote className="pl-6 py-2 my-6 italic text-lg text-muted-foreground">
       {children}
     </blockquote>
   ),
@@ -153,8 +153,8 @@ export const mdxComponents: MDXComponents = {
 
   // Tables
   table: ({ children }) => (
-    <div className="overflow-x-auto my-6">
-      <table className="w-full border-collapse">{children}</table>
+    <div className="overflow-x-auto my-6" role="region" aria-label="Scrollable comparison table" tabIndex={0}>
+      <table className="w-full min-w-[480px] border-collapse [overflow-wrap:normal]">{children}</table>
     </div>
   ),
   thead: ({ children }) => (
@@ -177,4 +177,3 @@ export const mdxComponents: MDXComponents = {
   ),
   em: ({ children }) => <em className="italic">{children}</em>,
 };
-

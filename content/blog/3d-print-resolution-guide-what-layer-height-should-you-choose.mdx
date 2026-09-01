@@ -17,7 +17,7 @@ FDM (Fused Deposition Modeling) printers build objects by depositing melted plas
 
 Standard layer heights for most printers range from 0.08mm (ultra-fine) to 0.32mm (draft quality). To put that in perspective, a human hair is about 0.07mm thick. So even "coarse" 3D printing layers are only a few hair-widths tall.
 
-The printer I use—BambuLab machines with 0.4mm nozzles—can print anywhere in that range. The question isn't what's possible; it's what's right for your specific project.
+Check the supported layer-height range for your nozzle and printer profile. The question isn't just what's possible; it's what's right for your project.
 
 ## The Core Trade-off: Quality vs. Time
 
@@ -55,7 +55,7 @@ At 0.2mm, layer lines are visible if you look closely, but they're not distracti
 - Prototypes where appearance matters
 - Anything that doesn't demand extreme detail or extreme speed
 
-When customers don't specify a preference, 0.2mm is typically what we use at Mandarin3D. It reliably produces results people are happy with.
+For a first test, 0.2mm is a useful starting point with a common 0.4mm nozzle.
 
 ### 0.24mm - 0.32mm: Speed Priority
 
@@ -88,7 +88,7 @@ Different materials behave differently across layer heights:
 
 **PETG** actually prefers slightly thicker layers—0.2mm and up. Thinner layers can exacerbate stringing and surface quality issues that PETG is prone to. If you're printing PETG for function rather than appearance, 0.24mm is often the sweet spot.
 
-Both materials work reliably across our standard layer height options. When you order, we'll match the layer height to your application unless you specify otherwise.
+Use a material-specific profile, then compare a small sample at two layer heights if surface quality is important.
 
 ## The Nozzle Size Connection
 
@@ -96,7 +96,7 @@ Layer height isn't independent of your nozzle diameter. There's a rule of thumb:
 
 For the standard 0.4mm nozzle, that means layer heights between 0.1mm and 0.3mm. Go too thin, and you risk under-extrusion. Go too thick, and layers won't bond properly.
 
-Our BambuLab P1S and H2S printers run 0.4mm nozzles, so we work comfortably within that 0.1mm-0.28mm range for most prints. Need finer detail? A 0.2mm nozzle can go down to 0.05mm layers. Need faster output on large parts? A 0.6mm nozzle handles 0.4mm layers.
+Changing nozzle size can expand your options. A 0.2mm nozzle can reproduce smaller features, while a 0.6mm nozzle can lay down wider, thicker lines for larger parts. Use layer heights supported by the matching nozzle profile.
 
 ## Adaptive Layer Height: Best of Both Worlds
 
@@ -106,7 +106,7 @@ Imagine a model with a detailed face but a simple base. Adaptive layer height us
 
 This is especially useful for models with both curved surfaces (where layer lines are visible) and flat areas (where layer height is invisible). Why spend time on fine layers in places where no one will see the difference?
 
-When slicing customer files, we evaluate whether adaptive layers make sense. It doesn't work for every geometry, but when it does, it's a genuine improvement.
+Compare the adaptive-layer preview with a fixed-height version. Check whether the extra detail appears on surfaces that matter and how much print time changes.
 
 ## Practical Decision Framework
 
@@ -127,15 +127,11 @@ If you're planning to sand, fill, and paint the part, coarse layers are fine—y
 **5. What's the deadline?**
 Sometimes "good enough, fast" beats "perfect, eventually." Draft printing has its place.
 
-## What This Means for Your Order
+## Communicating Resolution Requirements
 
-When you submit a file to Mandarin3D, you can specify your layer height preference, or let us choose based on your application.
+When using a print provider, explain which surfaces and features matter rather than requesting the finest setting by default. A photograph or marked-up model can show where smoothness is important.
 
-For most orders where quality and time are both considerations, we default to 0.2mm. It's the reliable middle ground that works for almost everything.
-
-If you're printing miniatures, fine-detail pieces, or anything where surface smoothness is critical, mention it in your order notes. We'll adjust to finer layers where it makes sense.
-
-If you need parts fast and don't care about cosmetics—prototypes, functional brackets, hidden components—let us know. We'll bump up the layer height and get your parts to you quicker.
+For prototypes and hidden parts, ask whether coarser layers would save time without losing required features. For detailed pieces, ask for a representative sample and confirm the nozzle size as well as the layer height.
 
 ![Detailed 3D printed tower with fine surface features](/customerShowcase/tower.jpeg)
 
@@ -147,6 +143,4 @@ Layer height is a lever you can pull to optimize for what you actually need. The
 
 Need pristine surfaces on a display piece? Go fine. Need strong functional parts quickly? Go coarse. Need a balanced result without overthinking it? 0.2mm works great.
 
-Ready to print? [Upload your file](/upload) and let us know what matters most for your project. We'll handle the settings to match your priorities.
-
-Questions about what layer height makes sense for your application? Reach out at [orders@mandarin3d.com](mailto:orders@mandarin3d.com). We're happy to explain the trade-offs and recommend the right approach.
+Save the chosen settings alongside the model so future iterations can be compared fairly. Change one variable at a time when evaluating surface quality.

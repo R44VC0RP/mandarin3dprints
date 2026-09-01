@@ -70,7 +70,7 @@ PLA works for more applications than most people realize. Its reputation as a "b
 
 **The cost factor:** PLA remains the most economical option. For prototyping where you might iterate through several versions, PLA's lower cost adds up to real savings.
 
-At Mandarin3D, roughly 60% of what we print is PLA. It covers most decorative projects, prototypes, and indoor functional parts that come through our shop.
+For a low-risk indoor prototype, PLA is often a sensible first material to test before moving to a more demanding filament.
 
 ## PETG: The Practical Workhorse
 
@@ -97,7 +97,7 @@ If PLA doesn't meet your requirements, PETG should be your next consideration. I
 
 **When PETG falls short:** When you need temperatures above 80°C, maximum rigidity, or a pristine surface finish. PETG also strings more during printing, which can affect fine details.
 
-PETG is our recommendation for any outdoor application and most functional parts. If someone asks "will this survive in my car?" the answer is usually PETG.
+PETG is a candidate for many outdoor and functional parts, not a universal solution. Check heat exposure and sustained loads carefully, especially in parked cars, and consider ASA for prolonged sunlight.
 
 ## ABS: For Serious Heat and Rigidity
 
@@ -114,7 +114,7 @@ ABS was the original workhorse of 3D printing. It's been somewhat displaced by P
 
 **Why PETG often wins:** ABS warps during printing, emits harmful fumes requiring ventilation, and offers less impact resistance than PETG. Unless you specifically need the heat resistance or post-processing options ABS offers, PETG is usually the better choice.
 
-**A note on printing ABS:** ABS requires an enclosed printer and proper ventilation. The fumes aren't something to take lightly. At Mandarin3D, we can print ABS but will usually recommend PETG unless your application specifically demands ABS properties.
+**A note on printing ABS:** ABS needs a controlled printing environment and appropriate ventilation. Check whether its heat resistance or finishing options are actually necessary before accepting the extra printing complexity.
 
 ## TPU: When Flexibility Matters
 
@@ -135,7 +135,7 @@ TPU (Thermoplastic Polyurethane) is in a category of its own—it's the go-to ma
 
 **TPU challenges:** TPU is harder to print than rigid filaments. It requires direct-drive extruders (or significant Bowden modifications), slower print speeds, and careful retraction settings. Not all printers handle it well.
 
-Our BambuLab P1S and H2S printers have direct-drive extruders that handle TPU reliably, so we can print flexible parts when your project needs them.
+Check compatibility with the specific TPU hardness before printing. Softer grades can require slower speeds and a more constrained filament path.
 
 ## Nylon: Maximum Mechanical Performance
 
@@ -180,7 +180,7 @@ Questions answered:
 - **Chemical exposure:** Food contact possible
 - **Flexibility:** Rigid is fine
 
-**Recommendation:** PETG. The potential for warmth and food contact rules out PLA. PETG is food-safe when printed properly and handles kitchen temperatures.
+**Recommendation:** PETG can suit a utensil organizer kept away from heat and direct food contact. A PETG print is not automatically food-safe: filament additives, printer contamination, and hard-to-clean layer gaps matter. For direct food contact, use a product specifically certified for that use rather than assuming a home print is suitable.
 
 ### Scenario: Mount for Outdoor Security Camera
 
@@ -215,17 +215,11 @@ Questions answered:
 
 **Recommendation:** TPU. The flexibility absorbs drops, and the material handles constant handling well. Rigid materials would crack or fail to protect the phone.
 
-## What We Stock at Mandarin3D
+## Check the Specific Filament and Process
 
-On our BambuLab P1S and H2S printers, we regularly work with:
+Material names describe families, not identical products. Compare the exact grade's temperature limits, mechanical data, and printing requirements with the conditions your part will face.
 
-- **PLA** in a wide range of colors for decorative and indoor functional parts
-- **PETG** for durable functional parts and outdoor applications
-- **TPU** for flexible parts and protective cases
-- **ABS** for high-heat applications (with discussion of alternatives)
-- **Specialty filaments** by request
-
-Our 250mm³ build volume handles most projects. When you upload a model, let us know about your application and we'll recommend the right material—or confirm your choice if you already have one in mind.
+If using a print provider, confirm the filament grade, available colors, build volume, and whether its process is suitable for your application. A substitution should be evaluated before production, not assumed equivalent.
 
 ## When You're Still Not Sure
 
@@ -235,8 +229,8 @@ The framework above covers most situations, but 3D printing has edge cases. If y
 
 2. **Step up to PETG** when durability questions arise. It handles most real-world demands.
 
-3. **Ask us directly.** Upload your model and describe the application. We've printed thousands of parts for every scenario imaginable. We'll tell you what works.
+3. **Test the demanding feature.** Print a small joint, mounting point, or flexible section in the candidate material and evaluate it under representative conditions.
 
 Material selection doesn't have to be overwhelming. Start with those five questions, match your answers to the material properties, and you'll pick right far more often than not.
 
-Ready to get started? [Upload your model](/upload) and let us help you match it to the right material for your specific application.
+For further reading and tools, explore the [3D printing resources](/#resources).

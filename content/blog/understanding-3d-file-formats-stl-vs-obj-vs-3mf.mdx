@@ -26,7 +26,7 @@ STL (Standard Tessellation Language) has been around since 1987—older than mos
 
 - No color or texture information
 - No material data
-- No scale information (we have to trust your settings)
+- No unit information (confirm the intended dimensions after import)
 - Uses only triangles to define surfaces, which can make curves look faceted
 - Prone to errors like holes, inverted faces, and non-manifold geometry
 
@@ -34,9 +34,9 @@ STL (Standard Tessellation Language) has been around since 1987—older than mos
 
 Here's the thing about STL files: they break. A lot. When you export from CAD software, the conversion process can create holes in the mesh, flip faces inside-out, or generate overlapping geometry that confuses slicers.
 
-When we receive an STL file with issues, we have to repair it before printing. Tools like Microsoft 3D Builder, Meshmixer, or the repair functions built into Bambu Studio can fix most problems automatically. But sometimes the repairs change your model slightly—especially around fine details.
+An STL file with mesh errors may need repair before printing. Slicer repair functions can fix some problems automatically, but repairs can change the geometry, especially around fine details.
 
-This isn't a dealbreaker for most projects. Just know that if you're sending STL files, there's always a small chance something needs fixing on our end.
+Inspect the repaired model and its sliced layers before printing or approving production.
 
 ## OBJ: Color Gets Involved
 
@@ -60,7 +60,7 @@ OBJ (Object File Format) came from the graphics and animation world before 3D pr
 
 OBJ is your go-to when you need to print something with multiple colors or textures baked into the model. Think painted figurines, architectural models with different material zones, or anything where color is part of the design, not just a surface finish.
 
-The downside is that OBJ's two-file system (OBJ + MTL) creates room for error. We've seen plenty of color prints arrive as solid gray because the MTL file got lost somewhere along the way. If you're sending an OBJ, zip both files together.
+OBJ material references create room for error: a missing MTL or texture image can make a colored model appear gray. Package the OBJ, MTL, and referenced textures together when sharing the model.
 
 ## 3MF: The Modern Standard
 
@@ -85,9 +85,9 @@ The downside is that OBJ's two-file system (OBJ + MTL) creates room for error. W
 
 If you've used Bambu Studio or downloaded files from MakerWorld, you've probably noticed 3MF files everywhere. There's a reason for that.
 
-Our BambuLab P1S and H2S printers work seamlessly with 3MF. The format can include all print settings—support placement, infill patterns, even plate arrangements for multi-part prints. When you download a 3MF from MakerWorld, it often comes pre-configured for optimal printing on Bambu hardware.
+Slicer project files using 3MF can include support placement, infill settings, and plate arrangements. A downloaded project may target a specific printer, nozzle, and material rather than your own setup.
 
-This means less guesswork for you and more consistent results. When someone sends us a 3MF with settings included, we know exactly how the creator intended it to be printed.
+Included settings help document the creator's intent, but review and adapt them before printing. Settings may not transfer completely between slicers.
 
 ## Quick Comparison
 
@@ -123,7 +123,7 @@ This means less guesswork for you and more consistent results. When someone send
 
 ## A Note on File Prep
 
-No matter which format you choose, a few things make our lives easier:
+No matter which format you choose, a few checks make file sharing more reliable:
 
 **Check your scale.** A model designed at 100mm that imports at 100 inches is a headache for everyone. If you're not sure, add a note with your intended dimensions.
 
@@ -141,8 +141,6 @@ OBJ has its place for color work, but the split-file system makes it clunky comp
 
 The best format is the one that works for your specific project. Simple prototype? STL is fine. Multi-color display piece? OBJ or 3MF. Complex assembly with print settings? 3MF, no question.
 
-## Ready to Print?
+## Before Sharing the File
 
-Have a model you want to bring to life? Whether it's STL, OBJ, or 3MF, we can work with it. Our BambuLab P1S and H2S printers handle all major formats, and our 250mm³ build volume gives you room for substantial prints.
-
-[Upload your file](/upload) and get an instant quote, or [reach out](mailto:orders@mandarin3d.com) if you have questions about file prep. We're happy to help you get the best results from your design.
+Keep the editable source model as well as the exported print file. Include the intended dimensions and material requirements so the recipient can check the import rather than guess.

@@ -27,7 +27,7 @@ Before anything else, make sure you're working with the right format. The three 
 
 **3MF (3D Manufacturing Format)** is the newer option. It's more efficient than STL, supports colors and materials, and includes model units to prevent scaling mishaps. If your CAD software offers it, 3MF is worth considering.
 
-At Mandarin3D, we accept all three formats. When you upload your file, we'll preview it and show you the dimensions immediately—so you can catch sizing issues before ordering.
+Check which formats your slicer or chosen print provider accepts. Open the exported file and verify its dimensions before printing.
 
 ## Step 2: Verify the Size and Units
 
@@ -38,10 +38,10 @@ This is where many first-time prints go wrong. A model designed in inches gets i
 - Double-check actual dimensions against what you intended
 - Note the size somewhere—you'll want to verify it after import
 
-**After uploading or importing to a slicer:**
+**After importing to a slicer:**
 - Check the displayed dimensions against your notes
 - Verify the model fits within your printer's build volume
-- For our BambuLab P1S and H2S printers, that's 250mm × 250mm × 250mm
+- Leave room for any supports, brims, and printer-specific exclusion zones
 
 If the size is wrong, most slicers let you scale by percentage or enter exact dimensions. Just remember that scaling affects wall thickness and detail—a model designed at 100mm may not look as crisp at 50mm.
 
@@ -110,7 +110,7 @@ Don't want to install software? Several websites offer free mesh repair:
 
 - **Meshmixer Web** handles basic repairs
 - **Microsoft's 3D Model Repair Service** provides automated fixes
-- **Most 3D printing services** (including us) will check and repair minor issues automatically
+- **Print providers** may offer file repair; confirm whether it is included and approve any geometry changes
 
 ## Step 5: Optimize Your Model for Printing
 
@@ -124,7 +124,7 @@ Thin walls can fail to print or come out fragile. Minimum recommendations:
 - **1.5-2mm** for functional parts that will see stress
 - **0.8mm** absolute minimum (not recommended for most uses)
 
-Our printers use a 0.4mm nozzle by default. Walls should be multiples of this value for cleanest results—1.2mm (3 walls) or 1.6mm (4 walls) work well.
+With a common 0.4mm nozzle, 1.2mm or 1.6mm walls are useful starting points. Check the actual extrusion width and sliced toolpaths rather than relying on nozzle diameter alone.
 
 ### Polygon Count
 
@@ -160,7 +160,7 @@ We've covered this topic in depth in our [print orientation guide](/blog/choosin
 
 ## Step 7: Final Checklist Before Printing
 
-Run through this list before you upload:
+Run through this list before printing or sharing the file:
 
 - [ ] **File opens without errors** in at least one program
 - [ ] **Dimensions are correct** (measured in millimeters)
@@ -172,15 +172,15 @@ Run through this list before you upload:
 
 If everything checks out, your file is ready.
 
-## When You Upload to Mandarin3D
+## Review Before Printing
 
-We don't just print your file blindly. When you upload a model:
+Before committing material or approving a print:
 
-1. We preview it and show dimensions immediately
-2. Before printing, we check for obvious issues
-3. If we spot problems (thin walls, impossible geometry, likely failures), we'll reach out with suggestions
+1. Open the exported file and compare its dimensions with the intended size
+2. Slice it using the target printer and material profile
+3. Inspect thin walls, unsupported sections, and missing features in the layer preview
 
-That said, starting with a clean, well-prepared file speeds up the process and ensures you get exactly what you're expecting.
+A clean file reduces avoidable failures, but fit-critical features still benefit from a small test print.
 
 ## Common Questions
 
@@ -200,4 +200,4 @@ Usually, yes. Modern slicers like Bambu Studio and PrusaSlicer have built-in rep
 
 A properly prepared file is the foundation of a successful print. Take the few extra minutes to verify your model, and you'll save time, material, and frustration.
 
-Got a file you're unsure about? [Upload it](/upload) and we'll take a look. We review every print before it runs and will let you know if anything needs attention. That's the advantage of working with actual humans instead of a faceless print farm.
+If you need someone else to print the model, use the [local printing guide](/#local-printing) and ask prospective providers how they handle file review and design changes.

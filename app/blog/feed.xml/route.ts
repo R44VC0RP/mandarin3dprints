@@ -13,7 +13,6 @@ export async function GET() {
       <guid isPermaLink="true">${siteUrl}/blog/${post.slug}</guid>
       <description><![CDATA[${post.description}]]></description>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
-      <author>orders@mandarin3d.com (${post.author})</author>
       ${post.tags.map((tag) => `<category>${tag}</category>`).join("\n      ")}
     </item>`
     )
@@ -29,7 +28,7 @@ export async function GET() {
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${siteUrl}/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
-      <url>${siteUrl}/favicon.svg</url>
+      <url>${siteUrl}/web-app-manifest-192x192.png</url>
       <title>Mandarin3D Blog</title>
       <link>${siteUrl}/blog</link>
     </image>
@@ -44,4 +43,3 @@ export async function GET() {
     },
   });
 }
-

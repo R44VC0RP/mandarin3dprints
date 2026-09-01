@@ -1,9 +1,0 @@
-{
-  "crons": [
-    {
-      "path": "/api/cron/generate-blog-images",
-      "schedule": "0 6 * * *"
-    }
-  ]
-}
-

@@ -21,7 +21,7 @@ Before diving into techniques, let's be clear about what supports actually cost 
 - **Post-processing**: Breaking off supports and cleaning up residue takes time and skill
 - **Risk of damage**: Removing supports from delicate features can break the part itself
 
-On our BambuLab P1S printers, support removal is manageable, but even "easy" supports are harder than no supports at all. Every print without supports is a cleaner, faster, more reliable print.
+Even easy-to-remove supports add work. Eliminating unnecessary supports can reduce cleanup and protect delicate features from damage during removal.
 
 ## The 45-Degree Rule: Your Fundamental Guide
 
@@ -42,7 +42,7 @@ This is one of the simplest and most powerful changes you can make to your desig
 
 **Fillets** (rounded transitions) look great on machined parts but can create support nightmares in 3D printing. A curved surface often passes through angles greater than 45 degrees as it transitions, creating overhangs that need support.
 
-**Chamfers** (angled transitions) at 45 degrees are completely self-supporting. They might look slightly more industrial, but they print cleaner every time.
+**Chamfers** (angled transitions) at 45 degrees are often self-supporting. They can be easier to print than downward-facing fillets, though material and cooling still affect the result.
 
 **When to use each:**
 
@@ -88,13 +88,13 @@ Sometimes the best design change is simply rotating your model before printing.
 - Can critical surfaces touch the build plate for the smoothest finish?
 - Does rotating 45 degrees on the Z-axis change which features need support?
 
-At Mandarin3D, we evaluate print orientation for every order. But if you're designing with orientation in mind from the start, you can create parts that print beautifully in the most obvious position.
+Evaluate print orientation while designing, not only after export. This can reveal simple geometry changes that make the intended orientation easier to print.
 
 ## Bridging: Spanning the Gap
 
 Bridging is when the printer draws filament across open space between two support points—like spanning a doorway with a horizontal surface.
 
-Modern printers handle bridges surprisingly well. Our BambuLab machines can bridge 15-20mm with only minor sagging on the underside. Shorter bridges (under 10mm) often come out nearly perfect.
+Bridge quality depends on material, cooling, and speed. Short spans are usually easier than long ones; test the intended span if its underside finish or dimensions matter.
 
 **Design strategies for better bridges:**
 - Keep unsupported spans under 10mm when possible
@@ -152,7 +152,7 @@ Different materials bridge and overhang differently:
 
 **TPU** (flexible filament) doesn't bridge well at all due to its flexibility. If you're printing TPU, design conservatively with minimal overhangs.
 
-At Mandarin3D, we primarily print in PLA and PETG, both of which handle self-supporting geometry well. Our BambuLab P1S and H2S printers have excellent cooling systems that help maximize overhang performance.
+Use an overhang and bridging test with your chosen material to establish practical limits. A setting that works for PLA may not transfer to PETG or TPU.
 
 ## A Support-Free Design Checklist
 
@@ -171,12 +171,8 @@ Let's be realistic: some designs genuinely need supports. A highly detailed figu
 
 The goal isn't to eliminate supports in every possible case. It's to eliminate *unnecessary* supports through thoughtful design. Use supports when they genuinely improve the result, not because you didn't think about alternatives.
 
-## Get Your Support-Free Design Printed
+## Validate the Design
 
 Designing for support-free printing becomes intuitive with practice. After a few projects, you'll naturally visualize the build direction and adjust geometry to avoid problems before they happen.
 
-Have a design you'd like to print without supports? [Upload your model](/upload) to Mandarin3D, and we'll review it with support-free printing in mind. If we spot geometry that would benefit from a minor modification—a chamfer here, a different orientation there—we'll let you know before printing.
-
-Not sure if your design needs supports or not? Send it our way. We look at every file individually and can suggest changes that might save you time and money while delivering a cleaner result.
-
-Questions about designing for support-free printing? Reach out at [orders@mandarin3d.com](mailto:orders@mandarin3d.com)—we're happy to talk through your specific design challenges.
+Preview the model with supports disabled and look for layers that begin in midair. Print a small section containing the most difficult overhang before attempting the whole part. If the test fails, compare a chamfer, a split, and targeted supports rather than treating support-free printing as an absolute requirement.

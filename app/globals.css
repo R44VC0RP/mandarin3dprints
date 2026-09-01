@@ -1,6 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-@plugin "@toolwind/corner-shape";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -45,7 +43,7 @@
 
 body {
   overscroll-behavior-y: none;
-  font-family: var(--font-primary), Arial, Helvetica, sans-serif;
+  font-family: var(--font-overused), Arial, Helvetica, sans-serif;
 }
 
 :root {
@@ -61,7 +59,7 @@ body {
   --secondary: oklch(0.967 0.001 286.375);
   --secondary-foreground: oklch(0.21 0.006 285.885);
   --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
+  --muted-foreground: #64635f;
   --accent: oklch(0.967 0.001 286.375);
   --accent-foreground: oklch(0.21 0.006 285.885);
   --destructive: oklch(0.577 0.245 27.325);
@@ -124,4 +122,54 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@layer components {
+  .site-width {
+    @apply mx-auto max-w-5xl px-5 sm:px-8;
+  }
+  .site-header {
+    @apply flex flex-wrap items-center justify-between gap-x-4 gap-y-1 py-4 sm:py-5;
+  }
+  .nav-link {
+    @apply inline-flex min-h-11 items-center px-2 text-sm font-medium transition-colors hover:text-[#466F80];
+  }
+  .section-space {
+    @apply py-10 sm:py-12 scroll-mt-6;
+  }
+  .section-heading {
+    @apply text-2xl font-semibold leading-tight tracking-tight text-balance;
+  }
+  .inline-link {
+    @apply inline-flex items-center gap-2 text-[#466F80] underline-offset-4 hover:underline;
+  }
+  .text-link {
+    @apply text-[#466F80] underline underline-offset-4;
+  }
+  .action-link {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#466F80] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#385a69] active:scale-[0.96] motion-reduce:transform-none;
+  }
+  .action-link-secondary {
+    @apply border border-[#cbd5d8] bg-white/80 text-[#454139] hover:bg-white;
+  }
+  .resource-card {
+    @apply rounded-xl border border-border bg-white/70 p-6 transition-colors hover:bg-[#f3f6f6];
+  }
+  .skip-link {
+    @apply fixed left-4 top-4 z-50 -translate-y-24 rounded-lg bg-white px-4 py-3 text-[#466F80] focus:translate-y-0;
+  }
+}
+
+::selection {
+  background: #d6e4e9;
+  color: #263f49;
+}
+
+:focus-visible {
+  outline: 2px solid #466f80;
+  outline-offset: 4px;
+}
+
+.prose-custom {
+  overflow-wrap: anywhere;
 }

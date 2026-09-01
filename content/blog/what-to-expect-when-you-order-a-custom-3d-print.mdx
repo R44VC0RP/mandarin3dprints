@@ -1,30 +1,30 @@
 ---
 title: "What to Expect When You Order a Custom 3D Print"
-description: "A complete walkthrough of the custom 3D printing process—from uploading your file to holding the finished part. Know what happens at each step so there are no surprises."
+description: "Learn how custom 3D printing typically works, what affects cost and timing, and what to confirm with a provider before approving production."
 date: "2025-11-28"
 author: "Mandarin3D"
 tags: ["beginners", "ordering", "process", "customer-guide", "getting-started"]
 category: "guides"
 ---
 
-Ordering a custom 3D print for the first time can feel like a leap of faith. You upload a file, pick some options, and then... what? Understanding what happens behind the scenes helps you set realistic expectations and get better results. Here's the complete journey your order takes from upload to delivery.
+Ordering a custom 3D print for the first time can feel like a leap of faith. Understanding the steps helps you set realistic expectations and compare providers.
 
 ## The Upload and Quote Phase
 
-Every order starts with a file. You'll upload your 3D model—typically in STL, OBJ, or 3MF format—and the system analyzes it instantly. Within seconds, you'll see:
+A provider usually needs a 3D model in an accepted format, often STL, OBJ, or 3MF. Some offer automated quotes; others review files manually. A useful quote should identify:
 
 - **Physical dimensions** of your part
 - **Estimated print time** based on size and complexity
 - **Material options** available for your design
 - **Price** based on all of the above
 
-This instant feedback is your first checkpoint. If the dimensions look wrong (a common issue when files are designed in inches but interpreted as millimeters), you'll catch it here before anything gets printed.
+Check the dimensions carefully. Files designed in inches but interpreted as millimeters can produce a much smaller part than intended. An automated quote is not necessarily a printability review.
 
 ### What Affects the Price?
 
 Three main factors determine cost:
 
-**Size matters most.** A larger part uses more material and takes more print time. Doubling the dimensions doesn't double the cost—it roughly octuples it, because volume increases in three dimensions.
+**Size.** A larger part generally uses more material and takes more time. Doubling every dimension increases the model's volume eightfold, but pricing also depends on walls, infill, supports, and the provider's minimum charges.
 
 **Material choice.** PLA is the most affordable option. PETG costs slightly more due to its enhanced durability and heat resistance. Specialty materials like TPU (flexible) or high-temperature filaments carry higher price tags.
 
@@ -32,23 +32,23 @@ Three main factors determine cost:
 
 ## The Review Process
 
-Here's where working with a real print service differs from fully automated platforms. After you place your order, we actually look at your file.
+Ask whether a human printability review is included, when it occurs, and whether file repairs cost extra. Providers differ; do not assume an accepted upload means the design is ready.
 
-### What We Check
+### What a Review Should Cover
 
 **Printability.** Is this design physically possible to print? Some geometries that look fine on screen won't work in the real world. Floating parts, impossible overhangs, and features smaller than the printer can resolve all get flagged.
 
-**Wall thickness.** This is the number one cause of failed prints. Walls under 1.2mm are risky; we'll let you know if we spot thin sections that might not print reliably.
+**Wall thickness.** Thin sections can fail or be fragile. For common FDM settings, 1.2mm is a useful starting point, but suitable thickness depends on the material, nozzle, geometry, and load.
 
 **Orientation optimization.** How a part sits on the print bed affects strength, surface quality, and print time. Sometimes rotating a model 90 degrees cuts print time in half while improving quality.
 
-**Support requirements.** We determine where support structures are needed and plan their placement to minimize surface marks on visible faces.
+**Support requirements.** Identify where supports are needed, whether they can be removed, and which visible surfaces may be marked.
 
 ### Communication Before Printing
 
-If we spot issues, you'll hear from us before we start printing. This might be a quick email saying "heads up, these thin walls might be fragile" or a more detailed message explaining why a design needs modifications.
+Agree on how design changes will be approved before production. Ask for specifics if a provider flags thin walls, unsupported geometry, or a fit problem.
 
-This review step catches problems that would otherwise waste your time and money. It's the advantage of working with humans who actually understand 3D printing, not just automated systems that blindly process whatever you upload.
+A review can catch avoidable problems, but it is not a guarantee of strength or fit. Critical features may need a prototype and physical testing.
 
 ## The Printing Phase
 
@@ -64,7 +64,7 @@ Your 3D model gets converted into instructions the printer can follow—a proces
 - **Support placement** (where needed for overhangs)
 - **Temperature settings** (optimized for the specific material)
 
-We use BambuLab P1S and H2S printers with Bambu Studio for slicing. These machines are fast, reliable, and produce consistent results—but the settings still need human judgment to optimize for each specific part.
+The printer, slicer profile, and material must match. Settings still require judgment, especially when strength and surface finish compete.
 
 ### During the Print
 
@@ -75,7 +75,7 @@ A typical print takes anywhere from 30 minutes to 20+ hours depending on size. D
 - The print head traces each layer's pattern
 - Layer by layer, your part takes shape
 
-Modern printers like ours include monitoring systems that can catch failures early. A print that detaches from the bed or tangles in filament usually gets stopped before wasting hours of time.
+Some printers include failure detection or camera monitoring. These features can help, but do not detect every failure or replace inspection.
 
 ### Real-World Print Times
 
@@ -85,7 +85,7 @@ To give you a sense of scale:
 - **Medium items** (phone stands, enclosures, figurines): 2 to 8 hours
 - **Large items** (full-size props, big functional parts): 8 to 24+ hours
 
-Our build volume maxes out at 250mm per side (about 10 inches cubed), with the H2S printer offering slightly more vertical room. Most customer projects fall well within these limits.
+Confirm the provider's usable build volume. Supports and brims need room too; oversized models may require splitting and assembly.
 
 ## Post-Processing and Quality Check
 
@@ -93,58 +93,58 @@ The print doesn't go straight from printer to shipping box. Several steps happen
 
 ### Support Removal
 
-If your print needed supports—and most complex shapes do—those structures get carefully removed. We use a combination of tools to snap, cut, and sand away support material while minimizing marks on your part.
+If the print needed supports, removal may involve snapping, cutting, or sanding them away. Confirm whether support removal is included in the quote.
 
-Support contact points will leave slight witness marks. Where possible, we orient prints so supports attach to less visible surfaces. But some geometry makes this unavoidable.
+Support contact points can leave witness marks. Orienting a model so supports attach to less visible surfaces can help, but some geometry makes marks unavoidable.
 
 ### Cleanup and Inspection
 
-Every print gets inspected for:
+A useful inspection covers:
 
 - **Dimensional accuracy** (does it match the expected size?)
 - **Surface defects** (any failed spots, blobs, or stringing?)
 - **Structural integrity** (any cracks or delamination?)
 - **Overall quality** (does it meet standards?)
 
-Prints that don't pass get reprinted. You won't receive a part we wouldn't be happy with ourselves.
+Ask how defects are defined and handled. Reprint and refund policies vary, and a design flaw may be treated differently from a manufacturing defect.
 
 ### Optional Finishing
 
-Standard orders ship as-is from the printer (after cleanup). Some common requests that can enhance your print:
+Many providers distinguish basic cleanup from additional finishing. Possible extras include:
 
 - Light sanding of visible surfaces
 - Drilling or tapping holes
 - Test-fitting multiple parts together
 
-Let us know in your order notes if you need any special finishing work.
+Agree on finishing work and its cost before production begins.
 
 ## Turnaround Time: What's Realistic?
 
-Here's the honest truth about timing.
+Print time is only part of the schedule. Queue length, review, finishing, and delivery also matter.
 
-### Standard Orders: 2-5 Business Days
+### Confirm the Full Schedule
 
-Most orders ship within 2-5 business days. This includes:
-- Review and queue time (usually same day or next day)
+Ask for an estimate that includes:
+- Review and queue time
 - Print time (varies by size)
 - Post-processing and quality check
 - Packaging
 
-Smaller, simpler parts often ship faster. Large or complex orders may take the full five days.
+There is no universal turnaround time. Confirm whether an estimate is a shipping date, a pickup date, or an arrival date.
 
 ### What Can Extend Timing
 
 **Large prints.** A 20-hour print simply takes 20 hours. There's no rushing the physics.
 
-**Multiple revisions.** If we catch issues and need to discuss modifications, that adds communication time.
+**Multiple revisions.** Design changes and approvals add time before printing can start.
 
-**Queue depth.** During busy periods, your order waits its turn. We don't cut corners to rush through a backlog.
+**Queue depth.** During busy periods, a short print can still have a long wait before production.
 
 **Material availability.** Most common colors stay in stock, but unusual requests might require ordering filament.
 
 ### Rush Orders
 
-Need it faster? Let us know when ordering. We can often prioritize urgent projects, though print time itself can't be compressed. A 10-hour print still takes 10 hours even if it jumps to the front of the queue.
+If timing is critical, ask the provider whether rush work is available and what it costs. Moving a job forward in the queue does not remove its print, cooling, or finishing time.
 
 ## What You'll Receive
 
@@ -171,7 +171,7 @@ The printed part behaves like solid plastic because it is solid plastic—just m
 
 ### Packaging
 
-We package prints to survive shipping. Fragile or delicate items get extra padding. Multiple parts are separated to prevent rubbing or damage in transit.
+Fragile features need protection during shipping. Ask how delicate parts will be packed, and photograph damage before discarding packaging.
 
 ## After You Receive Your Order
 
@@ -179,7 +179,7 @@ Got your print? Great. A few things to know about living with your new part.
 
 ### Break-In and Testing
 
-If it's a functional part, test it right away. Check fit, function, and finish while details are fresh. If something's not right, let us know quickly—we want to make it right.
+Check dimensions, fit, and finish before putting a functional part into service. If something is wrong, document it and notify the provider within its stated reporting window. Do not load a visibly damaged part.
 
 ### Storage and Care
 
@@ -189,10 +189,8 @@ PLA and PETG are stable at room temperature. Keep them out of direct sunlight an
 
 First print not perfect? That's common and expected in the design process. Many customers go through 2-3 revisions to dial in dimensions, tolerances, or features. Each iteration gets you closer to exactly what you need.
 
-## Ready to Order?
+## Choosing a Provider
 
-Now you know what happens behind the scenes. The process is straightforward: upload, review, print, check, ship. No mysteries, no surprises.
+Prepare a short specification with the model revision, dimensions, material, quantity, critical tolerances, and deadline. Use it to compare quotes on the same basis.
 
-[Upload your file](/upload) to get started. You'll see instant pricing and dimensions, and we'll take it from there. Have a complex project or specific requirements? [Reach out](mailto:orders@mandarin3d.com) and let's talk through it before you order.
-
-Whether it's your first custom print or your fiftieth, the process works the same way: careful attention at every step to make sure you get a part you're happy with.
+The [local printing guide](/#local-printing) can help you explore alternatives to owning a printer. Confirm each provider's current capabilities and terms directly.

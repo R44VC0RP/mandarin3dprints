@@ -56,6 +56,9 @@ export function getAllPosts(): BlogPostMeta[] {
  * Get a single post by slug
  */
 export function getPostBySlug(slug: string): { meta: BlogPostMeta; content: string } {
+  if (!/^[a-z0-9-]+$/.test(slug)) {
+    throw new Error(`Invalid post slug: ${slug}`);
+  }
   const filePath = path.join(BLOG_DIR, `${slug}.mdx`);
 
   if (!fs.existsSync(filePath)) {
@@ -168,9 +171,9 @@ export function getPostsByCategory(category: string): BlogPostMeta[] {
 export function formatDate(dateString: string): string {
   const date = new Date(dateString);
   return date.toLocaleDateString("en-US", {
+    timeZone: "UTC",
     year: "numeric",
     month: "long",
     day: "numeric",
   });
 }
-
